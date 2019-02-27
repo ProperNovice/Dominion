@@ -8,6 +8,7 @@ public class Controller {
 	private TextManager textManager = new TextManager();
 	private FlowManager flowManager = new FlowManager();
 	private Modifiers modifiers = new Modifiers();
+	private CardManager cardManager = new CardManager();
 	private SaveLoadManager saveLoadManager = new SaveLoadManager();
 
 	public Controller() {
@@ -32,6 +33,10 @@ public class Controller {
 
 	public SaveLoadManager saveLoadManager() {
 		return this.saveLoadManager;
+	}
+
+	public CardManager cardManager() {
+		return this.cardManager;
 	}
 
 }

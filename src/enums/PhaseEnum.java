@@ -1,6 +1,6 @@
 package enums;
 
-public enum Phase {
+public enum PhaseEnum {
 
 	ACTION, BUY, CLEAN_UP
 

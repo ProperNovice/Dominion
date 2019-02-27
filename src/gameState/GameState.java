@@ -1,8 +1,15 @@
 package gameState;
 
 import controller.Controller;
+import enums.CardAbilityEnum;
+import enums.CardNameEnum;
+import enums.CardTypeEnum;
+import enums.PhaseEnum;
 import enums.TextEnum;
 import javafx.scene.input.KeyCode;
+import model.Card;
+import utils.ArrayList;
+import utils.HashMap;
 import utils.Instances;
 
 public abstract class GameState {
@@ -47,6 +54,11 @@ public abstract class GameState {
 	}
 
 	protected void handleKeyPressedE() {
+
+	}
+
+	public final void handleCardPressed(Card card, CardNameEnum cardNameEnum, ArrayList<CardTypeEnum> cardTypeEnum,
+			HashMap<PhaseEnum, ArrayList<CardAbilityEnum>> abilities, int buyCost) {
 
 	}
 

@@ -40,7 +40,7 @@ public abstract class ArrayListImageViewAbles<T> {
 		this.arrayList = new ArrayList<>(this.maxCapacity);
 	}
 
-	private void toFront() {
+	protected void toFront() {
 
 		ImageViewAble imageViewAble = null;
 
