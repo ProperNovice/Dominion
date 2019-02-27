@@ -7,6 +7,9 @@ public class StartGame extends GameState {
 
 	@Override
 	public void handleGameStateChange() {
+		
+		
+		
 
 		ImageView a = new ImageView("cards/province.jpg");
 		ImageView b = new ImageView("cards/province.jpg");
