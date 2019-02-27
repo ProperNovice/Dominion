@@ -3,7 +3,7 @@ package controller;
 public class Credentials {
 
 	public static NumbersPair DimensionsFrame, DimensionsInsets;
-	public static NumbersPair CoordinatesTextPanel, CoordinatesExperimental;
+	public static NumbersPair CoordinatesTextPanel;
 	public static double gapBetweenBorders, textHeight, number;
 
 	public static class NumbersPair {
@@ -26,8 +26,7 @@ public class Credentials {
 		DimensionsInsets = new NumbersPair(7, 29);
 		gapBetweenBorders = 20;
 
-		CoordinatesTextPanel = new NumbersPair(50, 50);
-		CoordinatesExperimental = new NumbersPair(600, 300);
+		CoordinatesTextPanel = new NumbersPair(0, 0);
 
 		textHeight = 50;
 		number = 100;
