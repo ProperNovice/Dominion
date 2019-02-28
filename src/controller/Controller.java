@@ -4,15 +4,30 @@ import utils.Instances;
 
 public class Controller {
 
-	private GameStateManager gameStateManager = new GameStateManager();
-	private TextManager textManager = new TextManager();
-	private FlowManager flowManager = new FlowManager();
-	private Modifiers modifiers = new Modifiers();
-	private CardManager cardManager = new CardManager();
-	private SaveLoadManager saveLoadManager = new SaveLoadManager();
+	private GameStateManager gameStateManager = null;
+	private TextManager textManager = null;
+	private FlowManager flowManager = null;
+	private Modifiers modifiers = null;
+	private SaveLoadManager saveLoadManager = null;
+	private CardManager cardManager = null;
+	private Supply supply = null;
 
 	public Controller() {
+		createInstances();
+	}
+
+	private void createInstances() {
+
 		Instances.setControllerInstance(this);
+
+		this.gameStateManager = new GameStateManager();
+		this.textManager = new TextManager();
+		this.flowManager = new FlowManager();
+		this.modifiers = new Modifiers();
+		this.cardManager = new CardManager();
+		this.saveLoadManager = new SaveLoadManager();
+		this.supply = new Supply();
+
 	}
 
 	public GameStateManager gameStateManager() {
@@ -37,6 +52,10 @@ public class Controller {
 
 	public CardManager cardManager() {
 		return this.cardManager;
+	}
+
+	public Supply supply() {
+		return this.supply;
 	}
 
 }

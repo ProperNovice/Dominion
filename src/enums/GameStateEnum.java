@@ -4,7 +4,11 @@ import gameState.*;
 
 public enum GameStateEnum {
 
-	START_GAME(new StartGame());
+	START_GAME(new StartGame()),
+	CREATE_SUPPLY(new CreateSupply()),
+	END_TURN(new EndTurn()),
+	
+	;
 
 	private GameState gameState = null;
 

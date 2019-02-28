@@ -2,8 +2,8 @@ package gameState;
 
 import controller.Credentials;
 import enums.CardNameEnum;
+import enums.GameStateEnum;
 import model.Card;
-import model.Pile;
 import utils.ArrayListImageViewAbles;
 
 public class StartGame extends GameState {
@@ -11,13 +11,16 @@ public class StartGame extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-		testRelocateCards();
+//		relocateCards();
 
-		new Pile();
+		super.controller.flowManager().addGameStateResolvingFirst(GameStateEnum.END_TURN);
+		super.controller.flowManager().addGameStateResolvingFirst(GameStateEnum.CREATE_SUPPLY);
+
+		super.controller.flowManager().proceedToNextGameStatePhase();
 
 	}
 
-	public void testRelocateCards() {
+	public void relocateCards() {
 
 		Cards cards = new Cards();
 

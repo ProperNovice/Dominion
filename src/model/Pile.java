@@ -1,29 +1,30 @@
 package model;
 
 import controller.Credentials;
+import enums.CardNameEnum;
 import utils.ArrayListImageViewAbles;
 import utils.NumberImageView;
 
 public class Pile extends ArrayListImageViewAbles<Card> {
 
-	private NumberImageView numberImageView = new NumberImageView(10);
+	private NumberImageView numberImageView = new NumberImageView();
+	private CardNameEnum cardNameEnum = null;
 
 	public Pile() {
 
-		this.numberImageView.getImageView().setVisible(false);
+		this.toFront();
 
 	}
 
 	@Override
 	protected void setValues() {
 
-		super.gapX = Credentials.gapBetweenCards;
-		super.gapY = Credentials.gapBetweenCards;
 		super.rearrangeType = RearrangeType.STATIC;
 
 	}
 
-	public void relocate(double x, double y) {
+	@Override
+	public void relocateArrayList(double x, double y) {
 
 		super.relocateArrayList(x, y);
 		this.numberImageView.getImageView().relocate(x + Credentials.cardGameWidth - Credentials.number, y);
@@ -32,8 +33,18 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 
 	@Override
 	public void toFront() {
+
 		super.toFront();
 		this.numberImageView.getImageView().toFront();
+
+	}
+
+	public void updateNumberImageView() {
+		this.numberImageView.setNumber(super.arrayList.size());
+	}
+
+	public void setCardNameEnumContaining(CardNameEnum cardNameEnum) {
+		this.cardNameEnum = cardNameEnum;
 	}
 
 }

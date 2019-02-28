@@ -3,7 +3,7 @@ package controller;
 public class Credentials {
 
 	public static NumbersPair DimensionsFrame, DimensionsInsets;
-	public static NumbersPair CoordinatesTextPanel;
+	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply;
 	public static double gapBetweenBorders, textHeight, number, cardGameWidth, cardIndicatorWidth, gapBetweenCards;
 
 	public static class NumbersPair {
@@ -32,7 +32,9 @@ public class Credentials {
 		cardGameWidth = 100;
 		number = cardGameWidth / 2;
 		cardIndicatorWidth = 200;
-		gapBetweenCards = 5;
+		gapBetweenCards = 10;
+
+		CoordinatesSupply = new NumbersPair(20, 20);
 
 	}
 
