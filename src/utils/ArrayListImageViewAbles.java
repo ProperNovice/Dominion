@@ -40,7 +40,7 @@ public abstract class ArrayListImageViewAbles<T> {
 		this.arrayList = new ArrayList<>(this.maxCapacity);
 	}
 
-	protected void toFront() {
+	private void toFront() {
 
 		ImageViewAble imageViewAble = null;
 
@@ -159,7 +159,7 @@ public abstract class ArrayListImageViewAbles<T> {
 			switch (imageViewAction) {
 
 			case ANIMATE:
-				Animation.animate(imageView, coordinateTempX, coordinateTempY, animationSynch);
+				Animation.INSTANCE.animate(imageView, coordinateTempX, coordinateTempY, animationSynch);
 				break;
 
 			case RELOCATE:

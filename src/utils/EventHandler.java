@@ -31,7 +31,7 @@ public class EventHandler implements javafx.event.EventHandler<MouseEvent> {
 	@Override
 	public void handle(MouseEvent event) {
 
-		if (Animation.isAnimating())
+		if (Animation.INSTANCE.isAnimating())
 			return;
 
 		this.mouseEvent = event;

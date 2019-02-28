@@ -2,12 +2,14 @@ package utils;
 
 import javafx.animation.AnimationTimer;
 
-public class Animation {
+public enum Animation {
 
-	private static final double ANIMATION_STEP = 9;
-	private static ArrayList<NodeAnimation> animationsSynchronous = new ArrayList<>();
-	private static ArrayList<NodeAnimation> animationsAsynchronous = new ArrayList<>();
-	private static ArrayList<Node> nodesAnimating = new ArrayList<>();
+	INSTANCE;
+
+	private final double ANIMATION_STEP = 9;
+	private ArrayList<NodeAnimation> animationsSynchronous = new ArrayList<>();
+	private ArrayList<NodeAnimation> animationsAsynchronous = new ArrayList<>();
+	private ArrayList<Node> nodesAnimating = new ArrayList<>();
 
 	private Animation() {
 
@@ -17,11 +19,11 @@ public class Animation {
 		SYNCHRONOUS, ASYNCHRONOUS
 	}
 
-	public static void startAnimation() {
+	public void startAnimation() {
 		new AnimationTimerFX().start();
 	}
 
-	private static class AnimationTimerFX extends AnimationTimer {
+	private class AnimationTimerFX extends AnimationTimer {
 
 		@Override
 		public void handle(long time) {
@@ -35,24 +37,24 @@ public class Animation {
 
 	}
 
-	private static void executeAnimationSynchronous() {
+	private void executeAnimationSynchronous() {
 
-		executeAnimationList(animationsSynchronous);
+		executeAnimationList(this.animationsSynchronous);
 
-		if (!animationsSynchronous.isEmpty())
+		if (!this.animationsSynchronous.isEmpty())
 			return;
 
 		Lock.unlock();
 
 	}
 
-	private static void executeAnimationAsynchronous() {
+	private void executeAnimationAsynchronous() {
 
-		executeAnimationList(animationsAsynchronous);
+		executeAnimationList(this.animationsAsynchronous);
 
 	}
 
-	private static void executeAnimationList(ArrayList<NodeAnimation> animationsList) {
+	private void executeAnimationList(ArrayList<NodeAnimation> animationsList) {
 
 		ArrayList<NodeAnimation> animationsListTemp = animationsList.clone();
 
@@ -64,13 +66,13 @@ public class Animation {
 				continue;
 
 			animationsList.remove(imageViewAnimation);
-			nodesAnimating.remove(imageViewAnimation.getNode());
+			this.nodesAnimating.remove(imageViewAnimation.getNode());
 
 		}
 
 	}
 
-	private static class NodeAnimation {
+	private class NodeAnimation {
 
 		private Node node = null;
 		private double currentX, currentY;
@@ -176,25 +178,25 @@ public class Animation {
 
 	}
 
-	public static void animate(Node node, double endingX, double endingY, AnimationSynch animationSynch) {
+	public void animate(Node node, double endingX, double endingY, AnimationSynch animationSynch) {
 
 		PlatformFX.runLater(() -> {
 
-			if (nodesAnimating.contains(node))
+			if (this.nodesAnimating.contains(node))
 				return;
 
-			nodesAnimating.addLast(node);
+			this.nodesAnimating.addLast(node);
 
 			ArrayList<NodeAnimation> listToAdd = null;
 
 			switch (animationSynch) {
 
 			case SYNCHRONOUS:
-				listToAdd = animationsSynchronous;
+				listToAdd = this.animationsSynchronous;
 				break;
 
 			case ASYNCHRONOUS:
-				listToAdd = animationsAsynchronous;
+				listToAdd = this.animationsAsynchronous;
 				break;
 
 			}
@@ -206,13 +208,8 @@ public class Animation {
 
 	}
 
-	public static boolean isAnimating() {
-
-		if (animationsSynchronous.isEmpty())
-			return false;
-
-		return true;
-
+	public boolean isAnimating() {
+		return !this.animationsSynchronous.isEmpty();
 	}
 
 }

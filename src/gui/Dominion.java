@@ -22,7 +22,7 @@ public class Dominion extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Animation.startAnimation();
+		Animation.INSTANCE.startAnimation();
 		Logger.startLogging();
 		Credentials.calculateCredentials();
 
@@ -44,7 +44,7 @@ public class Dominion extends Application {
 
 				Executor.runLater(() -> {
 
-					if (Animation.isAnimating())
+					if (Animation.INSTANCE.isAnimating())
 						return;
 
 					Instances.getControllerInstance().gameStateManager().getCurrentGameState()
