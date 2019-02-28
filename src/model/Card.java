@@ -19,7 +19,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 	private CardNameEnum cardNameEnum = null;
 	private ArrayList<CardTypeEnum> cardTypeEnum = new ArrayList<>();
 	private int buyCost = -1, treasure = 0, victoryPoints = 0;
-	private HashMap<PhaseEnum, ArrayList<CardAbilityEnum>> abilities = new HashMap<>();
+	private HashMap<PhaseEnum, ArrayList<CardAbilityEnum>> cardAbilities = new HashMap<>();
 
 	public Card(CardNameEnum cardNameEnum, int buyCost) {
 
@@ -27,9 +27,23 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		this.buyCost = buyCost;
 
 		for (PhaseEnum phaseEnum : PhaseEnum.values())
-			this.abilities.put(phaseEnum, new ArrayList<CardAbilityEnum>());
+			this.cardAbilities.put(phaseEnum, new ArrayList<CardAbilityEnum>());
 
 		createImageView();
+
+	}
+
+	private void createImageView() {
+
+		String path = "";
+		path += "cards/";
+		path += this.cardNameEnum.getString();
+		path += ".jpg";
+
+		ImageView imageView = new ImageView(path, this);
+		imageView.setWidth(Credentials.cardGameWidth);
+
+		map.put(this, imageView);
 
 	}
 
@@ -38,7 +52,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 	}
 
 	public void addCardAbility(PhaseEnum phaseEnum, CardAbilityEnum cardAbilityEnum) {
-		this.abilities.get(phaseEnum).addLast(cardAbilityEnum);
+		this.cardAbilities.get(phaseEnum).addLast(cardAbilityEnum);
 	}
 
 	public void setVictoryPoints(int victoryPoints) {
@@ -63,7 +77,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		printCard();
 
 		Executor.runLater(() -> Instances.getControllerInstance().gameStateManager().getCurrentGameState()
-				.handleCardPressed(this, this.cardNameEnum, this.cardTypeEnum, this.abilities, this.buyCost));
+				.handleCardPressed(this, this.cardNameEnum, this.cardTypeEnum, this.cardAbilities, this.buyCost));
 
 	}
 
@@ -73,11 +87,11 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 		Logger.log(seperator);
 
-		Logger.log(this.cardNameEnum);
+		Logger.log("card name -> " + this.cardNameEnum);
 		Logger.log("buy cost -> " + this.buyCost);
 
 		for (CardTypeEnum cardTypeEnum : this.cardTypeEnum)
-			Logger.log(cardTypeEnum);
+			Logger.log("card type -> " + cardTypeEnum);
 
 		if (this.treasure != 0)
 			Logger.log("treasure -> " + this.treasure);
@@ -86,29 +100,15 @@ public class Card implements EventHandlerAble, ImageViewAble {
 			Logger.log("victory points -> " + this.victoryPoints);
 
 		for (PhaseEnum phaseEnum : PhaseEnum.values())
-			if (!this.abilities.get(phaseEnum).isEmpty()) {
+			if (!this.cardAbilities.get(phaseEnum).isEmpty()) {
 
 				Logger.log(phaseEnum);
-				this.abilities.get(phaseEnum).printList();
+				this.cardAbilities.get(phaseEnum).printList();
 
 			}
 
 		Logger.log(seperator);
 		Logger.newLine();
-
-	}
-
-	private void createImageView() {
-
-		String path = "";
-		path += "cards/";
-		path += this.cardNameEnum.getString();
-		path += ".jpg";
-
-		ImageView imageView = new ImageView(path, this);
-		imageView.setWidth(Credentials.cardGameWidth);
-
-		map.put(this, imageView);
 
 	}
 

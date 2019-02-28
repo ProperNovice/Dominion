@@ -3,6 +3,7 @@ package gameState;
 import controller.Credentials;
 import enums.CardNameEnum;
 import model.Card;
+import model.Pile;
 import utils.ArrayListImageViewAbles;
 
 public class StartGame extends GameState {
@@ -12,6 +13,8 @@ public class StartGame extends GameState {
 
 		testRelocateCards();
 
+		new Pile();
+
 	}
 
 	public void testRelocateCards() {
@@ -19,9 +22,9 @@ public class StartGame extends GameState {
 		Cards cards = new Cards();
 
 		for (CardNameEnum cardNameEnum : CardNameEnum.values())
-			cards.getArrayList().addLast(super.controller.cardManager().getCard(cardNameEnum));
+			cards.getArrayList().addLast(super.controller.cardManager().getCardPool(cardNameEnum));
 
-		cards.relocate();
+		cards.relocateImageViews();
 
 	}
 
@@ -32,7 +35,7 @@ public class StartGame extends GameState {
 
 			super.x = Credentials.gapBetweenBorders;
 			super.y = Credentials.gapBetweenBorders;
-			super.imageViewsPerRow = 14;
+			super.imageViewsPerRow = 12;
 			super.gapX = 5;
 			super.gapY = 5;
 

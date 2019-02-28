@@ -4,7 +4,7 @@ import utils.Animation.AnimationSynch;
 
 public abstract class ArrayListImageViewAbles<T> {
 
-	protected double x = -1, y = -1, gapX = 0, gapY = 0;
+	protected double x = 0, y = 0, gapX = 0, gapY = 0;
 	protected int imageViewsPerRow = -1, maxCapacity = -1;
 	protected RearrangeType rearrangeType = RearrangeType.LINEAR;
 	protected DirectionEnum directionHorizontal = DirectionEnum.RIGHT, directionVertical = DirectionEnum.DOWN;
@@ -13,26 +13,7 @@ public abstract class ArrayListImageViewAbles<T> {
 	public ArrayListImageViewAbles() {
 
 		setValues();
-		checkError();
 		createList();
-
-	}
-
-	private void checkError() {
-
-		boolean error = false;
-
-		if (this.x == -1)
-			error = true;
-		else if (this.y == -1)
-			error = true;
-
-		if (!error)
-			return;
-
-		Logger.log("ArrayListImageView setValues error:");
-		Logger.log(this.getClass());
-		ShutDown.execute();
 
 	}
 
@@ -40,7 +21,7 @@ public abstract class ArrayListImageViewAbles<T> {
 		this.arrayList = new ArrayList<>(this.maxCapacity);
 	}
 
-	private void toFront() {
+	public void toFront() {
 
 		ImageViewAble imageViewAble = null;
 
@@ -63,8 +44,13 @@ public abstract class ArrayListImageViewAbles<T> {
 		handleAnimateRelocate(ImageViewAction.ANIMATE, AnimationSynch.SYNCHRONOUS);
 	}
 
-	public void relocate() {
+	public void relocateImageViews() {
 		handleAnimateRelocate(ImageViewAction.RELOCATE, null);
+	}
+
+	public void relocateArrayList(double x, double y) {
+		this.x = x;
+		this.y = y;
 	}
 
 	private enum ImageViewAction {
@@ -72,8 +58,6 @@ public abstract class ArrayListImageViewAbles<T> {
 	}
 
 	private void handleAnimateRelocate(ImageViewAction imageViewAction, AnimationSynch animationSynch) {
-
-		toFront();
 
 		double coordinateX = 0, coordinateY = 0;
 

@@ -4,7 +4,7 @@ public class Credentials {
 
 	public static NumbersPair DimensionsFrame, DimensionsInsets;
 	public static NumbersPair CoordinatesTextPanel;
-	public static double gapBetweenBorders, textHeight, number, cardGameWidth, cardIndicatorWidth;
+	public static double gapBetweenBorders, textHeight, number, cardGameWidth, cardIndicatorWidth, gapBetweenCards;
 
 	public static class NumbersPair {
 
@@ -29,9 +29,10 @@ public class Credentials {
 		CoordinatesTextPanel = new NumbersPair(0, 0);
 
 		textHeight = 50;
-		number = 100;
 		cardGameWidth = 100;
+		number = cardGameWidth / 2;
 		cardIndicatorWidth = 200;
+		gapBetweenCards = 5;
 
 	}
 

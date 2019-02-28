@@ -10,7 +10,7 @@ public class CardManager {
 
 	}
 
-	public Card getCard(CardNameEnum cardNameEnum) {
+	public Card getCardPool(CardNameEnum cardNameEnum) {
 
 		Card card = null;
 
@@ -54,7 +54,7 @@ public class CardManager {
 
 		case CURSE:
 			card = new Card(cardNameEnum, 0);
-			card.addCardTypeEnum(CardTypeEnum.VICTORY);
+			card.addCardTypeEnum(CardTypeEnum.CURSE);
 			card.setVictoryPoints(-1);
 			break;
 
