@@ -29,7 +29,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		for (PhaseEnum phaseEnum : PhaseEnum.values())
 			this.abilities.put(phaseEnum, new ArrayList<CardAbilityEnum>());
 
-		zCreateAndAddImageView();
+		createImageView();
 
 	}
 
@@ -98,8 +98,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 	}
 
-	@Override
-	public void zCreateAndAddImageView() {
+	private void createImageView() {
 
 		String path = "";
 		path += "cards/";

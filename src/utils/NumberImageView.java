@@ -79,11 +79,6 @@ public class NumberImageView implements ImageViewAble {
 
 	}
 
-	@Override
-	public void zCreateAndAddImageView() {
-
-	}
-
 	private enum HashMapKeySingleton {
 
 		INSTANCE;

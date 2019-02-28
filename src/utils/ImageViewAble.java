@@ -8,6 +8,4 @@ public interface ImageViewAble {
 		return ImageViewAble.map.get(this);
 	}
 
-	public void zCreateAndAddImageView();
-
 }
