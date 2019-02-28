@@ -19,10 +19,10 @@ public class NumberImageView implements ImageViewAble {
 
 	private void createList() {
 
-		if (!hashMapKeySingleton.isEmpty())
+		if (!this.hashMapKeySingleton.isEmpty())
 			return;
 
-		hashMapKeySingleton.createList();
+		this.hashMapKeySingleton.createList();
 	}
 
 	public void setNumber(int value) {
@@ -46,25 +46,13 @@ public class NumberImageView implements ImageViewAble {
 		setImageView(23);
 	}
 
-	public void relocate(double x, double y) {
-		map.get(this).relocate(x, y);
-	}
-
-	public void setVisible(boolean value) {
-		map.get(this).setVisible(value);
-	}
-
-	public void setDimension(double value) {
-		map.get(this).setWidth(value);
-	}
-
 	private void setImageView(int listIndex) {
 
 		ObjectPoolAble objectPoolAble = this.hashMapKeySingleton.get(listIndex);
 		Image image = (Image) this.objectPoolSingleton.pullObject(objectPoolAble);
 
 		if (this.imageViewCreated) {
-			objectPoolSingleton.releaseObject(map.get(this).getImage(), objectPoolAble);
+			this.objectPoolSingleton.releaseObject(map.get(this).getImage(), objectPoolAble);
 			map.get(this).setImage(image);
 		} else
 			createAndAddImageView(image);
