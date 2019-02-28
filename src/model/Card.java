@@ -41,7 +41,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		path += ".jpg";
 
 		ImageView imageView = new ImageView(path, this);
-		imageView.setWidth(Credentials.cardGameWidth);
+		imageView.setWidth(Credentials.DimensionsCard.x);
 
 		map.put(this, imageView);
 

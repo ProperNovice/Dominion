@@ -2,9 +2,9 @@ package controller;
 
 public class Credentials {
 
-	public static NumbersPair DimensionsFrame, DimensionsInsets;
+	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard;
 	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply;
-	public static double gapBetweenBorders, textHeight, number, cardGameWidth, cardIndicatorWidth, gapBetweenCards;
+	public static double gapBetweenBorders, textHeight, number, cardIndicatorWidth, gapBetweenCards;
 
 	public static class NumbersPair {
 
@@ -29,12 +29,12 @@ public class Credentials {
 		CoordinatesTextPanel = new NumbersPair(0, 0);
 
 		textHeight = 50;
-		cardGameWidth = 100;
-		number = cardGameWidth / 2;
 		cardIndicatorWidth = 200;
 		gapBetweenCards = 10;
 
 		CoordinatesSupply = new NumbersPair(20, 20);
+		DimensionsCard = new NumbersPair(100, 161);
+		number = DimensionsCard.x / 2;
 
 	}
 

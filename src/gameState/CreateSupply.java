@@ -1,6 +1,7 @@
 package gameState;
 
 import enums.CardNameEnum;
+import model.Pile;
 import utils.ArrayList;
 
 public class CreateSupply extends GameState {
@@ -8,14 +9,15 @@ public class CreateSupply extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-		ArrayList<CardNameEnum> list = new ArrayList<>();
+		ArrayList<CardNameEnum> cardNames = new ArrayList<>();
+		ArrayList<Pile> piles = new ArrayList<>();
 
-		list.addLast(CardNameEnum.PROVINCE);
-		list.addLast(CardNameEnum.GOLD);
-		list.addLast(CardNameEnum.DUCHY);
-		list.addLast(CardNameEnum.SILVER);
-		list.addLast(CardNameEnum.ESTATE);
-		list.addLast(CardNameEnum.COPPER);
+		cardNames.addLast(CardNameEnum.PROVINCE);
+		cardNames.addLast(CardNameEnum.GOLD);
+		cardNames.addLast(CardNameEnum.DUCHY);
+		cardNames.addLast(CardNameEnum.SILVER);
+		cardNames.addLast(CardNameEnum.ESTATE);
+		cardNames.addLast(CardNameEnum.COPPER);
 
 	}
 
