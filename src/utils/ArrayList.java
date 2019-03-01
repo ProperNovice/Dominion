@@ -177,6 +177,7 @@ public class ArrayList<T> implements Iterable<T> {
 		arrayListToReturn.setMaxCapacity(this.maxCapacity);
 
 		return arrayListToReturn;
+
 	}
 
 }

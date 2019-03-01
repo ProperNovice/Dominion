@@ -8,11 +8,11 @@ public class SaveLoadManager {
 	private ArrayList<SaveLoadAble> list = new ArrayList<>();
 
 	public SaveLoadManager() {
-		createList();
+
 	}
 
-	private void createList() {
-
+	public void setList(ArrayList<SaveLoadAble> list) {
+		this.list = list;
 	}
 
 	public void saveState() {

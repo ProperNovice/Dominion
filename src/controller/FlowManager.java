@@ -24,4 +24,8 @@ public class FlowManager {
 		this.gameStateResolving.addFirst(gameStateEnum);
 	}
 
+	public void addGameStateResolvingLast(GameStateEnum gameStateEnum) {
+		this.gameStateResolving.addLast(gameStateEnum);
+	}
+
 }

@@ -2,6 +2,7 @@ package gameState;
 
 import controller.Credentials;
 import enums.CardNameEnum;
+import enums.GameStateEnum;
 import model.Card;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
@@ -13,12 +14,12 @@ public class StartGame extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-		relocateCards();
+//		relocateCards();
 
-//		super.controller.flowManager().addGameStateResolvingFirst(GameStateEnum.END_TURN);
-//		super.controller.flowManager().addGameStateResolvingFirst(GameStateEnum.CREATE_SUPPLY);
-//
-//		super.controller.flowManager().proceedToNextGameStatePhase();
+		super.controller.flowManager().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
+		super.controller.flowManager().addGameStateResolvingLast(GameStateEnum.END_TURN);
+
+		super.controller.flowManager().proceedToNextGameStatePhase();
 
 	}
 
