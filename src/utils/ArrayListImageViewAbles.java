@@ -21,7 +21,7 @@ public abstract class ArrayListImageViewAbles<T> {
 		this.arrayList = new ArrayList<>(this.maxCapacity);
 	}
 
-	public void toFront() {
+	protected void toFront() {
 
 		ImageViewAble imageViewAble = null;
 
@@ -125,6 +125,7 @@ public abstract class ArrayListImageViewAbles<T> {
 		}
 
 		executeAnimateRelocate(imageViewAction, animationSynch, coordinateX, coordinateY);
+		toFront();
 
 	}
 

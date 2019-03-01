@@ -31,7 +31,7 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 	}
 
 	@Override
-	public void toFront() {
+	protected void toFront() {
 
 		super.toFront();
 		this.numberImageView.getImageView().toFront();

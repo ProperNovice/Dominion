@@ -33,7 +33,7 @@ public class Credentials {
 		gapBetweenCards = 10;
 
 		CoordinatesSupply = new NumbersPair(20, 20);
-		DimensionsCard = new NumbersPair(100, 161);
+		DimensionsCard = new NumbersPair(100, 162);
 		number = DimensionsCard.x / 2;
 
 	}
