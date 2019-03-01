@@ -1,20 +1,34 @@
 package utils;
 
 import controller.Credentials;
+import utils.EventHandler.EventHandlerAble;
 
 public class NumberImageView implements ImageViewAble {
 
-	private boolean imageViewCreated = false;
 	private ObjectPoolSingleton objectPoolSingleton = ObjectPoolSingleton.INSTANCE;
 	private HashMapKeySingleton hashMapKeySingleton = HashMapKeySingleton.INSTANCE;
+	private EventHandlerAble eventHandlerAble = null;
 
 	public NumberImageView() {
 		createList();
+		setPhi();
 	}
 
 	public NumberImageView(int number) {
 		createList();
 		setNumber(number);
+	}
+
+	public NumberImageView(EventHandlerAble eventHandlerAble) {
+		createList();
+		setPhi();
+		this.eventHandlerAble = eventHandlerAble;
+	}
+
+	public NumberImageView(int number, EventHandlerAble eventHandlerAble) {
+		createList();
+		setNumber(number);
+		this.eventHandlerAble = eventHandlerAble;
 	}
 
 	private void createList() {
@@ -51,19 +65,21 @@ public class NumberImageView implements ImageViewAble {
 		ObjectPoolAble objectPoolAble = this.hashMapKeySingleton.get(listIndex);
 		Image image = (Image) this.objectPoolSingleton.pullObject(objectPoolAble);
 
-		if (this.imageViewCreated) {
+		if (map.get(this) != null) {
+
 			this.objectPoolSingleton.releaseObject(map.get(this).getImage(), objectPoolAble);
 			map.get(this).setImage(image);
-		} else
-			createAndAddImageView(image);
 
-	}
+		} else {
 
-	private void createAndAddImageView(Image image) {
+			if (this.eventHandlerAble == null)
+				map.put(this, new ImageView(image));
+			else
+				map.put(this, new ImageView(image, this.eventHandlerAble));
 
-		this.imageViewCreated = true;
-		map.put(this, new ImageView(image));
-		map.get(this).setWidth(Credentials.number);
+			map.get(this).setWidth(Credentials.number);
+
+		}
 
 	}
 
