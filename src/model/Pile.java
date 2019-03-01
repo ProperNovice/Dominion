@@ -15,10 +15,7 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 	}
 
 	@Override
-	protected void setValues() {
-
-		System.out.println("a");
-		super.rearrangeType = RearrangeType.STATIC;
+	public void createCoordinates() {
 
 	}
 

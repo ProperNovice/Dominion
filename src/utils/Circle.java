@@ -49,8 +49,7 @@ public class Circle implements Node {
 		double centerY = this.topLeftY + this.radius;
 		double differenceX = localX - centerX;
 		double differenceY = localY - centerY;
-		double distance = Math.sqrt(Math.pow(differenceX, 2)
-				+ Math.pow(differenceY, 2));
+		double distance = Math.sqrt(Math.pow(differenceX, 2) + Math.pow(differenceY, 2));
 
 		return (distance <= this.radius);
 
@@ -63,6 +62,11 @@ public class Circle implements Node {
 		relocate();
 	}
 
+	@Override
+	public void relocate(final NumbersPair numbersPair) {
+		relocate(numbersPair.x, numbersPair.y);
+	}
+
 	public void relocateCenter(double x, double y) {
 		this.topLeftX = x - this.radius;
 		this.topLeftY = y - this.radius;
@@ -70,8 +74,7 @@ public class Circle implements Node {
 	}
 
 	private void relocate() {
-		PlatformFX.runLater(() -> this.circle.relocate(this.topLeftX,
-				this.topLeftY));
+		PlatformFX.runLater(() -> this.circle.relocate(this.topLeftX, this.topLeftY));
 	}
 
 	public final void setFill(Paint value) {

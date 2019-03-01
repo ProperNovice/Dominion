@@ -208,6 +208,10 @@ public enum Animation {
 
 	}
 
+	public void animate(Node node, NumbersPair numbersPair, AnimationSynch animationSynch) {
+		animate(node, numbersPair.x, numbersPair.y, animationSynch);
+	}
+
 	public boolean isAnimating() {
 		return !this.animationsSynchronous.isEmpty();
 	}

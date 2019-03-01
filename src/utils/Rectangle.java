@@ -37,9 +37,8 @@ public class Rectangle implements Node {
 
 		PlatformFX.runLater(() -> {
 
-			this.rectangle.getPoints().addAll(0.0, 0.0, this.dimensionX, 0.0,
-					this.dimensionX, this.dimensionY, 0.0, this.dimensionY,
-					0.0, 0.0);
+			this.rectangle.getPoints().addAll(0.0, 0.0, this.dimensionX, 0.0, this.dimensionX, this.dimensionY, 0.0,
+					this.dimensionY, 0.0, 0.0);
 
 			panelGame.addNode(this.rectangle);
 			this.rectangle.setFill(null);
@@ -94,6 +93,11 @@ public class Rectangle implements Node {
 
 	}
 
+	@Override
+	public void relocate(final NumbersPair numbersPair) {
+		relocate(numbersPair.x, numbersPair.y);
+	}
+
 	public void setWidth(double width) {
 
 		this.dimensionX = width;
@@ -112,8 +116,8 @@ public class Rectangle implements Node {
 
 		PlatformFX.runLater(() -> {
 			this.rectangle.getPoints().clear();
-			this.rectangle.getPoints().addAll(0.0, 0.0, getWidth(), 0.0,
-					getWidth(), getHeight(), 0.0, getHeight(), 0.0, 0.0);
+			this.rectangle.getPoints().addAll(0.0, 0.0, getWidth(), 0.0, getWidth(), getHeight(), 0.0, getHeight(), 0.0,
+					0.0);
 		});
 
 	}
@@ -134,18 +138,15 @@ public class Rectangle implements Node {
 		PlatformFX.runLater(() -> this.rectangle.setStroke(value));
 	}
 
-	public final void setOnMouseEntered(
-			javafx.event.EventHandler<? super MouseEvent> value) {
+	public final void setOnMouseEntered(javafx.event.EventHandler<? super MouseEvent> value) {
 		PlatformFX.runLater(() -> this.rectangle.setOnMouseEntered(value));
 	}
 
-	public final void setOnMouseExited(
-			javafx.event.EventHandler<? super MouseEvent> value) {
+	public final void setOnMouseExited(javafx.event.EventHandler<? super MouseEvent> value) {
 		PlatformFX.runLater(() -> this.rectangle.setOnMouseExited(value));
 	}
 
-	public final void setOnMousePressed(
-			javafx.event.EventHandler<? super MouseEvent> value) {
+	public final void setOnMousePressed(javafx.event.EventHandler<? super MouseEvent> value) {
 		PlatformFX.runLater(() -> this.rectangle.setOnMousePressed(value));
 	}
 

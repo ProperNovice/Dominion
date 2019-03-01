@@ -46,6 +46,11 @@ public class Button implements Node {
 		PlatformFX.runLater(() -> this.button.relocate(x, y));
 	}
 
+	@Override
+	public void relocate(final NumbersPair numbersPair) {
+		relocate(numbersPair.x, numbersPair.y);
+	}
+
 	public void setEventHandler(EventHandlerAble eventHandlerAble) {
 
 		PlatformFX.runLater(() -> {

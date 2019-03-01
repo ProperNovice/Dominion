@@ -39,6 +39,11 @@ public class Line implements Node {
 	}
 
 	@Override
+	public void relocate(final NumbersPair numbersPair) {
+		relocate(numbersPair.x, numbersPair.y);
+	}
+
+	@Override
 	public double getLayoutX() {
 		return this.line.getStartX();
 	}

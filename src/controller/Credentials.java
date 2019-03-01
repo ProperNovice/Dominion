@@ -1,24 +1,12 @@
 package controller;
 
+import utils.NumbersPair;
+
 public class Credentials {
 
-	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard;
+	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard, DimensionsGapBetweenCards;
 	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply;
-	public static double gapBetweenBorders, textHeight, number, cardIndicatorWidth, gapBetweenCards;
-
-	public static class NumbersPair {
-
-		public double x;
-		public double y;
-
-		public NumbersPair(double x, double y) {
-
-			this.x = x;
-			this.y = y;
-
-		}
-
-	}
+	public static double gapBetweenBorders, textHeight, number, cardIndicatorWidth;
 
 	public static void calculateCredentials() {
 
@@ -30,7 +18,7 @@ public class Credentials {
 
 		textHeight = 50;
 		cardIndicatorWidth = 200;
-		gapBetweenCards = 10;
+		DimensionsGapBetweenCards = new NumbersPair(5, 5);
 
 		CoordinatesSupply = new NumbersPair(20, 20);
 		DimensionsCard = new NumbersPair(100, 162);

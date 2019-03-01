@@ -93,8 +93,13 @@ public class ImageView implements Node {
 	}
 
 	@Override
-	public void relocate(double x, final double y) {
+	public void relocate(final double x, final double y) {
 		PlatformFX.runLater(() -> this.imageView.relocate(x, y));
+	}
+
+	@Override
+	public void relocate(final NumbersPair numbersPair) {
+		relocate(numbersPair.x, numbersPair.y);
 	}
 
 	public final void setViewport(double topLeftX, double topLeftY, double width, double height) {
