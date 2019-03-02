@@ -1,33 +1,44 @@
 package gameState;
 
 import enums.CardNameEnum;
+import enums.PileAmountOfCardsEnum;
 import model.Pile;
 import utils.ArrayList;
 
 public class CreateSupply extends GameState {
 
+	private ArrayList<Pile> piles = new ArrayList<>();
+
 	@Override
 	public void handleGameStateChange() {
 
-		ArrayList<CardNameEnum> cardNames = new ArrayList<>();
-		ArrayList<Pile> piles = new ArrayList<>();
+		addPile(CardNameEnum.PROVINCE, 8);
+		addPile(CardNameEnum.GOLD, 1);
+		addPile(CardNameEnum.DUCHY, 8);
+		addPile(CardNameEnum.SILVER, 1);
+		addPile(CardNameEnum.ESTATE, 8);
+		addPile(CardNameEnum.SILVER, 1);
 
-		cardNames.addLast(CardNameEnum.PROVINCE);
-		cardNames.addLast(CardNameEnum.GOLD);
-		cardNames.addLast(CardNameEnum.DUCHY);
-		cardNames.addLast(CardNameEnum.SILVER);
-		cardNames.addLast(CardNameEnum.ESTATE);
-		cardNames.addLast(CardNameEnum.COPPER);
+		super.controller.supply().setPileListAndRelocate(piles);
 
-		Pile pile = new Pile(CardNameEnum.GOLD);
+	}
 
-		for (int counter = 1; counter <= 12; counter++)
-			pile.getArrayList().addFirst(super.controller.cardManager().getCardPool(CardNameEnum.GOLD));
-		
+	private void addPile(CardNameEnum cardNameEnum, int amount) {
+
+		PileAmountOfCardsEnum pileAmountOfCardsEnum = null;
+
+		if (amount == 1)
+			pileAmountOfCardsEnum = PileAmountOfCardsEnum.INFINITE;
+		else
+			pileAmountOfCardsEnum = PileAmountOfCardsEnum.FINITE;
+
+		Pile pile = new Pile(cardNameEnum, pileAmountOfCardsEnum);
+		this.piles.addLast(pile);
+
+		for (int counter = 1; counter <= amount; counter++)
+			pile.getArrayList().addLast(super.controller.cardManager().getNewCard(cardNameEnum));
+
 		pile.updateNumberImageView();
-
-		pile.relocateArrayList(100, 100);
-		pile.relocateImageViews();
 
 	}
 

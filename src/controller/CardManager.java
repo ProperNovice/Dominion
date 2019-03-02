@@ -10,7 +10,7 @@ public class CardManager {
 
 	}
 
-	public Card getCardPool(CardNameEnum cardNameEnum) {
+	public Card getNewCard(CardNameEnum cardNameEnum) {
 
 		Card card = null;
 

@@ -20,9 +20,9 @@ public class Credentials {
 		cardIndicatorWidth = 200;
 		DimensionsGapBetweenCards = new NumbersPair(5, 5);
 
-		CoordinatesSupply = new NumbersPair(20, 20);
+		CoordinatesSupply = new NumbersPair(gapBetweenBorders, gapBetweenBorders);
 		DimensionsCard = new NumbersPair(100, 162);
-		numberImageView = DimensionsCard.x / 2;
+		numberImageView = DimensionsCard.x * 0.35;
 
 	}
 

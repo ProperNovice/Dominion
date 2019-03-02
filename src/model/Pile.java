@@ -2,33 +2,38 @@ package model;
 
 import controller.Credentials;
 import enums.CardNameEnum;
+import enums.PileAmountOfCardsEnum;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.NumberImageView;
 import utils.NumberImageView.NumberImageViewColorEnum;
+import utils.NumbersPair;
 import utils.RearrangeTypeEnum;
 
 public class Pile extends ArrayListImageViewAbles<Card> {
 
 	private NumberImageView numberImageView = new NumberImageView(NumberImageViewColorEnum.BLACK);
 	private CardNameEnum cardNameEnum = null;
+	private PileAmountOfCardsEnum amountOfCardsEnum = null;
 
-	public Pile(CardNameEnum cardNameEnum) {
+	public Pile(CardNameEnum cardNameEnum, PileAmountOfCardsEnum amountOfCardsEnum) {
+
 		this.cardNameEnum = cardNameEnum;
+		this.amountOfCardsEnum = amountOfCardsEnum;
+
 	}
 
 	@Override
 	public void createCoordinates() {
-
 		super.coordinates = new CoordinatesBuilder().rearrangeTypeEnum(RearrangeTypeEnum.STATIC).create();
-
 	}
 
 	@Override
-	public void relocateArrayList(double x, double y) {
+	public void relocateArrayList(NumbersPair numbersPair) {
 
-		super.relocateArrayList(x, y);
-		this.numberImageView.getImageView().relocate(x + Credentials.DimensionsCard.x - Credentials.numberImageView, y);
+		super.relocateArrayList(numbersPair);
+		this.numberImageView.getImageView()
+				.relocate(numbersPair.x + Credentials.DimensionsCard.x - Credentials.numberImageView, numbersPair.y);
 
 	}
 
@@ -41,7 +46,11 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 	}
 
 	public void updateNumberImageView() {
-		this.numberImageView.setNumber(super.arrayList.size());
+
+		if (this.amountOfCardsEnum == PileAmountOfCardsEnum.INFINITE)
+			this.numberImageView.setInfinity();
+		else
+			this.numberImageView.setNumber(super.arrayList.size());
 	}
 
 }

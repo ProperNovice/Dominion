@@ -33,7 +33,7 @@ public class StartGame extends GameState {
 		public Cards() {
 
 			for (CardNameEnum cardNameEnum : CardNameEnum.values())
-				super.arrayList.addLast(Instances.getControllerInstance().cardManager().getCardPool(cardNameEnum));
+				super.arrayList.addLast(Instances.getControllerInstance().cardManager().getNewCard(cardNameEnum));
 
 			relocateImageViews();
 

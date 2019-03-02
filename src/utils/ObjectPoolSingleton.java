@@ -1,37 +1,31 @@
 package utils;
 
+import enums.ObjectPoolEnum;
+
 public enum ObjectPoolSingleton {
 
 	INSTANCE;
 
-	private HashMap<String, ArrayList<Object>> released = new HashMap<>();
+	private HashMap<ObjectPoolEnum, ArrayList<Object>> released = new HashMap<>();
 
-	public Object pullObject(ObjectPoolAble hashMapKey) {
-		return pullObject(hashMapKey.toString(), hashMapKey);
-	}
+	public Object pullObject(ObjectPoolEnum objectPoolEnum, ObjectPoolAble objectPoolAble) {
 
-	public Object pullObject(String hashMapKey, ObjectPoolAble objectPoolAble) {
+		if (!this.released.containsKey(objectPoolEnum))
+			this.released.put(objectPoolEnum, new ArrayList<Object>());
 
-		if (!this.released.containsKey(hashMapKey.toString()))
-			this.released.put(hashMapKey.toString(), new ArrayList<Object>());
+		if (this.released.get(objectPoolEnum).isEmpty())
+			this.released.get(objectPoolEnum).addFirst(objectPoolAble.getObject());
 
-		if (this.released.get(hashMapKey.toString()).isEmpty())
-			this.released.get(hashMapKey.toString()).addFirst(objectPoolAble.getObject());
-
-		return this.released.get(hashMapKey.toString()).removeFirst();
+		return this.released.get(objectPoolEnum).removeFirst();
 
 	}
 
-	public void releaseObject(Object object, ObjectPoolAble hashMapKey) {
-		releaseObject(object, hashMapKey.toString());
+	public void releaseObject(ObjectPoolEnum objectPoolEnum, Object object) {
+		this.released.get(objectPoolEnum).addFirst(object);
 	}
 
-	public void releaseObject(Object object, String hashMapKey) {
-		this.released.get(hashMapKey).addFirst(object);
-	}
-
-	public void print(ObjectPoolAble objectPoolAble) {
-		Logger.logNewLine(this.released.get(objectPoolAble.toString()).size() + " released");
+	public void print(ObjectPoolEnum objectPoolEnum) {
+		Logger.logNewLine(this.released.get(objectPoolEnum).size() + " released");
 	}
 
 }
