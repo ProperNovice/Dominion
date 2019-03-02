@@ -1,6 +1,7 @@
 package utils;
 
 import controller.Credentials;
+import enums.ObjectPoolEnum;
 import utils.EventHandler.EventHandlerAble;
 
 public class NumberImageView implements ImageViewAble {
@@ -76,11 +77,11 @@ public class NumberImageView implements ImageViewAble {
 	private void setImageView(int listIndex) {
 
 		ObjectPoolAble objectPoolAble = this.hashMapKeySingleton.get(listIndex);
-		Image image = (Image) this.objectPoolSingleton.pullObject(objectPoolAble);
+		Image image = (Image) this.objectPoolSingleton.pullObject(ObjectPoolEnum.NUMBER_IMAGEVIEW_ABLE, objectPoolAble);
 
 		if (map.get(this) != null) {
 
-			this.objectPoolSingleton.releaseObject(map.get(this).getImage(), objectPoolAble);
+			this.objectPoolSingleton.releaseObject(ObjectPoolEnum.NUMBER_IMAGEVIEW_ABLE, map.get(this).getImage());
 			map.get(this).setImage(image);
 
 		} else {
