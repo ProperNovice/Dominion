@@ -3,11 +3,11 @@ package controller;
 import utils.ArrayList;
 import utils.SaveLoadAble;
 
-public class SaveLoadManager {
+public class SaveLoad {
 
 	private ArrayList<SaveLoadAble> list = new ArrayList<>();
 
-	public SaveLoadManager() {
+	public SaveLoad() {
 
 	}
 

@@ -4,19 +4,19 @@ import enums.GameStateEnum;
 import utils.ArrayList;
 import utils.Instances;
 
-public class FlowManager {
+public class Flow {
 
 	private Controller controller = Instances.getControllerInstance();
 	private ArrayList<GameStateEnum> gameStateResolving = new ArrayList<>();
 
-	public FlowManager() {
+	public Flow() {
 
 	}
 
 	public void proceedToNextGameStatePhase() {
 
 		GameStateEnum gameStateEnum = this.gameStateResolving.removeFirst();
-		this.controller.gameStateManager().setGameState(gameStateEnum);
+		this.controller.gameState().setGameState(gameStateEnum);
 
 	}
 

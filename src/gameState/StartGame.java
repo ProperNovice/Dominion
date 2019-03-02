@@ -16,10 +16,10 @@ public class StartGame extends GameState {
 
 //		relocateCards();
 
-		super.controller.flowManager().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
-		super.controller.flowManager().addGameStateResolvingLast(GameStateEnum.END_TURN);
+		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
+		super.controller.flow().addGameStateResolvingLast(GameStateEnum.END_TURN);
 
-		super.controller.flowManager().proceedToNextGameStatePhase();
+		super.controller.flow().proceedToNextGameStatePhase();
 
 	}
 

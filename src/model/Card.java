@@ -76,7 +76,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 		printCard();
 
-		Executor.runLater(() -> Instances.getControllerInstance().gameStateManager().getCurrentGameState()
+		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
 				.handleCardPressed(this, this.cardNameEnum, this.cardTypeEnum, this.cardAbilities, this.buyCost));
 
 	}
