@@ -8,6 +8,7 @@ import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.Instances;
 import utils.NumbersPair;
+import utils.RearrangeTypeEnum;
 
 public class StartGame extends GameState {
 
@@ -41,11 +42,13 @@ public class StartGame extends GameState {
 		@Override
 		public void createCoordinates() {
 
-			NumbersPair numbersPair = new NumbersPair(10, 10);
+//			NumbersPair numbersPair = new NumbersPair(10, 10);
+			NumbersPair numbersPair = new NumbersPair(400, 300);
 
 			super.coordinates = new CoordinatesBuilder().coordinatesNumbersPair(numbersPair)
 					.dimensionsNumbersPair(Credentials.DimensionsCard)
-					.gapNumbersPair(Credentials.DimensionsGapBetweenCards).create();
+					.gapNumbersPair(Credentials.DimensionsGapBetweenCards).rearrangeTypeEnum(RearrangeTypeEnum.PIVOT)
+					.objectsPerRow(3).create();
 
 		}
 

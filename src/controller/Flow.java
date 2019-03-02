@@ -24,6 +24,16 @@ public class Flow {
 		this.gameStateResolving.addFirst(gameStateEnum);
 	}
 
+	public void addGameStateResolvingFirst(GameStateEnum... gameStateEnum) {
+
+		ArrayList<GameStateEnum> gameStateEnumTempList = new ArrayList<>(gameStateEnum);
+		gameStateEnumTempList.reverse();
+
+		for (GameStateEnum gameStateTemp : gameStateEnumTempList)
+			this.gameStateResolving.addFirst(gameStateTemp);
+
+	}
+
 	public void addGameStateResolvingLast(GameStateEnum gameStateEnum) {
 		this.gameStateResolving.addLast(gameStateEnum);
 	}

@@ -8,27 +8,39 @@ public class NumberImageView implements ImageViewAble {
 	private ObjectPoolSingleton objectPoolSingleton = ObjectPoolSingleton.INSTANCE;
 	private HashMapKeySingleton hashMapKeySingleton = HashMapKeySingleton.INSTANCE;
 	private EventHandlerAble eventHandlerAble = null;
+	private NumberImageViewColorEnum numberImageViewColorEnum = null;
 
-	public NumberImageView() {
+	public NumberImageView(NumberImageViewColorEnum numberImageViewColorEnum) {
+
+		this.numberImageViewColorEnum = numberImageViewColorEnum;
 		createList();
-		setPhi();
+
 	}
 
-	public NumberImageView(int number) {
+	public NumberImageView(int number, NumberImageViewColorEnum numberImageViewColorEnum) {
+
+		this.numberImageViewColorEnum = numberImageViewColorEnum;
 		createList();
 		setNumber(number);
+
 	}
 
-	public NumberImageView(EventHandlerAble eventHandlerAble) {
+	public NumberImageView(NumberImageViewColorEnum numberImageViewColorEnum, EventHandlerAble eventHandlerAble) {
+
+		this.numberImageViewColorEnum = numberImageViewColorEnum;
 		createList();
-		setPhi();
 		this.eventHandlerAble = eventHandlerAble;
+
 	}
 
-	public NumberImageView(int number, EventHandlerAble eventHandlerAble) {
+	public NumberImageView(int number, NumberImageViewColorEnum numberImageViewColorEnum,
+			EventHandlerAble eventHandlerAble) {
+
+		this.numberImageViewColorEnum = numberImageViewColorEnum;
 		createList();
 		setNumber(number);
 		this.eventHandlerAble = eventHandlerAble;
+
 	}
 
 	private void createList() {
@@ -36,7 +48,8 @@ public class NumberImageView implements ImageViewAble {
 		if (!this.hashMapKeySingleton.isEmpty())
 			return;
 
-		this.hashMapKeySingleton.createList();
+		this.hashMapKeySingleton.createList(this.numberImageViewColorEnum.string() + "/");
+
 	}
 
 	public void setNumber(int value) {
@@ -83,6 +96,22 @@ public class NumberImageView implements ImageViewAble {
 
 	}
 
+	public enum NumberImageViewColorEnum {
+
+		GRAY("gray"), BLACK("black");
+
+		private String string = null;
+
+		private NumberImageViewColorEnum(String string) {
+			this.string = string;
+		}
+
+		public String string() {
+			return this.string;
+		}
+
+	}
+
 	private enum HashMapKeySingleton {
 
 		INSTANCE;
@@ -90,14 +119,14 @@ public class NumberImageView implements ImageViewAble {
 		private ArrayList<NumberImageViewObjectPoolAble> list = new ArrayList<>();
 		private String pathNumbers = "numbers/", pathPng = ".png";
 
-		public void createList() {
+		public void createList(String colorString) {
 
 			for (int counter = 0; counter <= 20; counter++)
-				this.list.addLast(new NumberImageViewObjectPoolAble(getPath(Integer.toString(counter))));
+				this.list.addLast(new NumberImageViewObjectPoolAble(getPath(colorString + Integer.toString(counter))));
 
-			this.list.addLast(new NumberImageViewObjectPoolAble(getPath("infinity")));
-			this.list.addLast(new NumberImageViewObjectPoolAble(getPath("phi")));
-			this.list.addLast(new NumberImageViewObjectPoolAble(getPath("x")));
+			this.list.addLast(new NumberImageViewObjectPoolAble(getPath(colorString + "infinity")));
+			this.list.addLast(new NumberImageViewObjectPoolAble(getPath(colorString + "phi")));
+			this.list.addLast(new NumberImageViewObjectPoolAble(getPath(colorString + "x")));
 
 		}
 

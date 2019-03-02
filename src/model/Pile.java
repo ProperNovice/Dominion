@@ -3,19 +3,24 @@ package model;
 import controller.Credentials;
 import enums.CardNameEnum;
 import utils.ArrayListImageViewAbles;
+import utils.CoordinatesBuilder;
 import utils.NumberImageView;
+import utils.NumberImageView.NumberImageViewColorEnum;
+import utils.RearrangeTypeEnum;
 
 public class Pile extends ArrayListImageViewAbles<Card> {
 
-	private NumberImageView numberImageView = new NumberImageView();
+	private NumberImageView numberImageView = new NumberImageView(NumberImageViewColorEnum.BLACK);
 	private CardNameEnum cardNameEnum = null;
 
-	public Pile() {
-
+	public Pile(CardNameEnum cardNameEnum) {
+		this.cardNameEnum = cardNameEnum;
 	}
 
 	@Override
 	public void createCoordinates() {
+
+		super.coordinates = new CoordinatesBuilder().rearrangeTypeEnum(RearrangeTypeEnum.STATIC).create();
 
 	}
 
@@ -37,10 +42,6 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 
 	public void updateNumberImageView() {
 		this.numberImageView.setNumber(super.arrayList.size());
-	}
-
-	public void setCardNameEnumContaining(CardNameEnum cardNameEnum) {
-		this.cardNameEnum = cardNameEnum;
 	}
 
 }

@@ -61,6 +61,9 @@ public abstract class ArrayListImageViewAbles<T> {
 
 	private void executeAction(ImageViewAction imageViewAction, AnimationSynch animationSynch) {
 
+		if (this.coordinates.getRearrangeTypeEnum() == RearrangeTypeEnum.PIVOT)
+			this.coordinates.calculateFirstObjectCoordinatesPivot(this.arrayList.size());
+
 		ImageView imageView = null;
 
 		for (T t : this.arrayList) {

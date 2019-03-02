@@ -8,6 +8,7 @@ public class Coordinates {
 	private RearrangeTypeEnum rearrangeTypeEnum;
 	private DirectionEnum directionEnumHorizontal, directionEnumVertical;
 	private ArrayList<NumbersPair> coordinates = new ArrayList<>();
+	private int arrayListSize = -1;
 
 	public Coordinates(double x, double y, double width, double height, double gapX, double gapY, int objectsPerRow,
 			RearrangeTypeEnum rearrangeTypeEnum, DirectionEnum directionEnumHorizontal,
@@ -66,6 +67,13 @@ public class Coordinates {
 		relocateArrayListAndClearCoordinates(numbersPair.x, numbersPair.y);
 	}
 
+	public void calculateFirstObjectCoordinatesPivot(int arrayListSize) {
+
+		this.arrayListSize = arrayListSize;
+		calculateFirstObjectCoordinates();
+
+	}
+
 	private void calculateFirstObjectCoordinates() {
 
 		switch (this.rearrangeTypeEnum) {
@@ -82,12 +90,12 @@ public class Coordinates {
 			if (this.objectsPerRow == -1) {
 
 				rows = 1;
-				columns = this.coordinates.size();
+				columns = this.arrayListSize;
 
 			} else {
 
-				rows = (int) (Math.ceil((double) this.coordinates.size() / this.objectsPerRow));
-				columns = (int) Math.min(this.coordinates.size(), this.objectsPerRow);
+				rows = (int) (Math.ceil((double) this.arrayListSize / this.objectsPerRow));
+				columns = (int) Math.min(this.arrayListSize, this.objectsPerRow);
 
 			}
 
@@ -203,6 +211,10 @@ public class Coordinates {
 		Logger.log(directionEnum);
 		ShutDown.execute();
 
+	}
+
+	public RearrangeTypeEnum getRearrangeTypeEnum() {
+		return this.rearrangeTypeEnum;
 	}
 
 }

@@ -19,6 +19,16 @@ public class CreateSupply extends GameState {
 		cardNames.addLast(CardNameEnum.ESTATE);
 		cardNames.addLast(CardNameEnum.COPPER);
 
+		Pile pile = new Pile(CardNameEnum.GOLD);
+
+		for (int counter = 1; counter <= 12; counter++)
+			pile.getArrayList().addFirst(super.controller.cardManager().getCardPool(CardNameEnum.GOLD));
+		
+		pile.updateNumberImageView();
+
+		pile.relocateArrayList(100, 100);
+		pile.relocateImageViews();
+
 	}
 
 }
