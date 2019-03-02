@@ -28,7 +28,7 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 	public void relocateArrayList(double x, double y) {
 
 		super.relocateArrayList(x, y);
-		this.numberImageView.getImageView().relocate(x + Credentials.DimensionsCard.x - Credentials.number, y);
+		this.numberImageView.getImageView().relocate(x + Credentials.DimensionsCard.x - Credentials.numberImageView, y);
 
 	}
 

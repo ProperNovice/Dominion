@@ -90,7 +90,7 @@ public class NumberImageView implements ImageViewAble {
 			else
 				map.put(this, new ImageView(image, this.eventHandlerAble));
 
-			map.get(this).setWidth(Credentials.number);
+			map.get(this).setWidth(Credentials.numberImageView);
 
 		}
 
