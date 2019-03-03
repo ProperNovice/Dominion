@@ -9,6 +9,7 @@ import utils.ArrayList;
 import utils.EventHandler.EventHandlerAble;
 import utils.Executor;
 import utils.HashMap;
+import utils.Image;
 import utils.ImageView;
 import utils.ImageViewAble;
 import utils.Instances;
@@ -20,6 +21,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 	private ArrayList<CardTypeEnum> cardTypeEnum = new ArrayList<>();
 	private int buyCost = -1, treasure = 0, victoryPoints = 0;
 	private HashMap<PhaseEnum, ArrayList<CardAbilityEnum>> cardAbilities = new HashMap<>();
+	private Image front = null, back = null;
 
 	public Card(CardNameEnum cardNameEnum, int buyCost) {
 
@@ -40,7 +42,10 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		path += this.cardNameEnum.getString();
 		path += ".jpg";
 
-		ImageView imageView = new ImageView(path, this);
+		this.front = new Image(path);
+		this.back = new Image("cards/back.jpg");
+
+		ImageView imageView = new ImageView(this.front, this);
 		imageView.setWidth(Credentials.DimensionsCard.x);
 
 		map.put(this, imageView);
@@ -102,7 +107,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		for (PhaseEnum phaseEnum : PhaseEnum.values())
 			if (!this.cardAbilities.get(phaseEnum).isEmpty()) {
 
-				Logger.log(phaseEnum);
+				Logger.log("phase -> " + phaseEnum);
 				this.cardAbilities.get(phaseEnum).printList();
 
 			}
@@ -110,6 +115,16 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		Logger.log(seperator);
 		Logger.newLine();
 
+	}
+
+	public void flipFaceUp() {
+		map.get(this).setImage(this.front);
+		map.get(this).setWidth(Credentials.DimensionsCard.x);
+	}
+
+	public void flipFaceDown() {
+		map.get(this).setImage(this.back);
+		map.get(this).setWidth(Credentials.DimensionsCard.x);
 	}
 
 }

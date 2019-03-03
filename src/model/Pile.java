@@ -38,7 +38,7 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 	}
 
 	@Override
-	protected void toFront() {
+	public void toFront() {
 
 		super.toFront();
 		this.numberImageView.getImageView().toFront();
@@ -51,6 +51,10 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 			this.numberImageView.setInfinity();
 		else
 			this.numberImageView.setNumber(super.arrayList.size());
+	}
+
+	public CardNameEnum getCardNameEnum() {
+		return this.cardNameEnum;
 	}
 
 }

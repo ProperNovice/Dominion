@@ -9,6 +9,16 @@ public enum CardNameEnum {
 	DUCHY("duchy"),
 	PROVINCE("province"),
 	CURSE("curse"),
+	SMITHY("smithy"),
+	CHAPEL("chapel"),
+	CELLAR("cellar"),
+	VILLAGE("village"),
+	WORKSHOP("workshop"),
+	REMODEL("remodel"),
+	MILITIA("militia"),
+	GARDENS("gardens"),
+	MARKET("market"),
+	WITCH("witch"),
 
 	;
 

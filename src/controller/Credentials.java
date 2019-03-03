@@ -5,12 +5,15 @@ import utils.NumbersPair;
 public class Credentials {
 
 	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard, DimensionsGapBetweenCards;
-	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply;
+	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman,
+			CoordinatesDiscardPileHuman;
 	public static double gapBetweenBorders, textHeight, numberImageView, cardIndicatorWidth;
 
 	public static void calculateCredentials() {
 
-		DimensionsFrame = new NumbersPair(1366, 788);
+		double x, y;
+
+//		DimensionsFrame = new NumbersPair(1366, 788);
 		DimensionsInsets = new NumbersPair(7, 29);
 		gapBetweenBorders = 20;
 
@@ -23,6 +26,18 @@ public class Credentials {
 		CoordinatesSupply = new NumbersPair(gapBetweenBorders, gapBetweenBorders);
 		DimensionsCard = new NumbersPair(100, 162);
 		numberImageView = DimensionsCard.x * 0.35;
+
+		DimensionsFrame = new NumbersPair(
+				14 * DimensionsCard.x + 13 * DimensionsGapBetweenCards.x + 2 * gapBetweenBorders,
+				5 * DimensionsCard.y + 4 * DimensionsGapBetweenCards.y + 2 * gapBetweenBorders);
+
+		x = CoordinatesSupply.x + 2 * (DimensionsCard.x + DimensionsGapBetweenCards.x) + DimensionsGapBetweenCards.x;
+		y = CoordinatesSupply.y + 3 * (DimensionsCard.y + DimensionsGapBetweenCards.y);
+		CoordinatesDiscardPileHuman = new NumbersPair(x, y);
+
+		x = CoordinatesDiscardPileHuman.x + DimensionsCard.x + DimensionsGapBetweenCards.x;
+		y = CoordinatesDiscardPileHuman.y;
+		CoordinatesDeckHuman = new NumbersPair(x, y);
 
 	}
 

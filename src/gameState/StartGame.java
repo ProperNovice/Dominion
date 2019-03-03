@@ -8,14 +8,20 @@ import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.Instances;
 import utils.NumbersPair;
-import utils.RearrangeTypeEnum;
 
 public class StartGame extends GameState {
 
 	@Override
 	public void handleGameStateChange() {
 
-//		relocateCards();
+		relocateCards();
+//		runTests();
+
+	}
+
+	public void runTests() {
+
+		createDeckHuman();
 
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.END_TURN);
@@ -42,15 +48,33 @@ public class StartGame extends GameState {
 		@Override
 		public void createCoordinates() {
 
-//			NumbersPair numbersPair = new NumbersPair(10, 10);
-			NumbersPair numbersPair = new NumbersPair(400, 300);
+			NumbersPair numbersPair = new NumbersPair(Credentials.gapBetweenBorders, Credentials.gapBetweenBorders);
 
 			super.coordinates = new CoordinatesBuilder().coordinatesNumbersPair(numbersPair)
 					.dimensionsNumbersPair(Credentials.DimensionsCard)
-					.gapNumbersPair(Credentials.DimensionsGapBetweenCards).rearrangeTypeEnum(RearrangeTypeEnum.PIVOT)
-					.objectsPerRow(3).create();
+					.gapNumbersPair(Credentials.DimensionsGapBetweenCards).objectsPerRow(14).create();
 
 		}
+
+	}
+
+	public void createDeckHuman() {
+
+		for (int counter = 1; counter <= 7; counter++)
+			super.controller.deckHuman().getArrayList()
+					.addLast(super.controller.cardManager().getNewCard(CardNameEnum.COPPER));
+
+		for (int counter = 1; counter <= 3; counter++)
+			super.controller.deckHuman().getArrayList()
+					.addLast(super.controller.cardManager().getNewCard(CardNameEnum.ESTATE));
+
+//		for (Card card : super.controller.deckHuman().getArrayList())
+//			card.flipFaceDown();
+
+		super.controller.deckHuman().getArrayList().shuffle();
+		super.controller.deckHuman().toFront();
+
+		super.controller.deckHuman().relocateImageViews();
 
 	}
 

@@ -20,9 +20,9 @@ public abstract class ArrayListImageViewAbles<T> {
 
 	}
 
-	public abstract void createCoordinates();
+	protected abstract void createCoordinates();
 
-	protected void toFront() {
+	public void toFront() {
 
 		ImageViewAble imageViewAble = null;
 

@@ -17,9 +17,10 @@ public class CreateSupply extends GameState {
 		addPile(CardNameEnum.DUCHY, 8);
 		addPile(CardNameEnum.SILVER, 1);
 		addPile(CardNameEnum.ESTATE, 8);
-		addPile(CardNameEnum.SILVER, 1);
+		addPile(CardNameEnum.COPPER, 1);
+		addPile(CardNameEnum.CURSE, 10);
 
-		super.controller.supply().setPileListAndRelocate(piles);
+		super.controller.supply().setPileListAndRelocate(this.piles);
 
 	}
 
