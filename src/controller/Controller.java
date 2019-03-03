@@ -1,6 +1,7 @@
 package controller;
 
 import model.DeckHuman;
+import model.HandHuman;
 import utils.Instances;
 
 public class Controller {
@@ -13,6 +14,7 @@ public class Controller {
 	private CardManager cardManager = null;
 	private Supply supply = null;
 	private DeckHuman deckHuman = null;
+	private HandHuman handHuman = null;
 
 	public Controller() {
 		createInstances();
@@ -30,6 +32,7 @@ public class Controller {
 		this.saveLoad = new SaveLoad();
 		this.supply = new Supply();
 		this.deckHuman = new DeckHuman();
+		this.handHuman = new HandHuman();
 
 	}
 
@@ -63,6 +66,10 @@ public class Controller {
 
 	public DeckHuman deckHuman() {
 		return this.deckHuman;
+	}
+
+	public HandHuman handHuman() {
+		return this.handHuman;
 	}
 
 }

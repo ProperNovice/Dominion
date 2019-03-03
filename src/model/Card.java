@@ -119,12 +119,10 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 	public void flipFaceUp() {
 		map.get(this).setImage(this.front);
-		map.get(this).setWidth(Credentials.DimensionsCard.x);
 	}
 
 	public void flipFaceDown() {
 		map.get(this).setImage(this.back);
-		map.get(this).setWidth(Credentials.DimensionsCard.x);
 	}
 
 }

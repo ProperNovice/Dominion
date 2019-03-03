@@ -31,7 +31,8 @@ public class Credentials {
 				14 * DimensionsCard.x + 13 * DimensionsGapBetweenCards.x + 2 * gapBetweenBorders,
 				5 * DimensionsCard.y + 4 * DimensionsGapBetweenCards.y + 2 * gapBetweenBorders);
 
-		x = CoordinatesSupply.x + 2 * (DimensionsCard.x + DimensionsGapBetweenCards.x) + DimensionsGapBetweenCards.x;
+		x = CoordinatesSupply.x + 2 * (DimensionsCard.x + DimensionsGapBetweenCards.x)
+				+ 2 * DimensionsGapBetweenCards.x;
 		y = CoordinatesSupply.y + 3 * (DimensionsCard.y + DimensionsGapBetweenCards.y);
 		CoordinatesDiscardPileHuman = new NumbersPair(x, y);
 
