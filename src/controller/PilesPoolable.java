@@ -14,7 +14,7 @@ public class PilesPoolable implements ObjectPoolAble {
 
 	@Override
 	public Object getObject() {
-		return new Pile(PileAmountOfCardsEnum.INFINITE);
+		return new Pile(PileAmountOfCardsEnum.FINITE);
 	}
 
 }

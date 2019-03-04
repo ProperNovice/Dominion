@@ -7,6 +7,7 @@ public enum GameStateEnum {
 	START_GAME(new StartGame()),
 	CREATE_SUPPLY(new CreateSupply()),
 	END_TURN(new EndTurn()),
+	DRAW_STARTING_HAND(new DrawStartingHand()),
 	
 	;
 

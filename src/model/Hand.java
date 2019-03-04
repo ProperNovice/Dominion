@@ -1,5 +1,6 @@
 package model;
 
+import controller.Credentials;
 import enums.ObjectPoolEnum;
 import utils.ArrayList;
 import utils.Coordinates;
@@ -22,22 +23,33 @@ public class Hand {
 			if (pileTemp.getArrayList().getFirst().getCardNameEnum() == card.getCardNameEnum())
 				pile = pileTemp;
 
-		if (pile == null)
+		if (pile == null) {
 			pile = (Pile) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.PILE);
+			this.list.addLast(pile);
+		}
 
 		pile.getArrayList().addFirst(card);
-		pile.toFront();
 		pile.updateNumberImageView();
+		pile.toFront();
 
-		relocatePiles();
-
-		return;
+		relocatePilesAndImageViews();
 
 	}
 
-	private void relocatePiles() {
+	private void relocatePilesAndImageViews() {
+
+		System.out.println("***");
+
+		System.out.println("coord h human");
+		Credentials.CoordinatesHandHuman.print();
+
+		System.out.println(this.list.size() + " list size");
+
+		this.coordinates.calculateFirstObjectCoordinatesPivot(this.list.size());
 
 		for (Pile pile : this.list) {
+
+			this.coordinates.getCoordinateIndex(this.list.indexOf(pile)).print();
 
 			pile.relocateList(this.coordinates.getCoordinateIndex(this.list.indexOf(pile)));
 			pile.relocateImageViews();

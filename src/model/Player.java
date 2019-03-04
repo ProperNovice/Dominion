@@ -21,7 +21,8 @@ public abstract class Player {
 		this.discardPile.relocateImageViews();
 
 		Coordinates coordinatesHand = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsCard)
-				.coordinatesNumbersPair(this.handCoordinates).rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).create();
+				.coordinatesNumbersPair(this.handCoordinates).gapNumbersPair(Credentials.DimensionsGapBetweenCards)
+				.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).create();
 
 		this.hand = new Hand(coordinatesHand);
 

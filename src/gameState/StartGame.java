@@ -5,6 +5,7 @@ import controller.Credentials;
 import enums.CardNameEnum;
 import enums.GameStateEnum;
 import model.Card;
+import utils.ArrayList;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.NumbersPair;
@@ -15,16 +16,27 @@ public class StartGame extends GameState {
 	public void handleGameStateChange() {
 
 //		presentCards();
-		runTests();
-
-	}
-
-	public void runTests() {
+		setDeck();
 
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.END_TURN);
 
 		super.controller.flow().proceedToNextGameStatePhase();
+
+	}
+
+	public void setDeck() {
+
+		ArrayList<Card> deck = new ArrayList<>();
+
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CELLAR));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CHAPEL));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CELLAR));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+
+		super.controller.players().getCurrentPlayer().getDeck().testSetDeck(deck);
+		super.controller.players().getCurrentPlayer().getDeck().relocateImageViews();
 
 	}
 
