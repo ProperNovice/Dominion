@@ -10,7 +10,7 @@ public class Deck extends ArrayListImageViewAbles<Card> {
 
 	public Deck() {
 
-//		createStartingDeck();
+		createStartingDeck();
 
 	}
 
