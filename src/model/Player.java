@@ -1,16 +1,16 @@
 package model;
 
-import utils.Coordinates;
+import utils.NumbersPair;
 
 public abstract class Player {
 
-	private Deck deck = new Deck();
-	private Hand hand = new Hand();
-	private DiscardPile discardPile = new DiscardPile();
-	protected Coordinates coordinatesDeck = null, coordinatesHand = null, coordinatesDiscardPile = null;
+	protected Deck deck = new Deck();
+	protected Hand hand = new Hand();
+	protected DiscardPile discardPile = new DiscardPile();
+	protected NumbersPair handCoordinates = null;
 
 	public Player() {
-
+		setCoordinates();
 	}
 
 	protected abstract void setCoordinates();

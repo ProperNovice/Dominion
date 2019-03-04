@@ -1,5 +1,7 @@
 package model;
 
+import controller.Credentials;
+
 public class PlayerHuman extends Player {
 
 	public PlayerHuman() {
@@ -8,6 +10,10 @@ public class PlayerHuman extends Player {
 
 	@Override
 	protected void setCoordinates() {
+
+		super.deck.relocateList(Credentials.CoordinatesDeckHuman);
+		super.discardPile.relocateList(Credentials.CoordinatesDiscardPileHuman);
+		super.handCoordinates = Credentials.CoordinatesHandHuman;
 
 	}
 

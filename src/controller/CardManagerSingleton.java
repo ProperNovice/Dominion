@@ -6,9 +6,11 @@ import enums.CardTypeEnum;
 import enums.PhaseEnum;
 import model.Card;
 
-public class CardManager {
+public enum CardManagerSingleton {
 
-	public CardManager() {
+	INSTANCE;
+
+	private CardManagerSingleton() {
 
 	}
 

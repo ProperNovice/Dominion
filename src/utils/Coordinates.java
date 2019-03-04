@@ -53,7 +53,7 @@ public class Coordinates {
 
 	}
 
-	public void relocateArrayListAndClearCoordinates(double x, double y) {
+	public void relocateListAndClearCoordinates(double x, double y) {
 
 		this.x = x;
 		this.y = y;
@@ -63,8 +63,8 @@ public class Coordinates {
 
 	}
 
-	public void relocateArrayListAndClearCoordinates(NumbersPair numbersPair) {
-		relocateArrayListAndClearCoordinates(numbersPair.x, numbersPair.y);
+	public void relocateListAndClearCoordinates(NumbersPair numbersPair) {
+		relocateListAndClearCoordinates(numbersPair.x, numbersPair.y);
 	}
 
 	public void calculateFirstObjectCoordinatesPivot(int arrayListSize) {
@@ -215,6 +215,10 @@ public class Coordinates {
 
 	public RearrangeTypeEnum getRearrangeTypeEnum() {
 		return this.rearrangeTypeEnum;
+	}
+
+	public NumbersPair getListCoordinates() {
+		return new NumbersPair(this.x, this.y);
 	}
 
 }

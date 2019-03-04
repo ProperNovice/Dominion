@@ -6,7 +6,7 @@ public class Credentials {
 
 	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard, DimensionsGapBetweenCards;
 	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman,
-			CoordinatesDiscardPileHuman;
+			CoordinatesDiscardPileHuman, CoordinatesHandHuman;
 	public static double gapBetweenBorders, textHeight, numberImageView, cardIndicatorWidth;
 
 	public static void calculateCredentials() {
@@ -39,6 +39,10 @@ public class Credentials {
 		x = CoordinatesDiscardPileHuman.x + DimensionsCard.x + DimensionsGapBetweenCards.x;
 		y = CoordinatesDiscardPileHuman.y;
 		CoordinatesDeckHuman = new NumbersPair(x, y);
+
+		x = DimensionsFrame.x / 2;
+		y = DimensionsFrame.y - gapBetweenBorders - DimensionsCard.y / 2;
+		CoordinatesHandHuman = new NumbersPair(x, y);
 
 	}
 

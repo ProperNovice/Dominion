@@ -47,12 +47,12 @@ public abstract class ArrayListImageViewAbles<T> {
 		executeAction(ImageViewAction.RELOCATE, null);
 	}
 
-	public void relocateArrayList(double x, double y) {
-		this.coordinates.relocateArrayListAndClearCoordinates(x, y);
+	public void relocateList(double x, double y) {
+		this.coordinates.relocateListAndClearCoordinates(x, y);
 	}
 
-	public void relocateArrayList(NumbersPair numbersPair) {
-		this.coordinates.relocateArrayListAndClearCoordinates(numbersPair);
+	public void relocateList(NumbersPair numbersPair) {
+		this.coordinates.relocateListAndClearCoordinates(numbersPair);
 	}
 
 	private enum ImageViewAction {

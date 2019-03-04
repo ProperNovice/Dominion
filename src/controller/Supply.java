@@ -24,7 +24,7 @@ public class Supply {
 
 		for (Pile pile : this.list) {
 
-			pile.relocateArrayList(this.coordinates.getCoordinateIndex(this.list.indexOf(pile)));
+			pile.relocateList(this.coordinates.getCoordinateIndex(this.list.indexOf(pile)));
 			pile.relocateImageViews();
 
 		}

@@ -26,9 +26,9 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 	}
 
 	@Override
-	public void relocateArrayList(NumbersPair numbersPair) {
+	public void relocateList(NumbersPair numbersPair) {
 
-		super.relocateArrayList(numbersPair);
+		super.relocateList(numbersPair);
 		this.numberImageView.getImageView()
 				.relocate(numbersPair.x + Credentials.DimensionsCard.x - Credentials.numberImageView, numbersPair.y);
 
@@ -46,8 +46,13 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 
 		if (this.amountOfCardsEnum == PileAmountOfCardsEnum.INFINITE)
 			this.numberImageView.setInfinity();
-		else
+
+		else if (super.arrayList.size() > 0)
 			this.numberImageView.setNumber(super.arrayList.size());
+
+		else
+			this.numberImageView.getImageView().setVisible(false);
+
 	}
 
 }

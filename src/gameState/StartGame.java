@@ -1,12 +1,13 @@
 package gameState;
 
+import controller.CardManagerSingleton;
 import controller.Credentials;
 import enums.CardNameEnum;
 import enums.GameStateEnum;
 import model.Card;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
-import utils.Instances;
+import utils.ImageView;
 import utils.NumbersPair;
 
 public class StartGame extends GameState {
@@ -15,7 +16,11 @@ public class StartGame extends GameState {
 	public void handleGameStateChange() {
 
 //		presentCards();
-		runTests();
+//		runTests();
+		
+		ImageView imageView = new ImageView("cards/back.jpg");
+		imageView.setWidth(Credentials.cardIndicatorWidth);
+		imageView.relocate(10, 10);
 
 	}
 
@@ -39,7 +44,7 @@ public class StartGame extends GameState {
 		public Cards() {
 
 			for (CardNameEnum cardNameEnum : CardNameEnum.values())
-				super.arrayList.addLast(Instances.getControllerInstance().cardManager().getNewCard(cardNameEnum));
+				super.arrayList.addLast(CardManagerSingleton.INSTANCE.getNewCard(cardNameEnum));
 
 			relocateImageViews();
 

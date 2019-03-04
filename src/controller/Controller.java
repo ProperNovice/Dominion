@@ -9,7 +9,6 @@ public class Controller {
 	private Flow flow = null;
 	private Modifiers modifiers = null;
 	private SaveLoad saveLoad = null;
-	private CardManager cardManager = null;
 	private Supply supply = null;
 	private Players players = null;
 
@@ -25,7 +24,6 @@ public class Controller {
 		this.text = new Text();
 		this.flow = new Flow();
 		this.modifiers = new Modifiers();
-		this.cardManager = new CardManager();
 		this.saveLoad = new SaveLoad();
 		this.supply = new Supply();
 		this.players = new Players();
@@ -50,10 +48,6 @@ public class Controller {
 
 	public SaveLoad saveLoad() {
 		return this.saveLoad;
-	}
-
-	public CardManager cardManager() {
-		return this.cardManager;
 	}
 
 	public Supply supply() {

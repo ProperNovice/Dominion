@@ -1,23 +1,24 @@
 package utils;
 
-public class Permutations {
+public enum Permutations {
 
-	private static ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
-	private static int total, permutations;
+	INSTANCE;
+
+	private ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
+	private int total, permutations;
 
 	private Permutations() {
 
 	}
 
-	public static ArrayList<ArrayList<Integer>> getPermutations(int total,
-			int permutations) {
+	public ArrayList<ArrayList<Integer>> getPermutations(int total, int permutations) {
 
-		results.clear();
+		this.results.clear();
 
-		Permutations.total = total;
-		Permutations.permutations = permutations;
+		this.total = total;
+		this.permutations = permutations;
 
-		if (Permutations.total < Permutations.permutations)
+		if (this.total < this.permutations)
 			return results;
 
 		addLeaves(new ArrayList<Integer>(), 0);
@@ -26,12 +27,12 @@ public class Permutations {
 
 	}
 
-	private static void trimList() {
+	private void trimList() {
 
 		if (permutationsComplete())
 			return;
 
-		ArrayList<Integer> list = results.remove(0);
+		ArrayList<Integer> list = this.results.remove(0);
 
 		int lastNumberAdded = list.get(list.size() - 1);
 		int numberToAdd = lastNumberAdded + 1;
@@ -40,9 +41,9 @@ public class Permutations {
 
 	}
 
-	private static void addLeaves(ArrayList<Integer> list, int number) {
+	private void addLeaves(ArrayList<Integer> list, int number) {
 
-		if (number == total) {
+		if (number == this.total) {
 			trimList();
 			return;
 		}
@@ -50,7 +51,7 @@ public class Permutations {
 		ArrayList<Integer> listClone = new ArrayList<>(list);
 
 		listClone.addLast(number);
-		results.addLast(listClone);
+		this.results.addLast(listClone);
 
 		number++;
 
@@ -58,8 +59,8 @@ public class Permutations {
 
 	}
 
-	private static boolean permutationsComplete() {
-		return results.get(0).size() == permutations;
+	private boolean permutationsComplete() {
+		return this.results.get(0).size() == this.permutations;
 	}
 
 }

@@ -12,4 +12,12 @@ public class NumbersPair {
 
 	}
 
+	public void print() {
+
+		Logger.log("x -> " + this.x);
+		Logger.log("y -> " + this.y);
+		Logger.newLine();
+
+	}
+
 }

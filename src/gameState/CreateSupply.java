@@ -1,5 +1,6 @@
 package gameState;
 
+import controller.CardManagerSingleton;
 import enums.CardNameEnum;
 import enums.PileAmountOfCardsEnum;
 import model.Pile;
@@ -39,7 +40,7 @@ public class CreateSupply extends GameState {
 		this.piles.addLast(pile);
 
 		for (int counter = 1; counter <= amount; counter++)
-			pile.getArrayList().addLast(super.controller.cardManager().getNewCard(cardNameEnum));
+			pile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(cardNameEnum));
 
 		pile.updateNumberImageView();
 
