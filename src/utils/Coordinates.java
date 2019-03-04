@@ -217,8 +217,4 @@ public class Coordinates {
 		return this.rearrangeTypeEnum;
 	}
 
-	public NumbersPair getListCoordinates() {
-		return new NumbersPair(this.x, this.y);
-	}
-
 }
