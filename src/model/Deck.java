@@ -49,6 +49,8 @@ public class Deck extends ArrayListImageViewAbles<Card> {
 			card.flipFaceDown();
 
 		super.toFront();
+		
+		System.out.println(super.arrayList.size());
 
 	}
 

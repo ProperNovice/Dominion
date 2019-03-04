@@ -70,6 +70,7 @@ public class Coordinates {
 	public void calculateFirstObjectCoordinatesPivot(int arrayListSize) {
 
 		this.arrayListSize = arrayListSize;
+		this.coordinates.clear();
 		calculateFirstObjectCoordinates();
 
 	}

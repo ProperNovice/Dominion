@@ -15,7 +15,7 @@ public class Credentials {
 
 //		DimensionsFrame = new NumbersPair(1366, 788);
 		DimensionsInsets = new NumbersPair(7, 29);
-		gapBetweenBorders = 20;
+		gapBetweenBorders = 10;
 
 		CoordinatesTextPanel = new NumbersPair(0, 0);
 
@@ -27,8 +27,10 @@ public class Credentials {
 		DimensionsCard = new NumbersPair(100, 162);
 		numberImageView = DimensionsCard.x * 0.35;
 
+		int totalCardsWidth = 14;
 		DimensionsFrame = new NumbersPair(
-				14 * DimensionsCard.x + 13 * DimensionsGapBetweenCards.x + 2 * gapBetweenBorders,
+				totalCardsWidth * DimensionsCard.x + (totalCardsWidth - 1) * DimensionsGapBetweenCards.x
+						+ 2 * gapBetweenBorders,
 				5 * DimensionsCard.y + 4 * DimensionsGapBetweenCards.y + 2 * gapBetweenBorders);
 
 		x = CoordinatesSupply.x + 2 * (DimensionsCard.x + DimensionsGapBetweenCards.x)

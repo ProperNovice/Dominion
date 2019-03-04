@@ -1,9 +1,9 @@
 package model;
 
-import controller.Credentials;
 import enums.ObjectPoolEnum;
 import utils.ArrayList;
 import utils.Coordinates;
+import utils.Lock;
 import utils.ObjectPoolSingleton;
 
 public class Hand {
@@ -29,7 +29,6 @@ public class Hand {
 		}
 
 		pile.getArrayList().addFirst(card);
-		pile.updateNumberImageView();
 		pile.toFront();
 
 		relocatePilesAndImageViews();
@@ -38,23 +37,19 @@ public class Hand {
 
 	private void relocatePilesAndImageViews() {
 
-		System.out.println("***");
-
-		System.out.println("coord h human");
-		Credentials.CoordinatesHandHuman.print();
-
-		System.out.println(this.list.size() + " list size");
-
 		this.coordinates.calculateFirstObjectCoordinatesPivot(this.list.size());
 
 		for (Pile pile : this.list) {
 
-			this.coordinates.getCoordinateIndex(this.list.indexOf(pile)).print();
-
 			pile.relocateList(this.coordinates.getCoordinateIndex(this.list.indexOf(pile)));
-			pile.relocateImageViews();
+			pile.animateSynchronous();
 
 		}
+
+		Lock.lock();
+
+		for (Pile pile : this.list)
+			pile.updateNumberImageView();
 
 	}
 

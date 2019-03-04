@@ -30,9 +30,21 @@ public class StartGame extends GameState {
 		ArrayList<Card> deck = new ArrayList<>();
 
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CELLAR));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CHAPEL));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.DUCHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CHAPEL));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CHAPEL));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CELLAR));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CELLAR));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.ESTATE));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GARDENS));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CURSE));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 
 		super.controller.players().getCurrentPlayer().getDeck().testSetDeck(deck);

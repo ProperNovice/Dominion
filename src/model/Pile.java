@@ -11,11 +11,12 @@ import utils.RearrangeTypeEnum;
 
 public class Pile extends ArrayListImageViewAbles<Card> {
 
-	private NumberImageView numberImageView = new NumberImageView(NumberImageViewColorEnum.BLACK);
+	private NumberImageView numberImageView = new NumberImageView(1, NumberImageViewColorEnum.BLACK);
 	private PileAmountOfCardsEnum amountOfCardsEnum = null;
 
 	public Pile(PileAmountOfCardsEnum amountOfCardsEnum) {
 		this.amountOfCardsEnum = amountOfCardsEnum;
+		this.numberImageView.getImageView().setVisible(false);
 	}
 
 	@Override

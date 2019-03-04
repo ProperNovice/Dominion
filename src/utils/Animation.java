@@ -183,7 +183,7 @@ public enum Animation {
 		PlatformFX.runLater(() -> {
 
 			if (this.nodesAnimating.contains(node))
-				return;
+				this.nodesAnimating.remove(node);
 
 			this.nodesAnimating.addLast(node);
 
