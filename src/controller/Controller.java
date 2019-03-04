@@ -11,6 +11,7 @@ public class Controller {
 	private SaveLoad saveLoad = null;
 	private Supply supply = null;
 	private Players players = null;
+	private PilesPoolable pilesPoolable = null;
 
 	public Controller() {
 		createInstances();
@@ -27,6 +28,7 @@ public class Controller {
 		this.saveLoad = new SaveLoad();
 		this.supply = new Supply();
 		this.players = new Players();
+		this.pilesPoolable = new PilesPoolable();
 
 	}
 
@@ -56,6 +58,10 @@ public class Controller {
 
 	public Players players() {
 		return this.players;
+	}
+
+	public PilesPoolable pilesPoolable() {
+		return this.pilesPoolable;
 	}
 
 }

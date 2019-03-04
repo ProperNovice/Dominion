@@ -60,8 +60,6 @@ public abstract class GameState {
 	public final void handleCardPressed(Card card, CardNameEnum cardNameEnum, ArrayList<CardTypeEnum> cardTypeEnum,
 			HashMap<PhaseEnum, ArrayList<CardAbilityEnum>> abilities, int buyCost) {
 
-		card.flipFaceDown();
-
 	}
 
 }

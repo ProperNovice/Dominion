@@ -125,4 +125,8 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		map.get(this).setImage(this.back);
 	}
 
+	public CardNameEnum getCardNameEnum() {
+		return this.cardNameEnum;
+	}
+
 }

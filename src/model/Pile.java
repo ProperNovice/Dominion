@@ -15,9 +15,7 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 	private PileAmountOfCardsEnum amountOfCardsEnum = null;
 
 	public Pile(PileAmountOfCardsEnum amountOfCardsEnum) {
-
 		this.amountOfCardsEnum = amountOfCardsEnum;
-
 	}
 
 	@Override
