@@ -22,6 +22,8 @@ public class CreateSupply extends GameState {
 
 		super.controller.supply().setPileListAndRelocate(this.piles);
 
+		super.controller.flow().proceedToNextGameStatePhase();
+
 	}
 
 	private void addPile(CardNameEnum cardNameEnum, int amount) {
@@ -33,7 +35,7 @@ public class CreateSupply extends GameState {
 		else
 			pileAmountOfCardsEnum = PileAmountOfCardsEnum.FINITE;
 
-		Pile pile = new Pile(cardNameEnum, pileAmountOfCardsEnum);
+		Pile pile = new Pile(pileAmountOfCardsEnum);
 		this.piles.addLast(pile);
 
 		for (int counter = 1; counter <= amount; counter++)

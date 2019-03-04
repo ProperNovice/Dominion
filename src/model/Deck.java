@@ -8,10 +8,10 @@ import utils.CoordinatesBuilder;
 import utils.Instances;
 import utils.RearrangeTypeEnum;
 
-public class DeckHuman extends ArrayListImageViewAbles<Card> {
+public class Deck extends ArrayListImageViewAbles<Card> {
 
-	public DeckHuman() {
-		
+	public Deck() {
+
 		createStartingDeck();
 
 	}

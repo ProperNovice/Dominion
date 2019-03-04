@@ -14,8 +14,8 @@ public class StartGame extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-		relocateCards();
-//		runTests();
+//		presentCards();
+		runTests();
 
 	}
 
@@ -28,10 +28,7 @@ public class StartGame extends GameState {
 
 	}
 
-	public void relocateCards() {
-
-		for (Card card : super.controller.deckHuman().getArrayList())
-			card.getImageView().setVisible(false);
+	public void presentCards() {
 
 		new Cards();
 
