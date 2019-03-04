@@ -77,7 +77,7 @@ public class NumberImageView implements ImageViewAble {
 	private void setImageView(int listIndex) {
 
 		ObjectPoolAble objectPoolAble = this.hashMapKeySingleton.get(listIndex);
-		Image image = (Image) this.objectPoolSingleton.pullObject(ObjectPoolEnum.NUMBER_IMAGEVIEW_ABLE, objectPoolAble);
+		Image image = (Image) this.objectPoolSingleton.pullObject(objectPoolAble);
 
 		if (map.get(this) != null) {
 
@@ -148,7 +148,10 @@ public class NumberImageView implements ImageViewAble {
 			private String path = null;
 
 			public NumberImageViewObjectPoolAble(String path) {
+
+				ObjectPoolSingleton.INSTANCE.createObjectPool(ObjectPoolEnum.NUMBER_IMAGEVIEW_ABLE, this);
 				this.path = path;
+
 			}
 
 			@Override

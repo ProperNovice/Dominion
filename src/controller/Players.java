@@ -2,7 +2,6 @@ package controller;
 
 import enums.PlayerEnum;
 import model.Player;
-import model.PlayerAI;
 import model.PlayerHuman;
 import utils.HashMap;
 
@@ -18,7 +17,7 @@ public class Players {
 	private void createHashMap() {
 
 		this.players.put(PlayerEnum.HUMAN, new PlayerHuman());
-		this.players.put(PlayerEnum.AI, new PlayerAI());
+//		this.players.put(PlayerEnum.AI, new PlayerAI());
 
 	}
 

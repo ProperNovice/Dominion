@@ -7,8 +7,6 @@ import enums.GameStateEnum;
 import model.Card;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
-import utils.Image;
-import utils.ImageView;
 import utils.NumbersPair;
 
 public class StartGame extends GameState {
