@@ -86,6 +86,18 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 	}
 
+	@Override
+	public void handleMouseEntered() {
+		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
+				.handleCardEntered(this, this.cardNameEnum));
+	}
+
+	@Override
+	public void handleMouseExited() {
+		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
+				.handleCardExited(this.cardNameEnum));
+	}
+
 	private void printCard() {
 
 		String seperator = "*******";

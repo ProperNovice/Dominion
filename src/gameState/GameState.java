@@ -1,5 +1,6 @@
 package gameState;
 
+import controller.CardIndicatorSingleton;
 import controller.Controller;
 import enums.CardAbilityEnum;
 import enums.CardNameEnum;
@@ -60,6 +61,22 @@ public abstract class GameState {
 	public final void handleCardPressed(Card card, CardNameEnum cardNameEnum, ArrayList<CardTypeEnum> cardTypeEnum,
 			HashMap<PhaseEnum, ArrayList<CardAbilityEnum>> abilities, int buyCost) {
 
+	}
+
+	public void handleCardEntered(Card card, CardNameEnum cardNameEnum) {
+
+		if (this.controller.players().getCurrentPlayer().getDeck().getArrayList().contains(card))
+			return;
+
+//		else if (this.controller.players().getOpponent().getDeck().getArrayList().contains(card))
+//			return;
+
+		CardIndicatorSingleton.INSTANCE.indicatorSetVisible(cardNameEnum, true);
+
+	}
+
+	public void handleCardExited(CardNameEnum cardNameEnum) {
+		CardIndicatorSingleton.INSTANCE.indicatorSetVisible(cardNameEnum, false);
 	}
 
 }

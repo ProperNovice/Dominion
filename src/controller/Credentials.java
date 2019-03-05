@@ -6,8 +6,8 @@ public class Credentials {
 
 	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard, DimensionsGapBetweenCards;
 	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman, CoordinatesKingdom,
-			CoordinatesDiscardPileHuman, CoordinatesHandHuman;
-	public static double gapBetweenBorders, textHeight, numberImageView, cardIndicatorWidth;
+			CoordinatesDiscardPileHuman, CoordinatesHandHuman, CoordinatesCardIndicator;
+	public static double gapBetweenBorders, textHeight, numberImageView, cardIndicatorWidth, actionBuyIndicatorsWidth;
 
 	public static void calculateCredentials() {
 
@@ -21,6 +21,7 @@ public class Credentials {
 
 		textHeight = 50;
 		cardIndicatorWidth = 200;
+		actionBuyIndicatorsWidth = 50;
 		DimensionsGapBetweenCards = new NumbersPair(5, 2);
 
 		CoordinatesSupply = new NumbersPair(gapBetweenBorders, gapBetweenBorders);
@@ -46,9 +47,13 @@ public class Credentials {
 		y = DimensionsFrame.y - gapBetweenBorders - DimensionsCard.y / 2;
 		CoordinatesHandHuman = new NumbersPair(x, y);
 
-		x = DimensionsFrame.x / 2 - 2 * DimensionsCard.x - 1.5 * DimensionsGapBetweenCards.x;
+		x = DimensionsFrame.x / 2 - (5 * DimensionsCard.x + 4 * DimensionsGapBetweenCards.x) / 2;
 		y = gapBetweenBorders;
 		CoordinatesKingdom = new NumbersPair(x, y);
+
+		x = DimensionsFrame.x - gapBetweenBorders - cardIndicatorWidth;
+		y = gapBetweenBorders;
+		CoordinatesCardIndicator = new NumbersPair(x, y);
 
 	}
 

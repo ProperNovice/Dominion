@@ -10,9 +10,12 @@ public class DrawStartingHand extends GameState {
 
 		Hand hand = super.controller.players().getCurrentPlayer().getHand();
 
-//		int deckSize = super.controller.players().getCurrentPlayer().getDeck().getArrayList().size();
+		int amount = -1;
 
-		for (int counter = 1; counter <= 5; counter++) {
+//		amount = super.controller.players().getCurrentPlayer().getDeck().getArrayList().size();
+		amount = 5;
+
+		for (int counter = 1; counter <= amount; counter++) {
 
 			Card card = super.controller.players().getCurrentPlayer().getDeck().getArrayList().removeFirst();
 			card.flipFaceUp();
@@ -21,7 +24,7 @@ public class DrawStartingHand extends GameState {
 
 		}
 
-//		super.controller.flow().proceedToNextGameStatePhase();
+		super.controller.flow().proceedToNextGameStatePhase();
 
 	}
 

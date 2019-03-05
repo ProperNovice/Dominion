@@ -36,19 +36,12 @@ public class StartGame extends GameState {
 
 		ArrayList<Card> deck = new ArrayList<>();
 
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.ESTATE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GARDENS));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CURSE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.DUCHY));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SILVER));
+		ArrayList<CardNameEnum> cardNameEnumList = new ArrayList<CardNameEnum>(CardNameEnum.values());
+		while (cardNameEnumList.size() > 8)
+			cardNameEnumList.removeRandom();
+
+		for (int counter = 1; counter <= 15; counter++)
+			deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(cardNameEnumList.getRandom()));
 
 		deck.shuffle();
 

@@ -13,6 +13,7 @@ public class Controller {
 	private Players players = null;
 	private PilesPoolable pilesPoolable = null;
 	private Kingdom kingdom = null;
+	private ActionBuy actionBuy = null;
 
 	public Controller() {
 		createInstances();
@@ -31,6 +32,7 @@ public class Controller {
 		this.players = new Players();
 		this.pilesPoolable = new PilesPoolable();
 		this.kingdom = new Kingdom();
+		this.actionBuy = new ActionBuy();
 
 	}
 
@@ -68,6 +70,10 @@ public class Controller {
 
 	public Kingdom kingdom() {
 		return this.kingdom;
+	}
+
+	public ActionBuy actionBuy() {
+		return this.actionBuy;
 	}
 
 }
