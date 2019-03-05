@@ -19,7 +19,7 @@ public abstract class IndicatorActionBuy implements ImageViewAble {
 
 		String path = this.pathIndicator + ".png";
 		ImageView imageView = new ImageView(path);
-		imageView.setWidth(Credentials.actionBuyIndicatorsWidth);
+		imageView.setWidth(Credentials.DimensionsActionBuyIndicators.x);
 		imageView.setVisible(false);
 
 		map.put(this, imageView);

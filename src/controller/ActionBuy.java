@@ -7,8 +7,8 @@ import model.IndicatorBuy;
 import utils.ArrayList;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
-import utils.ObjectPoolAble;
 import utils.ObjectPoolSingleton;
+import utils.RearrangeTypeEnum;
 
 public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
@@ -25,10 +25,7 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 				.addLast((IndicatorAction) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_ACTION));
 		this.listBuy.addLast((IndicatorBuy) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_BUY));
 
-		for (IndicatorActionBuy indicatorActionBuy : this.listAction)
-			super.arrayList.addLast(indicatorActionBuy);
-		for (IndicatorActionBuy indicatorActionBuy : this.listBuy)
-			super.arrayList.addLast(indicatorActionBuy);
+		showActionBuy();
 
 	}
 
@@ -36,7 +33,50 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 	protected void createCoordinates() {
 
 		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsActionBuyIndicators)
-				.coordinatesNumbersPair(Credentials.CoordinatesActionBuyIndicators).create();
+				.coordinatesNumbersPair(Credentials.CoordinatesActionBuyIndicators).objectsPerRow(3)
+				.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).create();
+
+	}
+
+	private void showActionBuy() {
+
+		for (IndicatorActionBuy indicatorActionBuy : this.listAction)
+			super.arrayList.addLast(indicatorActionBuy);
+		for (IndicatorActionBuy indicatorActionBuy : this.listBuy)
+			super.arrayList.addLast(indicatorActionBuy);
+
+		super.relocateImageViews();
+
+		for (IndicatorActionBuy indicatorActionBuy : super.arrayList)
+			indicatorActionBuy.getImageView().setVisible(true);
+
+	}
+
+	public int getRemainingActions() {
+		return this.listAction.size();
+	}
+
+	public int getRemainingBuys() {
+		return this.listBuy.size();
+	}
+
+	public void testSetActionBuy(int action, int buy) {
+
+		this.listAction.clear();
+		this.listBuy.clear();
+
+		for (IndicatorActionBuy indicatorActionBuy : super.arrayList)
+			indicatorActionBuy.getImageView().setVisible(false);
+
+		super.arrayList.clear();
+
+		for (int counter = 1; counter <= action; counter++)
+			this.listAction.addLast(new IndicatorAction());
+
+		for (int counter = 1; counter <= buy; counter++)
+			this.listBuy.addLast(new IndicatorBuy());
+
+		showActionBuy();
 
 	}
 

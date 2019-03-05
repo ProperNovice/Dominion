@@ -35,6 +35,17 @@ public abstract class ArrayListImageViewAbles<T> {
 
 	}
 
+	public void toBack() {
+
+		for (T t : this.arrayList) {
+
+			ImageViewAble imageViewAble = (ImageViewAble) t;
+			imageViewAble.getImageView().toFront();
+
+		}
+
+	}
+
 	public void animateAsynchronous() {
 		executeAction(ImageViewAction.ANIMATE, AnimationSynch.ASYNCHRONOUS);
 	}

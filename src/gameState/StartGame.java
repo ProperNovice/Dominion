@@ -16,7 +16,8 @@ public class StartGame extends GameState {
 	public void handleGameStateChange() {
 
 //		presentCards();
-//		setDeck();
+		setDeck();
+//		setActionBuy(2, 13);
 
 		flow();
 
@@ -26,7 +27,13 @@ public class StartGame extends GameState {
 
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_KINGDOM);
+		
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.END_TURN);
+		
+//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.DRAW_STARTING_HAND);
+//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.START_NEW_PHASE);
+
+
 
 		super.controller.flow().proceedToNextGameStatePhase();
 
@@ -36,18 +43,24 @@ public class StartGame extends GameState {
 
 		ArrayList<Card> deck = new ArrayList<>();
 
-		ArrayList<CardNameEnum> cardNameEnumList = new ArrayList<CardNameEnum>(CardNameEnum.values());
-		while (cardNameEnumList.size() > 8)
-			cardNameEnumList.removeRandom();
-
-		for (int counter = 1; counter <= 15; counter++)
-			deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(cardNameEnumList.getRandom()));
-
-		deck.shuffle();
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 
 		super.controller.players().getCurrentPlayer().getDeck().testSetDeck(deck);
 		super.controller.players().getCurrentPlayer().getDeck().relocateImageViews();
 
+	}
+
+	public void setActionBuy(int action, int buy) {
+		super.controller.actionBuy().testSetActionBuy(action, buy);
 	}
 
 	public void presentCards() {

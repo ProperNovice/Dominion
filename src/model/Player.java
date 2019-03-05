@@ -11,6 +11,7 @@ public abstract class Player {
 	protected Deck deck = new Deck();
 	protected Hand hand = null;
 	protected DiscardPile discardPile = new DiscardPile();
+	protected PlayArea playArea = new PlayArea();
 	protected NumbersPair handCoordinates = null;
 
 	public Player() {
@@ -40,6 +41,10 @@ public abstract class Player {
 
 	public DiscardPile discardPile() {
 		return this.discardPile;
+	}
+
+	public PlayArea getPlayArea() {
+		return this.playArea;
 	}
 
 }

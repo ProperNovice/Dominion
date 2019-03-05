@@ -10,6 +10,9 @@ public enum GameStateEnum {
 	END_TURN(new EndTurn()),
 	DRAW_STARTING_HAND(new DrawStartingHand()),
 	START_NEW_TURN(new StartNewTurn()),
+	START_NEW_PHASE(new StartNewPhase()),
+	ACTION_PHASE(new ActionPhase()),
+	BUY_PHASE(new BuyPhase()),
 	
 	;
 

@@ -81,4 +81,18 @@ public class Hand {
 
 	}
 
+	public ArrayList<Pile> getPiles() {
+		return this.list;
+	}
+
+	public Pile getPileContainingCard(Card card) {
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().contains(card))
+				return pile;
+
+		return null;
+
+	}
+
 }

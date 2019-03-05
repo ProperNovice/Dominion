@@ -2,15 +2,11 @@ package gameState;
 
 import controller.CardIndicatorSingleton;
 import controller.Controller;
-import enums.CardAbilityEnum;
 import enums.CardNameEnum;
-import enums.CardTypeEnum;
-import enums.PhaseEnum;
 import enums.TextEnum;
 import javafx.scene.input.KeyCode;
 import model.Card;
-import utils.ArrayList;
-import utils.HashMap;
+import model.Pile;
 import utils.Instances;
 
 public abstract class GameState {
@@ -58,8 +54,17 @@ public abstract class GameState {
 
 	}
 
-	public final void handleCardPressed(Card card, CardNameEnum cardNameEnum, ArrayList<CardTypeEnum> cardTypeEnum,
-			HashMap<PhaseEnum, ArrayList<CardAbilityEnum>> abilities, int buyCost) {
+	public final void handleCardPressed(Card cardPressed) {
+
+		Pile pileHandPressed = this.controller.players().getCurrentPlayer().getHand()
+				.getPileContainingCard(cardPressed);
+
+		if (pileHandPressed != null)
+			handleCardPressedHand(cardPressed, pileHandPressed);
+
+	}
+
+	protected void handleCardPressedHand(Card cardPressed, Pile pileHandPressed) {
 
 	}
 
