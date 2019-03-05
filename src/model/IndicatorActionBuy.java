@@ -9,8 +9,10 @@ public abstract class IndicatorActionBuy implements ImageViewAble {
 	protected String pathIndicator = null;
 
 	public IndicatorActionBuy() {
+
 		createPathIndicator();
 		createImageView();
+
 	}
 
 	protected abstract void createPathIndicator();

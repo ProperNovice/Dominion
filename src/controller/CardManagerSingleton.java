@@ -16,6 +16,8 @@ public enum CardManagerSingleton {
 
 	public Card getNewCard(CardNameEnum cardNameEnum) {
 
+		CardIndicatorSingleton.INSTANCE.createIndicator(cardNameEnum);
+
 		Card card = null;
 
 		switch (cardNameEnum) {

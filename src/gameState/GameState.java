@@ -6,7 +6,6 @@ import enums.CardNameEnum;
 import enums.TextEnum;
 import javafx.scene.input.KeyCode;
 import model.Card;
-import model.Pile;
 import utils.Instances;
 
 public abstract class GameState {
@@ -56,15 +55,12 @@ public abstract class GameState {
 
 	public final void handleCardPressed(Card cardPressed) {
 
-		Pile pileHandPressed = this.controller.players().getCurrentPlayer().getHand()
-				.getPileContainingCard(cardPressed);
-
-		if (pileHandPressed != null)
-			handleCardPressedHand(cardPressed, pileHandPressed);
+		if (this.controller.players().getCurrentPlayer().getHand().containsCard(cardPressed))
+			handleCardPressedHand(cardPressed);
 
 	}
 
-	protected void handleCardPressedHand(Card cardPressed, Pile pileHandPressed) {
+	protected void handleCardPressedHand(Card cardPressed) {
 
 	}
 

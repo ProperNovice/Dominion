@@ -3,7 +3,6 @@ package gameState;
 import enums.CardTypeEnum;
 import enums.TextEnum;
 import model.Card;
-import model.Pile;
 
 public class ActionPhase extends GameState {
 
@@ -16,15 +15,19 @@ public class ActionPhase extends GameState {
 	}
 
 	@Override
-	protected void handleCardPressedHand(Card cardPressed, Pile pileHandPressed) {
+	protected void handleCardPressedHand(Card cardPressed) {
 
 		if (!cardPressed.isCardType(CardTypeEnum.ACTION))
 			return;
 
+//		super.controller.actionBuy().removeActionAndRearrange();
+
 		super.controller.players().getCurrentPlayer().getPlayArea().getArrayList().addLast(cardPressed);
 		super.controller.players().getCurrentPlayer().getPlayArea().relocateImageViews();
 		super.controller.players().getCurrentPlayer().getPlayArea().toBack();
-		
+
+		super.controller.players().getCurrentPlayer().getHand().removeCardAndAnimatePiles(cardPressed);
+
 	}
 
 }

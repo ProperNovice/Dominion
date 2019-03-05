@@ -40,6 +40,8 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
 	private void showActionBuy() {
 
+		super.arrayList.clear();
+
 		for (IndicatorActionBuy indicatorActionBuy : this.listAction)
 			super.arrayList.addLast(indicatorActionBuy);
 		for (IndicatorActionBuy indicatorActionBuy : this.listBuy)
@@ -49,6 +51,28 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
 		for (IndicatorActionBuy indicatorActionBuy : super.arrayList)
 			indicatorActionBuy.getImageView().setVisible(true);
+
+	}
+
+	public void removeActionAndRearrange() {
+
+		IndicatorAction indicatorAction = this.listAction.removeFirst();
+		indicatorAction.getImageView().setVisible(false);
+
+		ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_ACTION, indicatorAction);
+
+		showActionBuy();
+
+	}
+
+	public void removeBuyAndRearrange() {
+
+		IndicatorBuy indicatorBuy = this.listBuy.removeFirst();
+		indicatorBuy.getImageView().setVisible(false);
+
+		ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_BUY, indicatorBuy);
+
+		showActionBuy();
 
 	}
 

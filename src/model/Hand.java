@@ -3,6 +3,7 @@ package model;
 import controller.Credentials;
 import enums.CardTypeEnum;
 import enums.ObjectPoolEnum;
+import utils.Animation.AnimationSynch;
 import utils.ArrayList;
 import utils.Coordinates;
 import utils.Lock;
@@ -19,7 +20,7 @@ public class Hand {
 		this.coordinates = coordinates;
 	}
 
-	public void addCardAndRelocatePiles(Card card) {
+	public void addCardAndAnimatePiles(Card card) {
 
 		Pile pile = null;
 
@@ -34,8 +35,40 @@ public class Hand {
 
 		pile.getArrayList().addFirst(card);
 
+		handlePiles(card, AnimationSynch.SYNCHRONOUS);
+
+	}
+
+	public void removeCardAndAnimatePiles(Card card) {
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().contains(card))
+				pile.getArrayList().remove(card);
+
+		handlePiles(card, AnimationSynch.ASYNCHRONOUS);
+
+	}
+
+	private void handlePiles(Card card, AnimationSynch animationSynch) {
+
+		clearPiles();
 		rearrangePiles();
-		animateSynchronous(card);
+		animatePiles(card, animationSynch);
+
+	}
+
+	private void clearPiles() {
+
+		for (Pile pile : this.list.clone()) {
+
+			if (!pile.getArrayList().isEmpty())
+				continue;
+
+			this.list.remove(pile);
+			pile.updateNumberImageView();
+			ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.PILE, pile);
+
+		}
 
 	}
 
@@ -55,7 +88,7 @@ public class Hand {
 
 	}
 
-	private void animateSynchronous(Card card) {
+	private void animatePiles(Card card, AnimationSynch animationSynch) {
 
 		this.coordinates.calculateFirstObjectCoordinatesPivot(this.list.size());
 
@@ -63,18 +96,26 @@ public class Hand {
 
 			NumbersPair numbersPair = this.coordinates.getCoordinateIndex(this.list.indexOf(pile));
 
-			double x = numbersPair.x;
-			double y = numbersPair.y - Credentials.DimensionsCard.y - Credentials.DimensionsGapBetweenCards.y;
+			if (pile.getArrayList().contains(card)) {
 
-			if (pile.getArrayList().contains(card))
+				double x = numbersPair.x;
+				double y = numbersPair.y - Credentials.DimensionsCard.y - Credentials.DimensionsGapBetweenCards.y;
+
 				card.getImageView().relocate(x, y);
 
+			}
+
 			pile.relocateList(numbersPair);
-			pile.animateSynchronous();
+
+			if (animationSynch == AnimationSynch.SYNCHRONOUS)
+				pile.animateSynchronous();
+			else if (animationSynch == AnimationSynch.ASYNCHRONOUS)
+				pile.animateAsynchronous();
 
 		}
 
-		Lock.lock();
+		if (animationSynch == AnimationSynch.SYNCHRONOUS)
+			Lock.lock();
 
 		for (Pile pile : this.list)
 			pile.updateNumberImageView();
@@ -85,13 +126,13 @@ public class Hand {
 		return this.list;
 	}
 
-	public Pile getPileContainingCard(Card card) {
+	public boolean containsCard(Card card) {
 
 		for (Pile pile : this.list)
 			if (pile.getArrayList().contains(card))
-				return pile;
+				return true;
 
-		return null;
+		return false;
 
 	}
 

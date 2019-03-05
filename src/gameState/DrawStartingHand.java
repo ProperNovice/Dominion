@@ -20,7 +20,7 @@ public class DrawStartingHand extends GameState {
 			Card card = super.controller.players().getCurrentPlayer().getDeck().getArrayList().removeFirst();
 			card.flipFaceUp();
 
-			hand.addCardAndRelocatePiles(card);
+			hand.addCardAndAnimatePiles(card);
 
 		}
 

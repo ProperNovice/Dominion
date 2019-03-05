@@ -149,4 +149,8 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		return this.buyCost;
 	}
 
+	public ArrayList<CardAbilityEnum> getCardAbilityEnum(PhaseEnum phaseEnum) {
+		return this.cardAbilities.get(phaseEnum);
+	}
+
 }

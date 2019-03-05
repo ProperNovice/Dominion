@@ -3,6 +3,7 @@ package controller;
 import enums.GameStateEnum;
 import utils.ArrayList;
 import utils.Instances;
+import utils.Logger;
 
 public class Flow {
 
@@ -35,6 +36,12 @@ public class Flow {
 
 	public void addGameStateResolvingLast(GameStateEnum gameStateEnum) {
 		this.gameStateResolving.addLast(gameStateEnum);
+	}
+
+	public void print() {
+
+		Logger.log("flow");
+		this.gameStateResolving.printList();
 	}
 
 }

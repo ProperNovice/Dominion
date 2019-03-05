@@ -3,6 +3,7 @@ package model;
 public class IndicatorAction extends IndicatorActionBuy {
 
 	public IndicatorAction() {
+
 	}
 
 	@Override
