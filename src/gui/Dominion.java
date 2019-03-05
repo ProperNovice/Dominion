@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Credentials;
+import controller.ObjectsPool;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -23,6 +24,7 @@ public class Dominion extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		Animation.INSTANCE.startAnimation();
+		ObjectsPool.INSTANCE.create();
 		Logger.startLogging();
 		Credentials.calculateCredentials();
 
@@ -47,8 +49,7 @@ public class Dominion extends Application {
 					if (Animation.INSTANCE.isAnimating())
 						return;
 
-					Instances.getControllerInstance().gameState().getCurrentGameState()
-							.handleKeyPressed(keyCode);
+					Instances.getControllerInstance().gameState().getCurrentGameState().handleKeyPressed(keyCode);
 
 				});
 

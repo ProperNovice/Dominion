@@ -4,9 +4,10 @@ import utils.NumbersPair;
 
 public class Credentials {
 
-	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard, DimensionsGapBetweenCards;
+	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard, DimensionsGapBetweenCards,
+			DimensionsActionBuyIndicators;
 	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman, CoordinatesKingdom,
-			CoordinatesDiscardPileHuman, CoordinatesHandHuman, CoordinatesCardIndicator;
+			CoordinatesDiscardPileHuman, CoordinatesHandHuman, CoordinatesCardIndicator, CoordinatesActionBuyIndicators;
 	public static double gapBetweenBorders, textHeight, numberImageView, cardIndicatorWidth, actionBuyIndicatorsWidth;
 
 	public static void calculateCredentials() {
@@ -22,10 +23,11 @@ public class Credentials {
 		textHeight = 50;
 		cardIndicatorWidth = 200;
 		actionBuyIndicatorsWidth = 50;
-		DimensionsGapBetweenCards = new NumbersPair(5, 2);
+		DimensionsGapBetweenCards = new NumbersPair(2, 2);
+		DimensionsActionBuyIndicators = new NumbersPair(50, 50);
 
 		CoordinatesSupply = new NumbersPair(gapBetweenBorders, gapBetweenBorders);
-		DimensionsCard = new NumbersPair(100, 162);
+		DimensionsCard = new NumbersPair(100, 160);
 		numberImageView = DimensionsCard.x * 0.35;
 
 		int totalCardsWidth = 14;
@@ -54,6 +56,10 @@ public class Credentials {
 		x = DimensionsFrame.x - gapBetweenBorders - cardIndicatorWidth;
 		y = gapBetweenBorders;
 		CoordinatesCardIndicator = new NumbersPair(x, y);
+
+		x = CoordinatesDeckHuman.x + DimensionsCard.x + DimensionsGapBetweenCards.x;
+		y = CoordinatesDeckHuman.y + DimensionsCard.y - DimensionsActionBuyIndicators.y;
+		CoordinatesActionBuyIndicators = new NumbersPair(x, y);
 
 	}
 

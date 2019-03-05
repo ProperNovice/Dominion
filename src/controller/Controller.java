@@ -11,7 +11,6 @@ public class Controller {
 	private SaveLoad saveLoad = null;
 	private Supply supply = null;
 	private Players players = null;
-	private PilesPoolable pilesPoolable = null;
 	private Kingdom kingdom = null;
 	private ActionBuy actionBuy = null;
 
@@ -30,7 +29,6 @@ public class Controller {
 		this.saveLoad = new SaveLoad();
 		this.supply = new Supply();
 		this.players = new Players();
-		this.pilesPoolable = new PilesPoolable();
 		this.kingdom = new Kingdom();
 		this.actionBuy = new ActionBuy();
 
@@ -62,10 +60,6 @@ public class Controller {
 
 	public Players players() {
 		return this.players;
-	}
-
-	public PilesPoolable pilesPoolable() {
-		return this.pilesPoolable;
 	}
 
 	public Kingdom kingdom() {

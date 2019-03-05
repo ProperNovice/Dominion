@@ -149,14 +149,19 @@ public class NumberImageView implements ImageViewAble {
 
 			public NumberImageViewObjectPoolAble(String path) {
 
-				ObjectPoolSingleton.INSTANCE.createObjectPool(ObjectPoolEnum.NUMBER_IMAGEVIEW_ABLE, this);
 				this.path = path;
+				createObjectPoolSingletonInstance();
 
 			}
 
 			@Override
 			public Object getObject() {
 				return new Image(this.path);
+			}
+
+			@Override
+			public void createObjectPoolSingletonInstance() {
+				ObjectPoolSingleton.INSTANCE.createObjectPool(ObjectPoolEnum.NUMBER_IMAGEVIEW_ABLE, this);
 			}
 
 		}

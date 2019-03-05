@@ -1,6 +1,6 @@
 package model;
 
-public class IndicatorBuy extends Indicator {
+public class IndicatorBuy extends IndicatorActionBuy {
 
 	public IndicatorBuy() {
 	}
