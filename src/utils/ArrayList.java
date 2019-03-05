@@ -100,8 +100,8 @@ public class ArrayList<T> implements Iterable<T> {
 		return this.list.remove(index);
 	}
 
-	public boolean remove(Object o) {
-		return this.list.remove(o);
+	public boolean remove(T t) {
+		return this.list.remove(t);
 	}
 
 	public void shuffle() {

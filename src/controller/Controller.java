@@ -12,6 +12,7 @@ public class Controller {
 	private Supply supply = null;
 	private Players players = null;
 	private PilesPoolable pilesPoolable = null;
+	private Kingdom kingdom = null;
 
 	public Controller() {
 		createInstances();
@@ -29,6 +30,7 @@ public class Controller {
 		this.supply = new Supply();
 		this.players = new Players();
 		this.pilesPoolable = new PilesPoolable();
+		this.kingdom = new Kingdom();
 
 	}
 
@@ -62,6 +64,10 @@ public class Controller {
 
 	public PilesPoolable pilesPoolable() {
 		return this.pilesPoolable;
+	}
+
+	public Kingdom kingdom() {
+		return this.kingdom;
 	}
 
 }

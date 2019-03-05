@@ -129,4 +129,12 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		return this.cardNameEnum;
 	}
 
+	public boolean isCardType(CardTypeEnum cardTypeEnum) {
+		return this.cardTypeEnum.contains(cardTypeEnum);
+	}
+
+	public int getBuyCost() {
+		return this.buyCost;
+	}
+
 }

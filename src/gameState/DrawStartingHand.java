@@ -1,11 +1,7 @@
 package gameState;
 
-import controller.Credentials;
 import model.Card;
 import model.Hand;
-import utils.Animation;
-import utils.Animation.AnimationSynch;
-import utils.Lock;
 
 public class DrawStartingHand extends GameState {
 
@@ -14,20 +10,18 @@ public class DrawStartingHand extends GameState {
 
 		Hand hand = super.controller.players().getCurrentPlayer().getHand();
 
-		int deckSize = super.controller.players().getCurrentPlayer().getDeck().getArrayList().size();
+//		int deckSize = super.controller.players().getCurrentPlayer().getDeck().getArrayList().size();
 
-		for (int counter = 1; counter <= deckSize; counter++) {
+		for (int counter = 1; counter <= 5; counter++) {
 
 			Card card = super.controller.players().getCurrentPlayer().getDeck().getArrayList().removeFirst();
 			card.flipFaceUp();
 
-			Animation.INSTANCE.animate(card.getImageView(), Credentials.CoordinatesCardDrawHuman,
-					AnimationSynch.SYNCHRONOUS);
-			Lock.lock();
-
 			hand.addCardAndRelocatePiles(card);
 
 		}
+
+//		super.controller.flow().proceedToNextGameStatePhase();
 
 	}
 

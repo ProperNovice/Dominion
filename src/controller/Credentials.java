@@ -5,8 +5,8 @@ import utils.NumbersPair;
 public class Credentials {
 
 	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard, DimensionsGapBetweenCards;
-	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman,
-			CoordinatesDiscardPileHuman, CoordinatesHandHuman, CoordinatesCardDrawHuman;
+	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman, CoordinatesKingdom,
+			CoordinatesDiscardPileHuman, CoordinatesHandHuman;
 	public static double gapBetweenBorders, textHeight, numberImageView, cardIndicatorWidth;
 
 	public static void calculateCredentials() {
@@ -21,7 +21,7 @@ public class Credentials {
 
 		textHeight = 50;
 		cardIndicatorWidth = 200;
-		DimensionsGapBetweenCards = new NumbersPair(5, 5);
+		DimensionsGapBetweenCards = new NumbersPair(5, 2);
 
 		CoordinatesSupply = new NumbersPair(gapBetweenBorders, gapBetweenBorders);
 		DimensionsCard = new NumbersPair(100, 162);
@@ -46,9 +46,9 @@ public class Credentials {
 		y = DimensionsFrame.y - gapBetweenBorders - DimensionsCard.y / 2;
 		CoordinatesHandHuman = new NumbersPair(x, y);
 
-		x = CoordinatesDeckHuman.x + 2 * (DimensionsCard.x + DimensionsGapBetweenCards.x);
-		y = CoordinatesDeckHuman.y;
-		CoordinatesCardDrawHuman = new NumbersPair(x, y);
+		x = DimensionsFrame.x / 2 - 2 * DimensionsCard.x - 1.5 * DimensionsGapBetweenCards.x;
+		y = gapBetweenBorders;
+		CoordinatesKingdom = new NumbersPair(x, y);
 
 	}
 

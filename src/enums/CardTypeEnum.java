@@ -2,6 +2,6 @@ package enums;
 
 public enum CardTypeEnum {
 
-	TREASURE, VICTORY, ACTION, REACTION, CURSE
+	CURSE, VICTORY, TREASURE, REACTION, ACTION
 
 }

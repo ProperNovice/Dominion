@@ -42,15 +42,12 @@ public class Deck extends ArrayListImageViewAbles<Card> {
 			card.getImageView().setVisible(false);
 
 		super.arrayList.clear();
-
 		super.arrayList.addAll(deck);
 
 		for (Card card : super.arrayList)
 			card.flipFaceDown();
 
 		super.toFront();
-		
-		System.out.println(super.arrayList.size());
 
 	}
 
