@@ -58,8 +58,8 @@ public class Credentials {
 		y = gapBetweenBorders;
 		CoordinatesCardIndicator = new NumbersPair(x, y);
 
-		x = CoordinatesDeckHuman.x + DimensionsCard.x + DimensionsGapBetweenCards.x + DimensionsCard.x / 2;
-		y = CoordinatesDeckHuman.y + DimensionsCard.y / 2;
+		x = CoordinatesDeckHuman.x + DimensionsCard.x + DimensionsGapBetweenCards.x;
+		y = CoordinatesDeckHuman.y;
 		CoordinatesActionBuyIndicators = new NumbersPair(x, y);
 
 		x = DimensionsFrame.x / 2;

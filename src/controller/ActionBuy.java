@@ -8,7 +8,6 @@ import utils.ArrayList;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.ObjectPoolSingleton;
-import utils.RearrangeTypeEnum;
 
 public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
@@ -33,8 +32,7 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 	protected void createCoordinates() {
 
 		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsActionBuyIndicators)
-				.coordinatesNumbersPair(Credentials.CoordinatesActionBuyIndicators).objectsPerRow(3)
-				.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).create();
+				.coordinatesNumbersPair(Credentials.CoordinatesActionBuyIndicators).objectsPerRow(3).create();
 
 	}
 

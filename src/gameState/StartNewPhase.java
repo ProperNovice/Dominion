@@ -44,8 +44,10 @@ public class StartNewPhase extends GameState {
 
 		if (super.controller.actionBuy().getRemainingBuys() == 0)
 			return false;
-		else
+		else {
+			super.controller.actionBuy().removeAllActionsAndRearrange();
 			return true;
+		}
 
 	}
 

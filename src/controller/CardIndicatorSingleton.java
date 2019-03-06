@@ -11,7 +11,13 @@ public enum CardIndicatorSingleton {
 	private HashMap<CardNameEnum, ImageView> list = new HashMap<CardNameEnum, ImageView>();
 
 	public void indicatorSetVisible(CardNameEnum cardNameEnum, boolean value) {
-		this.list.get(cardNameEnum).setVisible(value);
+
+		for (CardNameEnum cardNameEnumTemp : this.list)
+			if (cardNameEnum == cardNameEnumTemp)
+				this.list.get(cardNameEnumTemp).setVisible(value);
+			else
+				this.list.get(cardNameEnumTemp).setVisible(false);
+
 	}
 
 	public void createIndicator(CardNameEnum cardNameEnum) {

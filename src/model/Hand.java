@@ -105,7 +105,6 @@ public class Hand {
 			}
 
 			pile.relocateList(numbersPair);
-
 			pile.animateSynchronous();
 
 		}

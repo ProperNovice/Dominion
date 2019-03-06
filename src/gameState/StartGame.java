@@ -71,6 +71,9 @@ public class StartGame extends GameState {
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.WITCH));
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.DUCHY));
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		
 		super.controller.players().getCurrentPlayer().getDiscardPile().testSetDeck(discardPile);

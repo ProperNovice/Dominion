@@ -180,12 +180,20 @@ public enum Animation {
 
 	public void animate(Node node, double endingX, double endingY, AnimationSynch animationSynch) {
 
-		PlatformFX.runLater(() -> {
+		if (this.nodesAnimating.contains(node)) {
 
-			if (this.nodesAnimating.contains(node))
-				this.nodesAnimating.remove(node);
+			for (NodeAnimation nodeAnimation : this.animationsSynchronous.clone())
+				if (nodeAnimation.getNode() == node)
+					this.animationsSynchronous.remove(nodeAnimation);
 
+			for (NodeAnimation nodeAnimation : this.animationsAsynchronous.clone())
+				if (nodeAnimation.getNode() == node)
+					this.animationsAsynchronous.remove(nodeAnimation);
+
+		} else
 			this.nodesAnimating.addLast(node);
+
+		PlatformFX.runLater(() -> {
 
 			ArrayList<NodeAnimation> listToAdd = null;
 
