@@ -12,21 +12,19 @@ import utils.ObjectPoolSingleton;
 
 public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<IndicatorActionBuyTreasure> {
 
-	private IndicatorTreasure indicatorTreasure = new IndicatorTreasure();
-	private ArrayList<IndicatorAction> listAction = new ArrayList<IndicatorAction>();
-	private ArrayList<IndicatorBuy> listBuy = new ArrayList<IndicatorBuy>();
-	private int treasure = 0;
+	private ArrayList<IndicatorAction> listAction = new ArrayList<>();
+	private ArrayList<IndicatorBuy> listBuy = new ArrayList<>();
+	private ArrayList<IndicatorTreasure> listTreasure = new ArrayList<>();
+	private int actions = 0, buys = 0, treasure = 0;
 
 	public ActionBuyTreasureIndicators() {
 
 	}
 
-	public void showActionBuyOneEach() {
+	public void showNewRoundIndicators() {
 
-		this.listAction
-				.addLast((IndicatorAction) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_ACTION));
-		this.listBuy.addLast((IndicatorBuy) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_BUY));
-
+		this.actions = 1;
+		this.buys = 1;
 		this.treasure = 0;
 
 		showActionBuyTreasure();
@@ -43,68 +41,100 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 
 	private void showActionBuyTreasure() {
 
+		for (IndicatorActionBuyTreasure indicatorActionBuyTreasure : super.arrayList)
+			indicatorActionBuyTreasure.getImageView().setVisible(false);
+
+		for (IndicatorAction indicatorAction : this.listAction)
+			ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_ACTION, indicatorAction);
+		for (IndicatorBuy indicatorBuy : this.listBuy)
+			ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_BUY, indicatorBuy);
+		for (IndicatorTreasure indicatorTreasure : this.listTreasure)
+			ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_TREASURE, indicatorTreasure);
+
+		this.listTreasure.clear();
+		this.listAction.clear();
+		this.listBuy.clear();
 		super.arrayList.clear();
 
-		this.indicatorTreasure.setTreasure(this.treasure);
+		for (int counter = 1; counter <= this.actions; counter++)
+			this.listAction.addLast(
+					(IndicatorAction) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_ACTION));
 
-		super.arrayList.addLast(this.indicatorTreasure);
-		for (IndicatorActionBuyTreasure indicatorActionBuy : this.listAction)
-			super.arrayList.addLast(indicatorActionBuy);
-		for (IndicatorActionBuyTreasure indicatorActionBuy : this.listBuy)
-			super.arrayList.addLast(indicatorActionBuy);
+		for (int counter = 1; counter <= this.buys; counter++)
+			this.listBuy.addLast((IndicatorBuy) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_BUY));
+
+		int treasureTemp = 0;
+
+		while (treasureTemp <= this.treasure) {
+
+			this.listTreasure.addLast(
+					(IndicatorTreasure) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_TREASURE));
+
+			treasureTemp += 20;
+
+		}
+
+		treasureTemp = this.treasure;
+
+		for (IndicatorTreasure indicatorTreasure : this.listTreasure) {
+
+			indicatorTreasure.setTreasure(Math.min(20, treasureTemp));
+			treasureTemp -= 20;
+
+		}
+
+		for (IndicatorTreasure indicatorTreasure : this.listTreasure)
+			super.arrayList.addLast(indicatorTreasure);
+		for (IndicatorAction indicatorAction : this.listAction)
+			super.arrayList.addLast(indicatorAction);
+		for (IndicatorBuy indicatorBuy : this.listBuy)
+			super.arrayList.addLast(indicatorBuy);
 
 		super.relocateImageViews();
 
-		for (IndicatorActionBuyTreasure indicatorActionBuy : super.arrayList)
-			indicatorActionBuy.getImageView().setVisible(true);
+		for (IndicatorActionBuyTreasure indicatorActionBuyTreasure : super.arrayList)
+			indicatorActionBuyTreasure.getImageView().setVisible(true);
 
 	}
 
-	public void removeOneActionAndRearrange() {
+	public void removeOneAction() {
 
-		IndicatorAction indicatorAction = this.listAction.removeFirst();
-		indicatorAction.getImageView().setVisible(false);
-
-		ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_ACTION, indicatorAction);
-
+		this.actions--;
 		showActionBuyTreasure();
 
 	}
 
-	public void removeOneBuyAndRearrange() {
+	public void removeOneBuy() {
 
-		IndicatorBuy indicatorBuy = this.listBuy.removeFirst();
-		indicatorBuy.getImageView().setVisible(false);
+		this.buys--;
+		showActionBuyTreasure();
 
-		ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_BUY, indicatorBuy);
+	}
 
+	public void removeOneCoin() {
+
+		this.treasure--;
 		showActionBuyTreasure();
 
 	}
 
 	public int getRemainingActions() {
-		return this.listAction.size();
+		return this.actions;
 	}
 
 	public int getRemainingBuys() {
-		return this.listBuy.size();
+		return this.buys;
 	}
 
-	public void testSetActionBuy(int action, int buy) {
+	public int getTreasure() {
+		return this.treasure;
+	}
 
-		this.listAction.clear();
-		this.listBuy.clear();
+	public void testSetActionBuy(int actions, int buys, int treasure) {
 
-		for (IndicatorActionBuyTreasure indicatorActionBuy : super.arrayList)
-			indicatorActionBuy.getImageView().setVisible(false);
-
-		super.arrayList.clear();
-
-		for (int counter = 1; counter <= action; counter++)
-			this.listAction.addLast(new IndicatorAction());
-
-		for (int counter = 1; counter <= buy; counter++)
-			this.listBuy.addLast(new IndicatorBuy());
+		this.actions = actions;
+		this.buys = buys;
+		this.treasure = treasure;
 
 		showActionBuyTreasure();
 
@@ -112,17 +142,14 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 
 	public void addOneAction() {
 
-		this.listAction
-				.addLast((IndicatorAction) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_ACTION));
-
+		this.actions++;
 		showActionBuyTreasure();
 
 	}
 
 	public void addOneBuy() {
 
-		this.listBuy.addLast((IndicatorBuy) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_BUY));
-
+		this.buys++;
 		showActionBuyTreasure();
 
 	}
@@ -134,12 +161,10 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 
 	}
 
-	public void removeAllActionsAndRearrange() {
+	public void removeAllActions() {
 
-		int listSize = this.listAction.size();
-
-		for (int counter = 1; counter <= listSize; counter++)
-			removeOneActionAndRearrange();
+		this.actions = 0;
+		showActionBuyTreasure();
 
 	}
 

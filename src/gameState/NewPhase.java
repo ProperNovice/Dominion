@@ -45,7 +45,7 @@ public class NewPhase extends GameState {
 		if (super.controller.actionBuyTreasureIndicators().getRemainingBuys() == 0)
 			return false;
 		else {
-			super.controller.actionBuyTreasureIndicators().removeAllActionsAndRearrange();
+			super.controller.actionBuyTreasureIndicators().removeAllActions();
 			return true;
 		}
 

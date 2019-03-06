@@ -4,6 +4,7 @@ import enums.ObjectPoolEnum;
 import enums.PileAmountOfCardsEnum;
 import model.IndicatorAction;
 import model.IndicatorBuy;
+import model.IndicatorTreasure;
 import model.Pile;
 import utils.ObjectPoolAble;
 import utils.ObjectPoolSingleton;
@@ -17,6 +18,7 @@ public enum ObjectsPool {
 		new PilesPoolable().createObjectPoolSingletonInstance();
 		new IndicatorActionPoolable().createObjectPoolSingletonInstance();
 		new IndicatorBuyPoolable().createObjectPoolSingletonInstance();
+		new IndicatorTreasurePoolable().createObjectPoolSingletonInstance();
 
 	}
 
@@ -58,6 +60,20 @@ public enum ObjectsPool {
 		@Override
 		public void createObjectPoolSingletonInstance() {
 			ObjectPoolSingleton.INSTANCE.createObjectPool(ObjectPoolEnum.INDICATOR_BUY, this);
+		}
+
+	}
+
+	public class IndicatorTreasurePoolable implements ObjectPoolAble {
+
+		@Override
+		public Object getObject() {
+			return new IndicatorTreasure();
+		}
+
+		@Override
+		public void createObjectPoolSingletonInstance() {
+			ObjectPoolSingleton.INSTANCE.createObjectPool(ObjectPoolEnum.INDICATOR_TREASURE, this);
 		}
 
 	}

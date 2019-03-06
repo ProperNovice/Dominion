@@ -26,9 +26,11 @@ public class ActionPhase extends GameState {
 	}
 
 	private void proceedToBuyPhase() {
-		super.controller.actionBuyTreasureIndicators().removeAllActionsAndRearrange();
+		super.controller.actionBuyTreasureIndicators().removeAllActions();
 		super.controller.flow().proceedToNextGameStatePhase();
 	}
+	
+	private int timesRun = 0;
 
 	@Override
 	protected void executeCardPressedHand(Card cardPressed) {
@@ -38,8 +40,20 @@ public class ActionPhase extends GameState {
 
 		super.controller.text().concealText();
 
-		super.controller.actionBuyTreasureIndicators().removeOneActionAndRearrange();
+		super.controller.actionBuyTreasureIndicators().removeOneAction();
 
+		
+		timesRun++;
+		
+//		if (timesRun <= 3)
+//		for (int counter = 1; counter <= 8; counter++)
+//			super.controller.actionBuyTreasureIndicators().addOneCoin();
+//		else
+//			for (int counter = 1; counter <= 5; counter++)
+//				super.controller.actionBuyTreasureIndicators().
+
+		
+		
 		super.controller.players().getCurrentPlayer().getPlayArea().getArrayList().addLast(cardPressed);
 		super.controller.players().getCurrentPlayer().getPlayArea().relocateImageViews();
 		super.controller.players().getCurrentPlayer().getPlayArea().toBack();
