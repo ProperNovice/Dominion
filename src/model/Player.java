@@ -39,7 +39,7 @@ public abstract class Player {
 		return this.hand;
 	}
 
-	public DiscardPile discardPile() {
+	public DiscardPile getDiscardPile() {
 		return this.discardPile;
 	}
 

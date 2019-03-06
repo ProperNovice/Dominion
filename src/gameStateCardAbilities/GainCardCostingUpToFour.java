@@ -1,4 +1,6 @@
-package gameState;
+package gameStateCardAbilities;
+
+import gameState.GameState;
 
 public class GainCardCostingUpToFour extends GameState {
 

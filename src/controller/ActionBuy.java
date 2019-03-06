@@ -103,5 +103,14 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 		showActionBuy();
 
 	}
+	
+	public void addOneAction() {
+		
+		this.listAction
+		.addLast((IndicatorAction) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_ACTION));
+		
+		showActionBuy();
+		
+	}
 
 }

@@ -1,6 +1,17 @@
 package enums;
 
 import gameState.*;
+import gameStateCardAbilities.DiscardAnyNumberOfCardsThenDrawThatMany;
+import gameStateCardAbilities.EachOtherPlayerDiscardsaDownToThreeCardsInHand;
+import gameStateCardAbilities.EachOtherPlayerGainsCurse;
+import gameStateCardAbilities.GainCardCostingUpToFour;
+import gameStateCardAbilities.PlusOneAction;
+import gameStateCardAbilities.PlusOneBuy;
+import gameStateCardAbilities.PlusOneCard;
+import gameStateCardAbilities.PlusOneCoin;
+import gameStateCardAbilities.TrashCardFromYourHandGainCardCostingUpToTwoMoreThanIt;
+import gameStateCardAbilities.TrashUpToFourCardsFromYourHand;
+import gameStateCardAbilities.WorthOneVictoryPointPerTenCardsYouHaveRoundDown;
 
 public enum GameStateEnum {
 

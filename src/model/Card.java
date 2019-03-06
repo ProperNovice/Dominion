@@ -1,9 +1,9 @@
 package model;
 
 import controller.Credentials;
-import enums.CardAbilityEnum;
 import enums.CardNameEnum;
 import enums.CardTypeEnum;
+import enums.GameStateEnum;
 import enums.PhaseEnum;
 import utils.ArrayList;
 import utils.EventHandler.EventHandlerAble;
@@ -20,16 +20,13 @@ public class Card implements EventHandlerAble, ImageViewAble {
 	private CardNameEnum cardNameEnum = null;
 	private ArrayList<CardTypeEnum> cardTypeEnum = new ArrayList<>();
 	private int buyCost = -1, treasure = 0, victoryPoints = 0;
-	private HashMap<PhaseEnum, ArrayList<CardAbilityEnum>> cardAbilities = new HashMap<>();
+	private HashMap<PhaseEnum, ArrayList<GameStateEnum>> cardAbilities = new HashMap<>();
 	private Image front = null, back = null;
 
 	public Card(CardNameEnum cardNameEnum, int buyCost) {
 
 		this.cardNameEnum = cardNameEnum;
 		this.buyCost = buyCost;
-
-		for (PhaseEnum phaseEnum : PhaseEnum.values())
-			this.cardAbilities.put(phaseEnum, new ArrayList<CardAbilityEnum>());
 
 		createImageView();
 
@@ -56,8 +53,13 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		this.cardTypeEnum.addLast(cardTypeEnum);
 	}
 
-	public void addCardAbility(PhaseEnum phaseEnum, CardAbilityEnum cardAbilityEnum) {
-		this.cardAbilities.get(phaseEnum).addLast(cardAbilityEnum);
+	public void addCardAbility(PhaseEnum phaseEnum, GameStateEnum gameStateEnum) {
+
+		if (!this.cardAbilities.containsKey(phaseEnum))
+			this.cardAbilities.put(phaseEnum, new ArrayList<GameStateEnum>());
+
+		this.cardAbilities.get(phaseEnum).addLast(gameStateEnum);
+
 	}
 
 	public void setVictoryPoints(int victoryPoints) {
@@ -116,13 +118,15 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		if (this.victoryPoints != 0)
 			Logger.log("victory points -> " + this.victoryPoints);
 
-		for (PhaseEnum phaseEnum : PhaseEnum.values())
-			if (!this.cardAbilities.get(phaseEnum).isEmpty()) {
+		for (PhaseEnum phaseEnum : PhaseEnum.values()) {
 
-				Logger.log("phase -> " + phaseEnum);
-				this.cardAbilities.get(phaseEnum).printList();
+			if (!this.cardAbilities.containsKey(phaseEnum))
+				continue;
 
-			}
+			Logger.log("phase -> " + phaseEnum);
+			this.cardAbilities.get(phaseEnum).printList();
+
+		}
 
 		Logger.log(seperator);
 		Logger.newLine();
@@ -149,7 +153,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		return this.buyCost;
 	}
 
-	public ArrayList<CardAbilityEnum> getCardAbilityEnum(PhaseEnum phaseEnum) {
+	public ArrayList<GameStateEnum> getCardAbilityEnum(PhaseEnum phaseEnum) {
 		return this.cardAbilities.get(phaseEnum);
 	}
 

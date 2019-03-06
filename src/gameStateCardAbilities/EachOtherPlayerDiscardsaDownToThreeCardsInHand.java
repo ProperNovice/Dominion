@@ -1,4 +1,6 @@
-package gameState;
+package gameStateCardAbilities;
+
+import gameState.GameState;
 
 public class EachOtherPlayerDiscardsaDownToThreeCardsInHand extends GameState {
 

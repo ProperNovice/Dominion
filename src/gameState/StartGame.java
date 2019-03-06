@@ -17,6 +17,7 @@ public class StartGame extends GameState {
 
 //		presentCards();
 		setDeck();
+		setDiscardPile();
 //		setActionBuy(2, 13);
 
 		flow();
@@ -50,13 +51,31 @@ public class StartGame extends GameState {
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+//		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+//		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+//		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		
+//		deck.clear();
 
 		super.controller.players().getCurrentPlayer().getDeck().testSetDeck(deck);
 		super.controller.players().getCurrentPlayer().getDeck().relocateImageViews();
 
+	}
+	
+	public void setDiscardPile() {
+		
+		ArrayList<Card> discardPile = new ArrayList<>();
+
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		
+		super.controller.players().getCurrentPlayer().getDiscardPile().testSetDeck(discardPile);
+		super.controller.players().getCurrentPlayer().getDiscardPile().relocateImageViews();
+		
 	}
 
 	public void setActionBuy(int action, int buy) {
