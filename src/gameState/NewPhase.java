@@ -14,8 +14,11 @@ public class NewPhase extends GameState {
 
 		if (actionPhase())
 			gameStateEnum = GameStateEnum.ACTION_PHASE;
-		else if (buyPhase())
+
+		else if (buyPhase()) {
+			super.controller.actionBuyTreasureIndicators().removeAllActions();
 			gameStateEnum = GameStateEnum.BUY_PHASE;
+		}
 
 		super.controller.flow().addGameStateResolvingFirst(gameStateEnum);
 		super.controller.flow().proceedToNextGameStatePhase();
@@ -44,10 +47,8 @@ public class NewPhase extends GameState {
 
 		if (super.controller.actionBuyTreasureIndicators().getRemainingBuys() == 0)
 			return false;
-		else {
-			super.controller.actionBuyTreasureIndicators().removeAllActions();
+		else
 			return true;
-		}
 
 	}
 

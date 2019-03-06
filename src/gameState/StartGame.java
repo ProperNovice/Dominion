@@ -16,12 +16,12 @@ public class StartGame extends GameState {
 	public void handleGameStateChange() {
 
 //		presentCards();
-//		setDeck();
-//		setDiscardPile();
+		setDeck();
+		setDiscardPile();
 
 		flow();
 
-//		setActionBuy(2, 3, 54);
+//		setActionBuy(2, 3, 28);
 
 	}
 

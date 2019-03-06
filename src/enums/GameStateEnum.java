@@ -24,10 +24,12 @@ public enum GameStateEnum {
 	NEW_PHASE(new NewPhase()),
 	ACTION_PHASE(new ActionPhase()),
 	BUY_PHASE(new BuyPhase()),
+	
 	PLUS_ONE_CARD(new PlusOneCard()),
 	PLUS_ONE_ACTION(new PlusOneAction()),
 	PLUS_ONE_COIN(new PlusOneCoin()),
 	PLUS_ONE_BUY(new PlusOneBuy()),
+	
 	TRASH_UP_TO_FOUR_CARDS_FROM_YOUR_HAND(new TrashUpToFourCardsFromYourHand()),
 	DISCARD_ANY_NUMBER_OF_CARDS_THEN_DRAW_THAT_MANY(new DiscardAnyNumberOfCardsThenDrawThatMany()),
 	GAIN_A_CARD_COSTING_UP_TO_FOUR(new GainCardCostingUpToFour()),
