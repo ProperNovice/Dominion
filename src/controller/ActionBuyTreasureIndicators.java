@@ -2,19 +2,22 @@ package controller;
 
 import enums.ObjectPoolEnum;
 import model.IndicatorAction;
-import model.IndicatorActionBuy;
+import model.IndicatorActionBuyTreasure;
 import model.IndicatorBuy;
+import model.IndicatorTreasure;
 import utils.ArrayList;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.ObjectPoolSingleton;
 
-public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
+public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<IndicatorActionBuyTreasure> {
 
+	private IndicatorTreasure indicatorTreasure = new IndicatorTreasure();
 	private ArrayList<IndicatorAction> listAction = new ArrayList<IndicatorAction>();
 	private ArrayList<IndicatorBuy> listBuy = new ArrayList<IndicatorBuy>();
+	private int treasure = 0;
 
-	public ActionBuy() {
+	public ActionBuyTreasureIndicators() {
 
 	}
 
@@ -24,7 +27,9 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 				.addLast((IndicatorAction) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_ACTION));
 		this.listBuy.addLast((IndicatorBuy) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_BUY));
 
-		showActionBuy();
+		this.treasure = 0;
+
+		showActionBuyTreasure();
 
 	}
 
@@ -36,18 +41,21 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
 	}
 
-	private void showActionBuy() {
+	private void showActionBuyTreasure() {
 
 		super.arrayList.clear();
 
-		for (IndicatorActionBuy indicatorActionBuy : this.listAction)
+		this.indicatorTreasure.setTreasure(this.treasure);
+
+		super.arrayList.addLast(this.indicatorTreasure);
+		for (IndicatorActionBuyTreasure indicatorActionBuy : this.listAction)
 			super.arrayList.addLast(indicatorActionBuy);
-		for (IndicatorActionBuy indicatorActionBuy : this.listBuy)
+		for (IndicatorActionBuyTreasure indicatorActionBuy : this.listBuy)
 			super.arrayList.addLast(indicatorActionBuy);
 
 		super.relocateImageViews();
 
-		for (IndicatorActionBuy indicatorActionBuy : super.arrayList)
+		for (IndicatorActionBuyTreasure indicatorActionBuy : super.arrayList)
 			indicatorActionBuy.getImageView().setVisible(true);
 
 	}
@@ -59,7 +67,7 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
 		ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_ACTION, indicatorAction);
 
-		showActionBuy();
+		showActionBuyTreasure();
 
 	}
 
@@ -70,7 +78,7 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
 		ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_BUY, indicatorBuy);
 
-		showActionBuy();
+		showActionBuyTreasure();
 
 	}
 
@@ -87,7 +95,7 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 		this.listAction.clear();
 		this.listBuy.clear();
 
-		for (IndicatorActionBuy indicatorActionBuy : super.arrayList)
+		for (IndicatorActionBuyTreasure indicatorActionBuy : super.arrayList)
 			indicatorActionBuy.getImageView().setVisible(false);
 
 		super.arrayList.clear();
@@ -98,7 +106,7 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 		for (int counter = 1; counter <= buy; counter++)
 			this.listBuy.addLast(new IndicatorBuy());
 
-		showActionBuy();
+		showActionBuyTreasure();
 
 	}
 
@@ -107,7 +115,7 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 		this.listAction
 				.addLast((IndicatorAction) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_ACTION));
 
-		showActionBuy();
+		showActionBuyTreasure();
 
 	}
 
@@ -115,7 +123,14 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
 		this.listBuy.addLast((IndicatorBuy) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_BUY));
 
-		showActionBuy();
+		showActionBuyTreasure();
+
+	}
+
+	public void addOneCoin() {
+
+		this.treasure++;
+		showActionBuyTreasure();
 
 	}
 

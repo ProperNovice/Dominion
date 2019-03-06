@@ -24,11 +24,11 @@ public class Credentials {
 		DimensionsGapBetweenCards = new NumbersPair(8, 10);
 
 		CoordinatesSupply = new NumbersPair(gapBetweenBorders, gapBetweenBorders);
-		DimensionsCard = new NumbersPair(100, 160);
+		DimensionsCard = new NumbersPair(105, 166);
 		DimensionsActionBuyIndicators = new NumbersPair(DimensionsCard.x / 3, DimensionsCard.x / 3);
 		numberImageView = DimensionsCard.x * 0.35;
 
-		int totalCardsWidth = 14;
+		int totalCardsWidth = 13;
 		DimensionsFrame = new NumbersPair(
 				totalCardsWidth * DimensionsCard.x + (totalCardsWidth - 1) * DimensionsGapBetweenCards.x
 						+ 2 * gapBetweenBorders,

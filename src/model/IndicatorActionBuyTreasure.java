@@ -4,11 +4,11 @@ import controller.Credentials;
 import utils.ImageView;
 import utils.ImageViewAble;
 
-public abstract class IndicatorActionBuy implements ImageViewAble {
+public abstract class IndicatorActionBuyTreasure implements ImageViewAble {
 
 	protected String pathIndicator = null;
 
-	public IndicatorActionBuy() {
+	public IndicatorActionBuyTreasure() {
 
 		createPathIndicator();
 		createImageView();

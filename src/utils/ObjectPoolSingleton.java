@@ -12,9 +12,11 @@ public enum ObjectPoolSingleton {
 
 		ObjectPool objectPool = getObjectPool(objectPoolEnum);
 
-		if (objectPool.getArrayList().isEmpty())
+		if (objectPool.getArrayList().isEmpty()) {
+			Logger.log("pulled new object");
+			Logger.logNewLine(objectPoolEnum);
 			return objectPool.getObjectPoolAble().getObject();
-		else
+		} else
 			return objectPool.getArrayList().removeFirst();
 
 	}

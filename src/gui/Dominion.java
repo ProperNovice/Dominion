@@ -64,7 +64,7 @@ public class Dominion extends Application {
 		primaryStage.setTitle("Dominion");
 
 		primaryStage.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2 - 180);
-		primaryStage.setY((Screen.getPrimary().getBounds().getHeight() - height) / 2);
+		primaryStage.setY((Screen.getPrimary().getBounds().getHeight() - height) / 2 - 20);
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 

@@ -17,7 +17,7 @@ public class Flow {
 	public void proceedToNextGameStatePhase() {
 
 		if (this.gameStateResolving.isEmpty())
-			this.gameStateResolving.addLast(GameStateEnum.START_NEW_PHASE);
+			this.gameStateResolving.addLast(GameStateEnum.NEW_PHASE);
 
 		GameStateEnum gameStateEnum = this.gameStateResolving.removeFirst();
 		this.controller.gameState().setGameState(gameStateEnum);

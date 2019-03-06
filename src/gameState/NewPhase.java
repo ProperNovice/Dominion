@@ -5,7 +5,7 @@ import enums.GameStateEnum;
 import model.Card;
 import model.Pile;
 
-public class StartNewPhase extends GameState {
+public class NewPhase extends GameState {
 
 	@Override
 	public void handleGameStateChange() {
@@ -24,7 +24,7 @@ public class StartNewPhase extends GameState {
 
 	private boolean actionPhase() {
 
-		if (super.controller.actionBuy().getRemainingActions() == 0)
+		if (super.controller.actionBuyTreasureIndicators().getRemainingActions() == 0)
 			return false;
 
 		for (Pile pile : super.controller.players().getCurrentPlayer().getHand().getPiles()) {
@@ -42,10 +42,10 @@ public class StartNewPhase extends GameState {
 
 	private boolean buyPhase() {
 
-		if (super.controller.actionBuy().getRemainingBuys() == 0)
+		if (super.controller.actionBuyTreasureIndicators().getRemainingBuys() == 0)
 			return false;
 		else {
-			super.controller.actionBuy().removeAllActionsAndRearrange();
+			super.controller.actionBuyTreasureIndicators().removeAllActionsAndRearrange();
 			return true;
 		}
 

@@ -26,9 +26,8 @@ public class ActionPhase extends GameState {
 	}
 
 	private void proceedToBuyPhase() {
-
-		super.controller.actionBuy().removeAllActionsAndRearrange();
-
+		super.controller.actionBuyTreasureIndicators().removeAllActionsAndRearrange();
+		super.controller.flow().proceedToNextGameStatePhase();
 	}
 
 	@Override
@@ -39,7 +38,7 @@ public class ActionPhase extends GameState {
 
 		super.controller.text().concealText();
 
-		super.controller.actionBuy().removeOneActionAndRearrange();
+		super.controller.actionBuyTreasureIndicators().removeOneActionAndRearrange();
 
 		super.controller.players().getCurrentPlayer().getPlayArea().getArrayList().addLast(cardPressed);
 		super.controller.players().getCurrentPlayer().getPlayArea().relocateImageViews();

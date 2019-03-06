@@ -12,7 +12,7 @@ public class Controller {
 	private Supply supply = null;
 	private Players players = null;
 	private Kingdom kingdom = null;
-	private ActionBuy actionBuy = null;
+	private ActionBuyTreasureIndicators actionBuyTreasuresIndicators = null;
 
 	public Controller() {
 		createInstances();
@@ -30,7 +30,7 @@ public class Controller {
 		this.supply = new Supply();
 		this.players = new Players();
 		this.kingdom = new Kingdom();
-		this.actionBuy = new ActionBuy();
+		this.actionBuyTreasuresIndicators = new ActionBuyTreasureIndicators();
 
 	}
 
@@ -66,8 +66,8 @@ public class Controller {
 		return this.kingdom;
 	}
 
-	public ActionBuy actionBuy() {
-		return this.actionBuy;
+	public ActionBuyTreasureIndicators actionBuyTreasureIndicators() {
+		return this.actionBuyTreasuresIndicators;
 	}
 
 }

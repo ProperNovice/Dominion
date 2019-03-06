@@ -7,7 +7,7 @@ public class PlusOneAction extends GameState {
 	@Override
 	public void handleGameStateChange() {
 		
-		super.controller.actionBuy().addOneAction();
+		super.controller.actionBuyTreasureIndicators().addOneAction();
 		super.controller.flow().proceedToNextGameStatePhase();
 
 	}

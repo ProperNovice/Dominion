@@ -82,7 +82,7 @@ public class StartGame extends GameState {
 	}
 
 	public void setActionBuy(int action, int buy) {
-		super.controller.actionBuy().testSetActionBuy(action, buy);
+		super.controller.actionBuyTreasureIndicators().testSetActionBuy(action, buy);
 	}
 
 	public void presentCards() {
