@@ -16,14 +16,30 @@ public class ActionPhase extends GameState {
 	}
 
 	@Override
-	protected void handleCardPressedHand(Card cardPressed) {
+	public void executeTextOptionPressed(TextEnum textEnum) {
+		proceedToBuyPhase();
+	}
+
+	@Override
+	protected void executeKeyPressedQ() {
+		super.handleTextOptionPressed(null);
+	}
+
+	private void proceedToBuyPhase() {
+
+		super.controller.actionBuy().removeAllActionsAndRearrange();
+
+	}
+
+	@Override
+	protected void executeCardPressedHand(Card cardPressed) {
 
 		if (!cardPressed.isCardType(CardTypeEnum.ACTION))
 			return;
 
 		super.controller.text().concealText();
 
-		super.controller.actionBuy().removeActionAndRearrange();
+		super.controller.actionBuy().removeOneActionAndRearrange();
 
 		super.controller.players().getCurrentPlayer().getPlayArea().getArrayList().addLast(cardPressed);
 		super.controller.players().getCurrentPlayer().getPlayArea().relocateImageViews();

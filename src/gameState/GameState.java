@@ -14,24 +14,31 @@ public abstract class GameState {
 
 	public abstract void handleGameStateChange();
 
-	public void handleTextOptionPressed(TextEnum textEnum) {
+	public final void handleTextOptionPressed(TextEnum textEnum) {
+
+		this.controller.text().concealText();
+		executeTextOptionPressed(textEnum);
 
 	}
 
-	public void handleKeyPressed(KeyCode keyCode) {
+	public void executeTextOptionPressed(TextEnum textEnum) {
+
+	}
+
+	public void executeKeyPressed(KeyCode keyCode) {
 
 		switch (keyCode) {
 
 		case Q:
-			handleKeyPressedQ();
+			executeKeyPressedQ();
 			break;
 
 		case W:
-			handleKeyPressedW();
+			executeKeyPressedW();
 			break;
 
 		case E:
-			handleKeyPressedE();
+			executeKeyPressedE();
 			break;
 
 		default:
@@ -41,30 +48,30 @@ public abstract class GameState {
 
 	}
 
-	protected void handleKeyPressedQ() {
+	protected void executeKeyPressedQ() {
 
 	}
 
-	protected void handleKeyPressedW() {
+	protected void executeKeyPressedW() {
 
 	}
 
-	protected void handleKeyPressedE() {
+	protected void executeKeyPressedE() {
 
 	}
 
-	public final void handleCardPressed(Card cardPressed) {
+	public final void executeCardPressed(Card cardPressed) {
 
 		if (this.controller.players().getCurrentPlayer().getHand().containsCard(cardPressed))
-			handleCardPressedHand(cardPressed);
+			executeCardPressedHand(cardPressed);
 
 	}
 
-	protected void handleCardPressedHand(Card cardPressed) {
+	protected void executeCardPressedHand(Card cardPressed) {
 
 	}
 
-	public void handleCardEntered(Card card, CardNameEnum cardNameEnum) {
+	public void executeCardEntered(Card card, CardNameEnum cardNameEnum) {
 
 		if (this.controller.players().getCurrentPlayer().getDeck().getArrayList().contains(card))
 			return;
@@ -76,7 +83,7 @@ public abstract class GameState {
 
 	}
 
-	public void handleCardExited(CardNameEnum cardNameEnum) {
+	public void executeCardExited(CardNameEnum cardNameEnum) {
 		CardIndicatorSingleton.INSTANCE.indicatorSetVisible(cardNameEnum, false);
 	}
 

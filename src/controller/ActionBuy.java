@@ -54,7 +54,7 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
 	}
 
-	public void removeActionAndRearrange() {
+	public void removeOneActionAndRearrange() {
 
 		IndicatorAction indicatorAction = this.listAction.removeFirst();
 		indicatorAction.getImageView().setVisible(false);
@@ -65,7 +65,7 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 
 	}
 
-	public void removeBuyAndRearrange() {
+	public void removeOneBuyAndRearrange() {
 
 		IndicatorBuy indicatorBuy = this.listBuy.removeFirst();
 		indicatorBuy.getImageView().setVisible(false);
@@ -103,14 +103,31 @@ public class ActionBuy extends ArrayListImageViewAbles<IndicatorActionBuy> {
 		showActionBuy();
 
 	}
-	
+
 	public void addOneAction() {
-		
+
 		this.listAction
-		.addLast((IndicatorAction) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_ACTION));
-		
+				.addLast((IndicatorAction) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_ACTION));
+
 		showActionBuy();
-		
+
+	}
+
+	public void addOneBuy() {
+
+		this.listBuy.addLast((IndicatorBuy) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_BUY));
+
+		showActionBuy();
+
+	}
+
+	public void removeAllActionsAndRearrange() {
+
+		int listSize = this.listAction.size();
+
+		for (int counter = 1; counter <= listSize; counter++)
+			removeOneActionAndRearrange();
+
 	}
 
 }

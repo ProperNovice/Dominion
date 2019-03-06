@@ -3,7 +3,6 @@ package model;
 import controller.Credentials;
 import enums.CardTypeEnum;
 import enums.ObjectPoolEnum;
-import utils.Animation.AnimationSynch;
 import utils.ArrayList;
 import utils.Coordinates;
 import utils.Lock;
@@ -35,7 +34,7 @@ public class Hand {
 
 		pile.getArrayList().addFirst(card);
 
-		handlePiles(card, AnimationSynch.SYNCHRONOUS);
+		handlePiles(card);
 
 	}
 
@@ -45,15 +44,15 @@ public class Hand {
 			if (pile.getArrayList().contains(card))
 				pile.getArrayList().remove(card);
 
-		handlePiles(card, AnimationSynch.ASYNCHRONOUS);
+		handlePiles(card);
 
 	}
 
-	private void handlePiles(Card card, AnimationSynch animationSynch) {
+	private void handlePiles(Card card) {
 
 		clearPiles();
 		rearrangePiles();
-		animatePiles(card, animationSynch);
+		animatePiles(card);
 
 	}
 
@@ -74,7 +73,7 @@ public class Hand {
 
 	private void rearrangePiles() {
 
-		ArrayList<Pile> listTemp = new ArrayList<>(this.list);
+		ArrayList<Pile> listTemp = this.list.clone();
 		this.list.clear();
 
 		for (CardTypeEnum cardTypeEnum : this.arrangeOrder)
@@ -88,7 +87,7 @@ public class Hand {
 
 	}
 
-	private void animatePiles(Card card, AnimationSynch animationSynch) {
+	private void animatePiles(Card card) {
 
 		this.coordinates.calculateFirstObjectCoordinatesPivot(this.list.size());
 
@@ -107,15 +106,11 @@ public class Hand {
 
 			pile.relocateList(numbersPair);
 
-			if (animationSynch == AnimationSynch.SYNCHRONOUS)
-				pile.animateSynchronous();
-			else if (animationSynch == AnimationSynch.ASYNCHRONOUS)
-				pile.animateAsynchronous();
+			pile.animateSynchronous();
 
 		}
 
-		if (animationSynch == AnimationSynch.SYNCHRONOUS)
-			Lock.lock();
+		Lock.lock();
 
 		for (Pile pile : this.list)
 			pile.updateNumberImageView();

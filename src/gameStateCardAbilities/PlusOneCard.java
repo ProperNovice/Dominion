@@ -11,14 +11,22 @@ public class PlusOneCard extends GameState {
 	public void handleGameStateChange() {
 
 		if (super.controller.players().getCurrentPlayer().getDeck().getArrayList().isEmpty())
-			shuffleDiscardPileToDeck();
+			if (!super.controller.players().getCurrentPlayer().getDiscardPile().getArrayList().isEmpty())
+				shuffleDiscardPileToDeck();
+
+		if (!super.controller.players().getCurrentPlayer().getDeck().getArrayList().isEmpty())
+			drawCard();
+
+		super.controller.flow().proceedToNextGameStatePhase();
+
+	}
+
+	private void drawCard() {
 
 		Card card = super.controller.players().getCurrentPlayer().getDeck().getArrayList().removeFirst();
 		card.flipFaceUp();
 
 		super.controller.players().getCurrentPlayer().getHand().addCardAndAnimatePiles(card);
-
-		super.controller.flow().proceedToNextGameStatePhase();
 
 	}
 

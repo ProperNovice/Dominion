@@ -49,7 +49,7 @@ public class Dominion extends Application {
 					if (Animation.INSTANCE.isAnimating())
 						return;
 
-					Instances.getControllerInstance().gameState().getCurrentGameState().handleKeyPressed(keyCode);
+					Instances.getControllerInstance().gameState().getCurrentGameState().executeKeyPressed(keyCode);
 
 				});
 
