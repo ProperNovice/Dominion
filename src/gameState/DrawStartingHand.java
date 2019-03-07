@@ -9,8 +9,8 @@ public class DrawStartingHand extends GameState {
 
 		int amount = -1;
 
-//		amount = super.controller.players().getCurrentPlayer().getDeck().getArrayList().size();
 		amount = 5;
+//		amount = super.controller.players().getCurrentPlayer().getDeck().getArrayList().size();
 
 		for (int counter = 1; counter <= amount; counter++) {
 

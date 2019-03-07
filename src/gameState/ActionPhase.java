@@ -11,7 +11,7 @@ public class ActionPhase extends GameState {
 	public void handleGameStateChange() {
 
 		super.controller.text().showText(TextEnum.ACTION_PHASE);
-		super.controller.text().showText(TextEnum.PROCEED_TO_BUY_PHASE);
+		super.controller.text().showText(TextEnum.PROCEED_TO_NEXT_PHASE);
 
 	}
 

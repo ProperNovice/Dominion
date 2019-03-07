@@ -1,6 +1,7 @@
 package model;
 
 import controller.Credentials;
+import enums.CardNameEnum;
 import enums.CardTypeEnum;
 import enums.ObjectPoolEnum;
 import utils.ArrayList;
@@ -13,10 +14,14 @@ public class Hand {
 
 	private ArrayList<Pile> list = new ArrayList<>();
 	private Coordinates coordinates = null;
-	private ArrayList<CardTypeEnum> arrangeOrderCardTypeEnum = new ArrayList<>(CardTypeEnum.values());
+	private ArrayList<CardTypeEnum> arrangeOrderCardTypeEnum = new ArrayList<>();
+	private ArrayList<CardNameEnum> arrangeOrgerVictoryTreasure = new ArrayList<>();
 
 	public Hand(Coordinates coordinates) {
+
 		this.coordinates = coordinates;
+		createArrangeOrders();
+
 	}
 
 	public void addCardAndAnimatePiles(Card card) {
@@ -76,6 +81,15 @@ public class Hand {
 		ArrayList<Pile> listTemp = this.list.clone();
 		this.list.clear();
 
+		for (CardNameEnum cardNameEnum : this.arrangeOrgerVictoryTreasure)
+			for (Pile pile : listTemp.clone())
+				if (pile.getArrayList().getFirst().getCardNameEnum() == cardNameEnum) {
+
+					listTemp.remove(pile);
+					this.list.addLast(pile);
+
+				}
+
 		for (CardTypeEnum cardTypeEnum : this.arrangeOrderCardTypeEnum)
 			for (Pile pile : listTemp.clone())
 				if (pile.getArrayList().getFirst().isCardType(cardTypeEnum)) {
@@ -127,6 +141,21 @@ public class Hand {
 				return true;
 
 		return false;
+
+	}
+
+	private void createArrangeOrders() {
+
+		this.arrangeOrderCardTypeEnum.addAll(CardTypeEnum.values());
+
+		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.CURSE);
+		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.ESTATE);
+		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.DUCHY);
+		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.PROVINCE);
+		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.GARDENS);
+		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.COPPER);
+		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.SILVER);
+		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.GOLD);
 
 	}
 

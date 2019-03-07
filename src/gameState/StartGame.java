@@ -47,11 +47,13 @@ public class StartGame extends GameState {
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
 //		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
 //		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SILVER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CURSE));
 //		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 
 //		deck.clear();
@@ -70,6 +72,7 @@ public class StartGame extends GameState {
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GARDENS));
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
 		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
