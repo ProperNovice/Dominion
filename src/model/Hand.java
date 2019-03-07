@@ -13,7 +13,7 @@ public class Hand {
 
 	private ArrayList<Pile> list = new ArrayList<>();
 	private Coordinates coordinates = null;
-	private ArrayList<CardTypeEnum> arrangeOrder = new ArrayList<>(CardTypeEnum.values());
+	private ArrayList<CardTypeEnum> arrangeOrderCardTypeEnum = new ArrayList<>(CardTypeEnum.values());
 
 	public Hand(Coordinates coordinates) {
 		this.coordinates = coordinates;
@@ -76,7 +76,7 @@ public class Hand {
 		ArrayList<Pile> listTemp = this.list.clone();
 		this.list.clear();
 
-		for (CardTypeEnum cardTypeEnum : this.arrangeOrder)
+		for (CardTypeEnum cardTypeEnum : this.arrangeOrderCardTypeEnum)
 			for (Pile pile : listTemp.clone())
 				if (pile.getArrayList().getFirst().isCardType(cardTypeEnum)) {
 
