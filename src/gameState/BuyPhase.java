@@ -12,4 +12,9 @@ public class BuyPhase extends GameState {
 
 	}
 
+	@Override
+	protected void executeKeyPressedQ() {
+		super.handleTextOptionPressed(null);
+	}
+
 }

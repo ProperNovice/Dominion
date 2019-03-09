@@ -2,7 +2,7 @@ package utils;
 
 import utils.Animation.AnimationSynch;
 
-public abstract class ArrayListImageViewAbles<T> {
+public abstract class ArrayListImageViewAbles<T> implements ListSizeAble {
 
 	protected ArrayList<T> arrayList = new ArrayList<>();
 	protected Coordinates coordinates = null;
@@ -101,6 +101,11 @@ public abstract class ArrayListImageViewAbles<T> {
 
 	public ArrayList<T> getArrayList() {
 		return this.arrayList;
+	}
+
+	@Override
+	public int getSize() {
+		return this.arrayList.size();
 	}
 
 }

@@ -1,7 +1,5 @@
 package utils;
 
-import controller.SizeAble;
-
 public class Coordinates {
 
 	private double x, y, width, height, gapX, gapY;
@@ -9,11 +7,11 @@ public class Coordinates {
 	private double firstObjectX, firstObjectY;
 	private RearrangeTypeEnum rearrangeTypeEnum;
 	private DirectionEnum directionEnumHorizontal, directionEnumVertical;
-	private SizeAble list = null;
+	private ListSizeAble listSizable = null;
 
 	public Coordinates(double x, double y, double width, double height, double gapX, double gapY, int objectsPerRow,
 			RearrangeTypeEnum rearrangeTypeEnum, DirectionEnum directionEnumHorizontal,
-			DirectionEnum directionEnumVertical, SizeAble list) {
+			DirectionEnum directionEnumVertical, ListSizeAble listSizable) {
 
 		this.x = x;
 		this.y = y;
@@ -25,13 +23,40 @@ public class Coordinates {
 		this.rearrangeTypeEnum = rearrangeTypeEnum;
 		this.directionEnumHorizontal = directionEnumHorizontal;
 		this.directionEnumVertical = directionEnumVertical;
-		this.list = list;
+		this.listSizable = listSizable;
+
+		if (this.rearrangeTypeEnum != RearrangeTypeEnum.PIVOT)
+			return;
+
+		if (this.listSizable != null)
+			return;
+
+		Logger.log("pivot rearrange type");
+		Logger.log("no list sizable object");
+		ShutDown.execute();
 
 	}
 
 	public NumbersPair getCoordinate(int index) {
 
-		calculateFirstObjectCoordinates();
+		switch (this.rearrangeTypeEnum) {
+
+		case LINEAR:
+			this.firstObjectX = this.x;
+			this.firstObjectY = this.y;
+			break;
+
+		case PIVOT:
+			calculateFirstObjectCoordinatesPivot();
+			break;
+
+		case STATIC:
+			return new NumbersPair(this.x, this.y);
+
+		default:
+			break;
+
+		}
 
 		double coordinateX = 0, coordinateY = 0;
 
@@ -99,74 +124,56 @@ public class Coordinates {
 		relocateList(numbersPair.x, numbersPair.y);
 	}
 
-	private void calculateFirstObjectCoordinates() {
+	private void calculateFirstObjectCoordinatesPivot() {
 
-		switch (this.rearrangeTypeEnum) {
+		int rows, columns;
 
-		case LINEAR:
-			this.firstObjectX = this.x;
-			this.firstObjectY = this.y;
+		if (this.objectsPerRow == -1) {
+
+			rows = 1;
+			columns = this.listSizable.getSize();
+
+		} else {
+
+			rows = (int) (Math.ceil((double) this.listSizable.getSize() / this.objectsPerRow));
+			columns = (int) Math.min(this.listSizable.getSize(), this.objectsPerRow);
+
+		}
+
+		double width = this.width;
+		double height = this.height;
+
+		double totalX = width + (columns - 1) * (width + this.gapX);
+		double totalY = height + (rows - 1) * (height + this.gapY);
+
+		switch (this.directionEnumHorizontal) {
+
+		case RIGHT:
+			this.firstObjectX = this.x - totalX / 2;
 			break;
 
-		case STATIC:
-			this.firstObjectX = this.x;
-			this.firstObjectY = this.y;
+		case LEFT:
+			this.firstObjectX = this.x + totalX / 2;
 			break;
 
-		case PIVOT:
+		default:
+			logErrorShutDown(this.directionEnumHorizontal);
+			break;
 
-			int rows, columns;
+		}
 
-			if (this.objectsPerRow == -1) {
+		switch (this.directionEnumVertical) {
 
-				rows = 1;
-				columns = this.list.getSize();
+		case DOWN:
+			this.firstObjectY = this.y - totalY / 2;
+			break;
 
-			} else {
+		case UP:
+			this.firstObjectY = this.y + totalY / 2;
+			break;
 
-				rows = (int) (Math.ceil((double) this.list.getSize() / this.objectsPerRow));
-				columns = (int) Math.min(this.list.getSize(), this.objectsPerRow);
-
-			}
-
-			double width = this.width;
-			double height = this.height;
-
-			double totalX = width + (columns - 1) * (width + this.gapX);
-			double totalY = height + (rows - 1) * (height + this.gapY);
-
-			switch (this.directionEnumHorizontal) {
-
-			case RIGHT:
-				this.firstObjectX = this.x - totalX / 2;
-				break;
-
-			case LEFT:
-				this.firstObjectX = this.x + totalX / 2;
-				break;
-
-			default:
-				logErrorShutDown(this.directionEnumHorizontal);
-				break;
-
-			}
-
-			switch (this.directionEnumVertical) {
-
-			case DOWN:
-				this.firstObjectY = this.y - totalY / 2;
-				break;
-
-			case UP:
-				this.firstObjectY = this.y + totalY / 2;
-				break;
-
-			default:
-				logErrorShutDown(this.directionEnumVertical);
-				break;
-
-			}
-
+		default:
+			logErrorShutDown(this.directionEnumVertical);
 			break;
 
 		}

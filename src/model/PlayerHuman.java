@@ -13,7 +13,6 @@ public class PlayerHuman extends Player {
 
 		super.deck.relocateList(Credentials.CoordinatesDeckHuman);
 		super.discardPile.relocateList(Credentials.CoordinatesDiscardPileHuman);
-		super.handCoordinates = Credentials.CoordinatesHandHuman;
 
 	}
 

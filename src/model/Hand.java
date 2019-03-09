@@ -1,28 +1,31 @@
 package model;
 
 import controller.Credentials;
-import controller.SizeAble;
 import enums.CardNameEnum;
 import enums.CardTypeEnum;
 import enums.ObjectPoolEnum;
 import utils.ArrayList;
 import utils.Coordinates;
+import utils.ListSizeAble;
 import utils.Lock;
 import utils.NumbersPair;
 import utils.ObjectPoolSingleton;
 
-public class Hand implements SizeAble {
+public abstract class Hand implements ListSizeAble {
 
 	private ArrayList<Pile> list = new ArrayList<>();
-	private Coordinates coordinates = null;
+	protected Coordinates coordinates = null;
 	private ArrayList<CardTypeEnum> arrangeOrderCardTypeEnum = new ArrayList<>();
 	private ArrayList<CardNameEnum> arrangeOrgerVictoryTreasure = new ArrayList<>();
 
 	public Hand() {
 
+		createCoordinates();
 		createArrangeOrders();
 
 	}
+
+	protected abstract void createCoordinates();
 
 	public void addCardAndAnimatePiles(Card card) {
 
@@ -155,10 +158,6 @@ public class Hand implements SizeAble {
 		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.SILVER);
 		this.arrangeOrgerVictoryTreasure.addLast(CardNameEnum.GOLD);
 
-	}
-
-	public void setCoordinates(Coordinates coordinates) {
-		this.coordinates = coordinates;
 	}
 
 	@Override

@@ -1,12 +1,12 @@
 package model;
 
 import controller.Credentials;
-import controller.SizeAble;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
+import utils.ListSizeAble;
 import utils.RearrangeTypeEnum;
 
-public class PlayArea extends ArrayListImageViewAbles<Card> implements SizeAble {
+public class PlayArea extends ArrayListImageViewAbles<Card> implements ListSizeAble {
 
 	public PlayArea() {
 
@@ -23,7 +23,7 @@ public class PlayArea extends ArrayListImageViewAbles<Card> implements SizeAble 
 
 	@Override
 	public int getSize() {
-		return this.arrayList.size();
+		return super.arrayList.size();
 	}
 
 }
