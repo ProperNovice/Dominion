@@ -59,7 +59,7 @@ public abstract class ArrayListImageViewAbles<T> {
 	}
 
 	public void relocateList(double x, double y) {
-		this.coordinates.relocateListAndClearCoordinates(x, y);
+		this.coordinates.relocateList(x, y);
 	}
 
 	public void relocateList(NumbersPair numbersPair) {
@@ -72,15 +72,12 @@ public abstract class ArrayListImageViewAbles<T> {
 
 	private void executeAction(ImageViewAction imageViewAction, AnimationSynch animationSynch) {
 
-		if (this.coordinates.getRearrangeTypeEnum() == RearrangeTypeEnum.PIVOT)
-			this.coordinates.calculateFirstObjectCoordinatesPivot(this.arrayList.size());
-
 		ImageView imageView = null;
 
 		for (T t : this.arrayList) {
 
 			int index = this.arrayList.indexOf(t);
-			NumbersPair numbersPair = this.coordinates.getCoordinateIndex(index);
+			NumbersPair numbersPair = this.coordinates.getCoordinate(index);
 
 			imageView = ((ImageViewAble) t).getImageView();
 

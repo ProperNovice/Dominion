@@ -9,7 +9,7 @@ import utils.RearrangeTypeEnum;
 public abstract class Player {
 
 	protected Deck deck = new Deck();
-	protected Hand hand = null;
+	protected Hand hand = new Hand();
 	protected DiscardPile discardPile = new DiscardPile();
 	protected PlayArea playArea = new PlayArea();
 	protected NumbersPair handCoordinates = null;
@@ -23,9 +23,9 @@ public abstract class Player {
 
 		Coordinates coordinatesHand = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsCard)
 				.coordinatesNumbersPair(this.handCoordinates).gapNumbersPair(Credentials.DimensionsGapBetweenCards)
-				.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).create();
+				.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).list(this.hand).create();
 
-		this.hand = new Hand(coordinatesHand);
+		this.hand.setCoordinates(coordinatesHand);
 
 	}
 

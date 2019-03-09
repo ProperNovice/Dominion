@@ -22,7 +22,7 @@ public abstract class SupplyKingdom {
 
 		for (Pile pile : this.list) {
 
-			pile.relocateList(this.coordinates.getCoordinateIndex(this.list.indexOf(pile)));
+			pile.relocateList(this.coordinates.getCoordinate(this.list.indexOf(pile)));
 			pile.relocateImageViews();
 
 		}

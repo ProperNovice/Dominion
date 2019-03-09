@@ -1,11 +1,14 @@
 package utils;
 
+import controller.SizeAble;
+
 public class CoordinatesBuilder {
 
 	private double x = 0, y = 0, width = 0, height = 0, gapX = 0, gapY = 0;
 	private int objectsPerRow = -1;
 	private RearrangeTypeEnum rearrangeTypeEnum = RearrangeTypeEnum.LINEAR;
 	private DirectionEnum directionEnumHorizontal = DirectionEnum.RIGHT, directionEnumVertical = DirectionEnum.DOWN;
+	private SizeAble list = null;
 
 	public CoordinatesBuilder() {
 
@@ -83,9 +86,14 @@ public class CoordinatesBuilder {
 		return this;
 	}
 
+	public CoordinatesBuilder list(SizeAble list) {
+		this.list = list;
+		return this;
+	}
+
 	public Coordinates create() {
 		return new Coordinates(this.x, this.y, width, this.height, this.gapX, this.gapY, this.objectsPerRow,
-				this.rearrangeTypeEnum, this.directionEnumHorizontal, this.directionEnumVertical);
+				this.rearrangeTypeEnum, this.directionEnumHorizontal, this.directionEnumVertical, this.list);
 	}
 
 }

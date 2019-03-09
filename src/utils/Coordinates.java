@@ -1,5 +1,7 @@
 package utils;
 
+import controller.SizeAble;
+
 public class Coordinates {
 
 	private double x, y, width, height, gapX, gapY;
@@ -7,12 +9,11 @@ public class Coordinates {
 	private double firstObjectX, firstObjectY;
 	private RearrangeTypeEnum rearrangeTypeEnum;
 	private DirectionEnum directionEnumHorizontal, directionEnumVertical;
-	private ArrayList<NumbersPair> coordinates = new ArrayList<>();
-	private int arrayListSize = -1;
+	private SizeAble list = null;
 
 	public Coordinates(double x, double y, double width, double height, double gapX, double gapY, int objectsPerRow,
 			RearrangeTypeEnum rearrangeTypeEnum, DirectionEnum directionEnumHorizontal,
-			DirectionEnum directionEnumVertical) {
+			DirectionEnum directionEnumVertical, SizeAble list) {
 
 		this.x = x;
 		this.y = y;
@@ -24,132 +25,13 @@ public class Coordinates {
 		this.rearrangeTypeEnum = rearrangeTypeEnum;
 		this.directionEnumHorizontal = directionEnumHorizontal;
 		this.directionEnumVertical = directionEnumVertical;
+		this.list = list;
+
+	}
+
+	public NumbersPair getCoordinate(int index) {
 
 		calculateFirstObjectCoordinates();
-
-	}
-
-	public NumbersPair getCoordinateIndex(int index) {
-
-		if (this.coordinates.size() >= index + 1)
-			return this.coordinates.get(index);
-
-		createCoordinates(index);
-
-		return this.coordinates.get(index);
-
-	}
-
-	private void createCoordinates(int index) {
-
-		for (int counter = 0; counter <= index; counter++) {
-
-			if (this.coordinates.size() >= index + 1)
-				continue;
-
-			addCoordinateToList(index);
-
-		}
-
-	}
-
-	public void relocateListAndClearCoordinates(double x, double y) {
-
-		this.x = x;
-		this.y = y;
-
-		this.coordinates.clear();
-		calculateFirstObjectCoordinates();
-
-	}
-
-	public void relocateListAndClearCoordinates(NumbersPair numbersPair) {
-		relocateListAndClearCoordinates(numbersPair.x, numbersPair.y);
-	}
-
-	public void calculateFirstObjectCoordinatesPivot(int arrayListSize) {
-
-		this.arrayListSize = arrayListSize;
-		this.coordinates.clear();
-		calculateFirstObjectCoordinates();
-
-	}
-
-	private void calculateFirstObjectCoordinates() {
-
-		switch (this.rearrangeTypeEnum) {
-
-		case LINEAR:
-			this.firstObjectX = this.x;
-			this.firstObjectY = this.y;
-			break;
-
-		case PIVOT:
-
-			int rows, columns;
-
-			if (this.objectsPerRow == -1) {
-
-				rows = 1;
-				columns = this.arrayListSize;
-
-			} else {
-
-				rows = (int) (Math.ceil((double) this.arrayListSize / this.objectsPerRow));
-				columns = (int) Math.min(this.arrayListSize, this.objectsPerRow);
-
-			}
-
-			double width = this.width;
-			double height = this.height;
-
-			double totalX = width + (columns - 1) * (width + this.gapX);
-			double totalY = height + (rows - 1) * (height + this.gapY);
-
-			switch (this.directionEnumHorizontal) {
-
-			case RIGHT:
-				this.firstObjectX = this.x - totalX / 2;
-				break;
-
-			case LEFT:
-				this.firstObjectX = this.x + totalX / 2;
-				break;
-
-			default:
-				logErrorShutDown(this.directionEnumHorizontal);
-				break;
-
-			}
-
-			switch (this.directionEnumVertical) {
-
-			case DOWN:
-				this.firstObjectY = this.y - totalY / 2;
-				break;
-
-			case UP:
-				this.firstObjectY = this.y + totalY / 2;
-				break;
-
-			default:
-				logErrorShutDown(this.directionEnumVertical);
-				break;
-
-			}
-
-			break;
-
-		case STATIC:
-			this.firstObjectX = this.x;
-			this.firstObjectY = this.y;
-			break;
-
-		}
-
-	}
-
-	private void addCoordinateToList(int index) {
 
 		double coordinateX = 0, coordinateY = 0;
 
@@ -202,7 +84,92 @@ public class Coordinates {
 
 		}
 
-		this.coordinates.addLast(new NumbersPair(coordinateX, coordinateY));
+		return new NumbersPair(coordinateX, coordinateY);
+
+	}
+
+	public void relocateList(double x, double y) {
+
+		this.x = x;
+		this.y = y;
+
+	}
+
+	public void relocateListAndClearCoordinates(NumbersPair numbersPair) {
+		relocateList(numbersPair.x, numbersPair.y);
+	}
+
+	private void calculateFirstObjectCoordinates() {
+
+		switch (this.rearrangeTypeEnum) {
+
+		case LINEAR:
+			this.firstObjectX = this.x;
+			this.firstObjectY = this.y;
+			break;
+
+		case STATIC:
+			this.firstObjectX = this.x;
+			this.firstObjectY = this.y;
+			break;
+
+		case PIVOT:
+
+			int rows, columns;
+
+			if (this.objectsPerRow == -1) {
+
+				rows = 1;
+				columns = this.list.getSize();
+
+			} else {
+
+				rows = (int) (Math.ceil((double) this.list.getSize() / this.objectsPerRow));
+				columns = (int) Math.min(this.list.getSize(), this.objectsPerRow);
+
+			}
+
+			double width = this.width;
+			double height = this.height;
+
+			double totalX = width + (columns - 1) * (width + this.gapX);
+			double totalY = height + (rows - 1) * (height + this.gapY);
+
+			switch (this.directionEnumHorizontal) {
+
+			case RIGHT:
+				this.firstObjectX = this.x - totalX / 2;
+				break;
+
+			case LEFT:
+				this.firstObjectX = this.x + totalX / 2;
+				break;
+
+			default:
+				logErrorShutDown(this.directionEnumHorizontal);
+				break;
+
+			}
+
+			switch (this.directionEnumVertical) {
+
+			case DOWN:
+				this.firstObjectY = this.y - totalY / 2;
+				break;
+
+			case UP:
+				this.firstObjectY = this.y + totalY / 2;
+				break;
+
+			default:
+				logErrorShutDown(this.directionEnumVertical);
+				break;
+
+			}
+
+			break;
+
+		}
 
 	}
 
