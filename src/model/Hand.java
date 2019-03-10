@@ -29,6 +29,13 @@ public abstract class Hand implements ListSizeAble {
 
 	public void addCardAndAnimatePiles(Card card) {
 
+		addCard(card);
+		handlePiles(card, PileRearrangeType.ANIMATE);
+
+	}
+
+	private void addCard(Card card) {
+
 		Pile pile = null;
 
 		for (Pile pileTemp : this.list)
@@ -42,25 +49,35 @@ public abstract class Hand implements ListSizeAble {
 
 		pile.getArrayList().addFirst(card);
 
-		handlePiles(card);
-
 	}
 
 	public void removeCardAndAnimatePiles(Card card) {
+
+		removeCard(card);
+		handlePiles(card, PileRearrangeType.ANIMATE);
+
+	}
+
+	public void removeCardAndRelocatePiles(Card card) {
+
+		removeCard(card);
+		handlePiles(card, PileRearrangeType.RELOCATE);
+
+	}
+
+	private void removeCard(Card card) {
 
 		for (Pile pile : this.list)
 			if (pile.getArrayList().contains(card))
 				pile.getArrayList().remove(card);
 
-		handlePiles(card);
-
 	}
 
-	private void handlePiles(Card card) {
+	private void handlePiles(Card card, PileRearrangeType pileRearrangeType) {
 
 		clearPiles();
 		rearrangePiles();
-		animatePiles(card);
+		animatePiles(card, pileRearrangeType);
 
 	}
 
@@ -104,7 +121,7 @@ public abstract class Hand implements ListSizeAble {
 
 	}
 
-	private void animatePiles(Card card) {
+	private void animatePiles(Card card, PileRearrangeType pileRearrangeType) {
 
 		for (Pile pile : this.list) {
 
@@ -120,11 +137,16 @@ public abstract class Hand implements ListSizeAble {
 			}
 
 			pile.relocateList(numbersPair);
-			pile.animateSynchronous();
+
+			if (pileRearrangeType == PileRearrangeType.ANIMATE)
+				pile.animateSynchronous();
+			else if (pileRearrangeType == PileRearrangeType.RELOCATE)
+				pile.relocateImageViews();
 
 		}
 
-		Lock.lock();
+		if (pileRearrangeType == PileRearrangeType.ANIMATE)
+			Lock.lock();
 
 		for (Pile pile : this.list)
 			pile.updateNumberImageView();
@@ -163,6 +185,31 @@ public abstract class Hand implements ListSizeAble {
 	@Override
 	public int getSize() {
 		return this.list.size();
+	}
+
+	private enum PileRearrangeType {
+		ANIMATE, RELOCATE
+	}
+
+	public void testSetHandAndRelocate(ArrayList<Card> hand) {
+
+		for (Card card : hand) {
+
+			addCard(card);
+			handlePiles(card, PileRearrangeType.RELOCATE);
+
+		}
+
+	}
+
+	public boolean containsAtLeastOneTreasureCard() {
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().getFirst().isCardType(CardTypeEnum.TREASURE))
+				return true;
+
+		return false;
+
 	}
 
 }

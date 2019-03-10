@@ -9,7 +9,7 @@ public class NewPhase extends GameState {
 
 	@Override
 	public void handleGameStateChange() {
-
+		
 		GameStateEnum gameStateEnum = null;
 
 		if (actionPhase())
@@ -19,7 +19,7 @@ public class NewPhase extends GameState {
 			super.controller.actionBuyTreasureIndicators().removeAllActions();
 			gameStateEnum = GameStateEnum.BUY_PHASE;
 		}
-
+		
 		super.controller.flow().addGameStateResolvingFirst(gameStateEnum);
 		super.controller.flow().proceedToNextGameStatePhase();
 

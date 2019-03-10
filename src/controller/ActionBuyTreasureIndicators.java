@@ -161,6 +161,13 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 
 	}
 
+	public void addCoins(int coins) {
+
+		this.treasure += coins;
+		showActionBuyTreasure();
+
+	}
+
 	public void removeAllActions() {
 
 		this.actions = 0;

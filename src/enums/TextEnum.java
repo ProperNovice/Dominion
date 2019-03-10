@@ -8,6 +8,7 @@ public enum TextEnum {
 	BUY_PHASE("Buy phase", TextTypeEnum.INDICATOR),
 	PROCEED_TO_NEXT_PHASE("Proceed to next phase", TextTypeEnum.OPTION),
 	END_TURN("End turn", TextTypeEnum.OPTION),
+	PLAY_HAND_TREASURES("Play hand treasures", TextTypeEnum.OPTION),
 	
 
 	;

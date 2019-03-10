@@ -18,10 +18,10 @@ public class StartGame extends GameState {
 //		presentCards();
 		setDeck();
 		setDiscardPile();
+		setHand();
+		setActionBuy(0, 3, 1);
 
 		flow();
-
-//		setActionBuy(2, 3, 28);
 
 	}
 
@@ -30,10 +30,10 @@ public class StartGame extends GameState {
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_KINGDOM);
 
-		super.controller.flow().addGameStateResolvingLast(GameStateEnum.END_TURN);
+//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.END_TURN);
 
 //		super.controller.flow().addGameStateResolvingLast(GameStateEnum.DRAW_STARTING_HAND);
-//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.START_NEW_PHASE);
+		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_PHASE);
 
 		super.controller.flow().proceedToNextGameStatePhase();
 
@@ -82,6 +82,25 @@ public class StartGame extends GameState {
 
 		super.controller.players().getCurrentPlayer().getDiscardPile().testSetDeck(discardPile);
 		super.controller.players().getCurrentPlayer().getDiscardPile().relocateImageViews();
+
+	}
+
+	public void setHand() {
+
+		ArrayList<Card> hand = new ArrayList<Card>();
+
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SILVER));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
+
+		super.controller.players().getCurrentPlayer().getHand().testSetHandAndRelocate(hand);
 
 	}
 

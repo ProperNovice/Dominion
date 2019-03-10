@@ -7,6 +7,7 @@ import enums.TextEnum;
 import javafx.scene.input.KeyCode;
 import model.Card;
 import utils.Instances;
+import utils.Logger;
 
 public abstract class GameState {
 
@@ -16,12 +17,15 @@ public abstract class GameState {
 
 	public final void handleTextOptionPressed(TextEnum textEnum) {
 
+		Logger.log("text executing");
+		Logger.logNewLine(textEnum);
+
 		this.controller.text().concealText();
 		executeTextOptionPressed(textEnum);
 
 	}
 
-	public void executeTextOptionPressed(TextEnum textEnum) {
+	protected void executeTextOptionPressed(TextEnum textEnum) {
 
 	}
 

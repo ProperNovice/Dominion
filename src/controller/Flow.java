@@ -20,6 +20,7 @@ public class Flow {
 			this.gameStateResolving.addLast(GameStateEnum.NEW_PHASE);
 
 		GameStateEnum gameStateEnum = this.gameStateResolving.removeFirst();
+
 		this.controller.gameState().setGameState(gameStateEnum);
 
 	}
