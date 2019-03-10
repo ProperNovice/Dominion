@@ -32,16 +32,6 @@ public class BuyPhase extends GameState {
 	}
 
 	@Override
-	protected void executeKeyPressedQ() {
-		super.handleTextOptionPressed(TextEnum.PLAY_HAND_TREASURES);
-	}
-
-	@Override
-	protected void executeKeyPressedW() {
-		super.handleTextOptionPressed(TextEnum.PROCEED_TO_NEXT_PHASE);
-	}
-
-	@Override
 	protected void executeCardPressedHand(Card cardPressed) {
 
 		if (!cardPressed.isCardType(CardTypeEnum.TREASURE))

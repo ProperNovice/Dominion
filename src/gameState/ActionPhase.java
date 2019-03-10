@@ -20,11 +20,6 @@ public class ActionPhase extends GameState {
 		proceedToBuyPhase();
 	}
 
-	@Override
-	protected void executeKeyPressedQ() {
-		super.handleTextOptionPressed(null);
-	}
-
 	private void proceedToBuyPhase() {
 		super.controller.actionBuyTreasureIndicators().removeAllActions();
 		super.controller.flow().proceedToNextGameStatePhase();

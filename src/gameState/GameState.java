@@ -17,6 +17,9 @@ public abstract class GameState {
 
 	public final void handleTextOptionPressed(TextEnum textEnum) {
 
+		if (textEnum == null)
+			return;
+
 		Logger.log("text executing");
 		Logger.logNewLine(textEnum);
 
@@ -31,18 +34,20 @@ public abstract class GameState {
 
 	public void executeKeyPressed(KeyCode keyCode) {
 
+		int textOptionToHandle = -1;
+
 		switch (keyCode) {
 
 		case Q:
-			executeKeyPressedQ();
+			textOptionToHandle = 1;
 			break;
 
 		case W:
-			executeKeyPressedW();
+			textOptionToHandle = 2;
 			break;
 
 		case E:
-			executeKeyPressedE();
+			textOptionToHandle = 3;
 			break;
 
 		default:
@@ -50,17 +55,13 @@ public abstract class GameState {
 
 		}
 
-	}
+		TextEnum textEnumPressed = this.controller.text().getTextEnumOptionShowing(textOptionToHandle);
 
-	protected void executeKeyPressedQ() {
+		if (textEnumPressed == null)
+			return;
 
-	}
-
-	protected void executeKeyPressedW() {
-
-	}
-
-	protected void executeKeyPressedE() {
+		Logger.log("key pressed -> " + keyCode);
+		handleTextOptionPressed(textEnumPressed);
 
 	}
 

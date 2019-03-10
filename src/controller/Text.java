@@ -1,6 +1,7 @@
 package controller;
 
 import enums.TextEnum;
+import enums.TextEnum.TextTypeEnum;
 import utils.ArrayList;
 import utils.TextGame;
 
@@ -69,6 +70,28 @@ public class Text {
 	public void setCoordinates(double coordinatesX, double coordinatesY) {
 		this.coordinatesX = coordinatesX;
 		this.coordinatesY = coordinatesY;
+	}
+
+	public TextEnum getTextEnumOptionShowing(int textOptionListOrder) {
+
+		int textOptionId = 0;
+
+		for (TextGame textGame : this.textGameShowing) {
+
+			TextEnum textEnum = textGame.getTextEnum();
+
+			if (textEnum.textTypeEnum() == TextTypeEnum.INDICATOR)
+				continue;
+
+			textOptionId++;
+
+			if (textOptionListOrder == textOptionId)
+				return textEnum;
+
+		}
+
+		return null;
+
 	}
 
 }
