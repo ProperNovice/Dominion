@@ -9,7 +9,7 @@ public class NewTurn extends GameState {
 
 		super.controller.actionBuyTreasureIndicators().showNewRoundIndicators();
 		
-		super.controller.flow().addGameStateResolvingFirst(GameStateEnum.NEW_PHASE);
+//		super.controller.flow().addGameStateResolvingFirst(GameStateEnum.NEW_PHASE);
 		super.controller.flow().proceedToNextGameStatePhase();
 
 	}

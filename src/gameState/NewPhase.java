@@ -10,6 +10,7 @@ public class NewPhase extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
+		super.controller.text().concealText();
 		GameStateEnum gameStateEnum = null;
 
 		if (actionPhase())

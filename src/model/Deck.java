@@ -2,7 +2,6 @@ package model;
 
 import controller.CardManagerSingleton;
 import enums.CardNameEnum;
-import utils.ArrayList;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.RearrangeTypeEnum;
@@ -32,21 +31,6 @@ public class Deck extends ArrayListImageViewAbles<Card> {
 			card.flipFaceDown();
 
 		super.arrayList.shuffle();
-		super.toFront();
-
-	}
-
-	public void testSetDeck(ArrayList<Card> deck) {
-
-		for (Card card : super.arrayList)
-			card.getImageView().setVisible(false);
-
-		super.arrayList.clear();
-		super.arrayList.addAll(deck);
-
-		for (Card card : super.arrayList)
-			card.flipFaceDown();
-
 		super.toFront();
 
 	}

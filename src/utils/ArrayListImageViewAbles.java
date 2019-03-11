@@ -37,9 +37,11 @@ public abstract class ArrayListImageViewAbles<T> implements ListSizeAble {
 
 	public void toBack() {
 
+		ImageViewAble imageViewAble = null;
+
 		for (T t : this.arrayList) {
 
-			ImageViewAble imageViewAble = (ImageViewAble) t;
+			imageViewAble = (ImageViewAble) t;
 			imageViewAble.getImageView().toFront();
 
 		}

@@ -5,6 +5,7 @@ import controller.Credentials;
 import enums.CardNameEnum;
 import enums.GameStateEnum;
 import model.Card;
+import model.DiscardPile;
 import utils.ArrayList;
 import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
@@ -17,9 +18,9 @@ public class StartGame extends GameState {
 
 //		presentCards();
 		setDeck();
-		setDiscardPile();
-		setHand();
-		setActionBuy(0, 3, 1);
+//		setDiscardPile();
+//		setHand();
+//		setActionBuy(1, 3, 1);
 
 		flow();
 
@@ -30,10 +31,10 @@ public class StartGame extends GameState {
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_KINGDOM);
 
-//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.END_TURN);
+		super.controller.flow().addGameStateResolvingLast(GameStateEnum.END_TURN);
 
 //		super.controller.flow().addGameStateResolvingLast(GameStateEnum.DRAW_STARTING_HAND);
-		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_PHASE);
+//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_PHASE);
 
 		super.controller.flow().proceedToNextGameStatePhase();
 
@@ -41,10 +42,15 @@ public class StartGame extends GameState {
 
 	public void setDeck() {
 
-		ArrayList<Card> deck = new ArrayList<>();
+		ArrayList<Card> deck = super.controller.players().getCurrentPlayer().getDeck().getArrayList();
+
+		for (Card card : deck)
+			card.getImageView().setVisible(false);
+
+		deck.clear();
 
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
@@ -56,33 +62,35 @@ public class StartGame extends GameState {
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CURSE));
 //		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 
-//		deck.clear();
+		for (Card card : deck)
+			card.flipFaceDown();
 
-		super.controller.players().getCurrentPlayer().getDeck().testSetDeck(deck);
 		super.controller.players().getCurrentPlayer().getDeck().relocateImageViews();
 
 	}
 
 	public void setDiscardPile() {
 
-		ArrayList<Card> discardPile = new ArrayList<>();
+		DiscardPile discardPile = super.controller.players().getCurrentPlayer().getDiscardPile();
 
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GARDENS));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.DUCHY));
-		discardPile.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+//		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GARDENS));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.DUCHY));
+		discardPile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 
-		super.controller.players().getCurrentPlayer().getDiscardPile().testSetDeck(discardPile);
-		super.controller.players().getCurrentPlayer().getDiscardPile().relocateImageViews();
+//		discardPile.getArrayList().shuffle();
 
+		discardPile.relocateImageViews();
+		discardPile.toBack();
+		
 	}
 
 	public void setHand() {
@@ -99,6 +107,7 @@ public class StartGame extends GameState {
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SILVER));
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.WITCH));
 
 		super.controller.players().getCurrentPlayer().getHand().testSetHandAndRelocate(hand);
 
