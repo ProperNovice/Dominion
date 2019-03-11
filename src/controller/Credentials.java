@@ -21,7 +21,7 @@ public class Credentials {
 
 		textHeight = 40;
 		cardIndicatorWidth = 200;
-		DimensionsGapBetweenCards = new NumbersPair(8, 10);
+		DimensionsGapBetweenCards = new NumbersPair(4, 6);
 
 		CoordinatesSupply = new NumbersPair(gapBetweenBorders, gapBetweenBorders);
 		DimensionsCard = new NumbersPair(105, 166);

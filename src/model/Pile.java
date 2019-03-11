@@ -54,4 +54,8 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 
 	}
 
+	public PileAmountOfCardsEnum getPileAmountOfCardsEnum() {
+		return this.amountOfCardsEnum;
+	}
+
 }

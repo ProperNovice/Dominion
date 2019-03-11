@@ -69,10 +69,22 @@ public abstract class GameState {
 
 		if (this.controller.players().getCurrentPlayer().getHand().containsCard(cardPressed))
 			executeCardPressedHand(cardPressed);
+		else if (this.controller.supply().containsCard(cardPressed))
+			executeCardPressedSupply(cardPressed);
+		else if (this.controller.kingdom().containsCard(cardPressed))
+			executeCardPressedKingdom(cardPressed);
 
 	}
 
 	protected void executeCardPressedHand(Card cardPressed) {
+
+	}
+
+	protected void executeCardPressedSupply(Card cardPressed) {
+
+	}
+
+	protected void executeCardPressedKingdom(Card cardPressed) {
 
 	}
 

@@ -29,4 +29,18 @@ public abstract class SupplyKingdom {
 
 	}
 
+	public boolean containsCard(Card card) {
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().contains(card))
+				return true;
+
+		return false;
+
+	}
+
+	public ArrayList<Pile> getPiles() {
+		return this.list;
+	}
+
 }

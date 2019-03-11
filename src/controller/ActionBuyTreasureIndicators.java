@@ -111,9 +111,9 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 
 	}
 
-	public void removeOneCoin() {
+	public void removeCoins(int coins) {
 
-		this.treasure--;
+		this.treasure -= coins;
 		showActionBuyTreasure();
 
 	}
@@ -172,6 +172,26 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 
 		this.actions = 0;
 		showActionBuyTreasure();
+
+	}
+
+	public void removeAllBuys() {
+
+		this.buys = 0;
+		showActionBuyTreasure();
+
+	}
+
+	public void removeAllCoinsSetVisibleFalse() {
+
+		this.treasure = 0;
+
+		for (IndicatorTreasure indicatorTreasure : this.listTreasure) {
+
+			indicatorTreasure.getImageView().setVisible(false);
+			ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_TREASURE, indicatorTreasure);
+
+		}
 
 	}
 

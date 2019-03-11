@@ -21,8 +21,10 @@ public class ActionPhase extends GameState {
 	}
 
 	private void proceedToBuyPhase() {
+
 		super.controller.actionBuyTreasureIndicators().removeAllActions();
 		super.controller.flow().proceedToNextGameStatePhase();
+
 	}
 
 	@Override

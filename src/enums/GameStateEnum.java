@@ -24,6 +24,7 @@ public enum GameStateEnum {
 	NEW_PHASE(new NewPhase()),
 	ACTION_PHASE(new ActionPhase()),
 	BUY_PHASE(new BuyPhase()),
+	CLEAN_UP_PHASE(new CleanUpPhase()),
 	
 	PLUS_ONE_CARD(new PlusOneCard()),
 	PLUS_ONE_ACTION(new PlusOneAction()),
