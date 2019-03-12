@@ -1,11 +1,10 @@
 package gameState;
 
 import enums.GameStateEnum;
-import enums.ObjectPoolEnum;
 import enums.TextEnum;
 import model.DiscardPile;
+import model.Hand.PileRearrangeType;
 import model.Pile;
-import utils.ObjectPoolSingleton;
 
 public class CleanUpPhase extends GameState {
 
@@ -47,16 +46,13 @@ public class CleanUpPhase extends GameState {
 		for (Pile pile : super.controller.players().getCurrentPlayer().getHand().getPiles()) {
 
 			discardPile.getArrayList().addAll(pile.getArrayList());
-			discardPile.relocateImageViews();
-			discardPile.toBack();
 
 			pile.getArrayList().clear();
 			pile.updateNumberImageView();
-			ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.PILE, pile);
 
 		}
 
-		super.controller.players().getCurrentPlayer().getHand().clearPiles();
+		super.controller.players().getCurrentPlayer().getHand().handlePiles(PileRearrangeType.RELOCATE);
 
 		discardPile.relocateImageViews();
 		discardPile.toBack();

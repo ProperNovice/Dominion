@@ -17,6 +17,7 @@ public abstract class Hand implements ListSizeAble {
 	protected Coordinates coordinates = null;
 	private ArrayList<CardTypeEnum> arrangeOrderCardTypeEnum = new ArrayList<>();
 	private ArrayList<CardNameEnum> arrangeOrgerVictoryTreasureCurse = new ArrayList<>();
+	private Card cardToadd = null;
 
 	public Hand() {
 
@@ -30,21 +31,27 @@ public abstract class Hand implements ListSizeAble {
 	public void addCardAndAnimatePiles(Card card) {
 
 		addCard(card);
-		handlePiles(card, PileRearrangeType.ANIMATE);
+		handlePiles(PileRearrangeType.ANIMATE);
 
 	}
 
 	private void addCard(Card card) {
 
+		this.cardToadd = card;
+
 		Pile pile = null;
 
 		for (Pile pileTemp : this.list)
-			if (pileTemp.getArrayList().getFirst().getCardNameEnum() == card.getCardNameEnum())
-				pile = pileTemp;
+			if (!pileTemp.getArrayList().isEmpty())
+				if (pileTemp.getArrayList().getFirst().getCardNameEnum() == card.getCardNameEnum())
+					pile = pileTemp;
 
 		if (pile == null) {
+
 			pile = (Pile) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.PILE);
+
 			this.list.addLast(pile);
+
 		}
 
 		pile.getArrayList().addFirst(card);
@@ -54,14 +61,14 @@ public abstract class Hand implements ListSizeAble {
 	public void removeCardAndAnimatePiles(Card card) {
 
 		removeCard(card);
-		handlePiles(card, PileRearrangeType.ANIMATE);
+		handlePiles(PileRearrangeType.ANIMATE);
 
 	}
 
 	public void removeCardAndRelocatePiles(Card card) {
 
 		removeCard(card);
-		handlePiles(card, PileRearrangeType.RELOCATE);
+		handlePiles(PileRearrangeType.RELOCATE);
 
 	}
 
@@ -73,36 +80,15 @@ public abstract class Hand implements ListSizeAble {
 
 	}
 
-	private void handlePiles(Card card, PileRearrangeType pileRearrangeType) {
+	public void handlePiles(PileRearrangeType pileRearrangeType) {
 
 		clearPiles();
 		rearrangePiles();
-		animatePiles(card, pileRearrangeType);
-
-		printPiles();
-	}
-
-	private void printPiles() {
-
-		System.out.println("`````");
-
-		for (Pile pile : this.list) {
-
-			System.out.println(this.list.indexOf(pile) + " index");
-
-			for (int counter = 0; counter < pile.getSize(); counter++)
-				System.out.println(pile.getArrayList().get(counter).getCardNameEnum());
-
-			System.out.println(pile.getArrayList().size() + " size");
-			System.out.println();
-
-		}
-
-		System.out.println("`````");
+		animatePiles(pileRearrangeType);
 
 	}
 
-	public void clearPiles() {
+	private void clearPiles() {
 
 		for (Pile pile : this.list.clone()) {
 
@@ -142,27 +128,33 @@ public abstract class Hand implements ListSizeAble {
 
 	}
 
-	private void animatePiles(Card card, PileRearrangeType pileRearrangeType) {
+	private void animatePiles(PileRearrangeType pileRearrangeType) {
 
-		for (Pile pile : this.list) {
+		if (this.cardToadd != null) {
 
-			NumbersPair numbersPair = this.coordinates.getCoordinate(this.list.indexOf(pile));
+			for (Pile pile : this.list) {
 
-//			if (pile.getArrayList().contains(card)) {
+				NumbersPair numbersPair = this.coordinates.getCoordinate(this.list.indexOf(pile));
 
-			double x = numbersPair.x;
-			double y = numbersPair.y - Credentials.DimensionsCard.y - Credentials.DimensionsGapBetweenCards.y;
+				if (pile.getArrayList().contains(this.cardToadd)) {
 
-			card.getImageView().relocate(x, y);
+					double x = numbersPair.x;
+					double y = numbersPair.y - Credentials.DimensionsCard.y - Credentials.DimensionsGapBetweenCards.y;
 
-//			}
+					this.cardToadd.getImageView().relocate(x, y);
 
-			pile.relocateList(numbersPair);
+				}
 
-			if (pileRearrangeType == PileRearrangeType.ANIMATE)
-				pile.animateSynchronous();
-			else if (pileRearrangeType == PileRearrangeType.RELOCATE)
-				pile.relocateImageViews();
+				pile.relocateList(numbersPair);
+
+				if (pileRearrangeType == PileRearrangeType.ANIMATE)
+					pile.animateSynchronous();
+				else if (pileRearrangeType == PileRearrangeType.RELOCATE)
+					pile.relocateImageViews();
+
+			}
+
+			this.cardToadd = null;
 
 		}
 
@@ -209,18 +201,16 @@ public abstract class Hand implements ListSizeAble {
 		return this.list.size();
 	}
 
-	private enum PileRearrangeType {
+	public enum PileRearrangeType {
 		ANIMATE, RELOCATE
 	}
 
 	public void testSetHandAndRelocate(ArrayList<Card> hand) {
 
-		for (Card card : hand) {
-
+		for (Card card : hand)
 			addCard(card);
-			handlePiles(card, PileRearrangeType.RELOCATE);
 
-		}
+		handlePiles(PileRearrangeType.RELOCATE);
 
 	}
 
