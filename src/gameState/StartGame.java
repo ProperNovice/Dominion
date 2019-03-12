@@ -17,10 +17,10 @@ public class StartGame extends GameState {
 	public void handleGameStateChange() {
 
 //		presentCards();
-		setDeck();
-		setDiscardPile();
-		setHand();
-		setActionBuy(0, 3, 1);
+//		setDeck();
+//		setDiscardPile();
+//		setHand();
+//		setActionBuy(0, 3, 1);
 
 		flow();
 
@@ -31,10 +31,8 @@ public class StartGame extends GameState {
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_KINGDOM);
 
-//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.END_TURN);
-
-//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.DRAW_STARTING_HAND);
-		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_PHASE);
+		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_TURN);
+//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_PHASE);
 
 		super.controller.flow().proceedToNextGameStatePhase();
 
@@ -90,7 +88,7 @@ public class StartGame extends GameState {
 
 		discardPile.relocateImageViews();
 		discardPile.toBack();
-		
+
 	}
 
 	public void setHand() {

@@ -50,6 +50,10 @@ public class TextGame implements EventHandlerAble {
 		this.text.relocate(x, y);
 	}
 
+	public void relocate(NumbersPair numbersPair) {
+		relocate(numbersPair.x, numbersPair.y);
+	}
+
 	public void toFront() {
 		this.text.toFront();
 	}

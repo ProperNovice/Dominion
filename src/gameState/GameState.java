@@ -24,11 +24,11 @@ public abstract class GameState {
 		Logger.logNewLine(textEnum);
 
 		this.controller.text().concealText();
-		executeTextOptionPressed(textEnum);
+		executeTextOption(textEnum);
 
 	}
 
-	protected void executeTextOptionPressed(TextEnum textEnum) {
+	protected void executeTextOption(TextEnum textEnum) {
 
 	}
 

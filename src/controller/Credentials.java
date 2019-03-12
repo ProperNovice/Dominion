@@ -34,9 +34,6 @@ public class Credentials {
 						+ 2 * gapBetweenBorders,
 				5 * DimensionsCard.y + 4 * DimensionsGapBetweenCards.y + 2 * gapBetweenBorders);
 
-		CoordinatesTextPanel = new NumbersPair(DimensionsFrame.x / 2 - 100,
-				DimensionsFrame.y - gapBetweenBorders - 2 * DimensionsCard.y - DimensionsGapBetweenCards.y);
-
 		x = CoordinatesSupply.x + 2 * (DimensionsCard.x + DimensionsGapBetweenCards.x)
 				+ 2 * DimensionsGapBetweenCards.x;
 		y = CoordinatesSupply.y + 3 * (DimensionsCard.y + DimensionsGapBetweenCards.y);
@@ -65,6 +62,9 @@ public class Credentials {
 		x = DimensionsFrame.x / 2;
 		y = gapBetweenBorders + 2 * (DimensionsCard.y + DimensionsGapBetweenCards.y) + DimensionsCard.y / 2;
 		CoordinatesPlayArea = new NumbersPair(x, y);
+
+		CoordinatesTextPanel = new NumbersPair(DimensionsFrame.x / 2 - 100,
+				DimensionsFrame.y - gapBetweenBorders - 3 * DimensionsCard.y / 2 - DimensionsGapBetweenCards.y);
 
 	}
 

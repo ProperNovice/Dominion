@@ -3,16 +3,31 @@ package controller;
 import enums.TextEnum;
 import enums.TextEnum.TextTypeEnum;
 import utils.ArrayList;
+import utils.Coordinates;
+import utils.CoordinatesBuilder;
+import utils.ListSizeAble;
+import utils.RearrangeTypeEnum;
 import utils.TextGame;
 
-public class Text {
+public class Text implements ListSizeAble {
 
 	private ArrayList<TextGame> textGame = new ArrayList<>();
 	private ArrayList<TextGame> textGameShowing = new ArrayList<>();
-	private double coordinatesX = Credentials.CoordinatesTextPanel.x, coordinatesY = Credentials.CoordinatesTextPanel.y;
+	private Coordinates coordinates = null;
 
 	public Text() {
+
+		createCoordinates();
 		createTexts();
+
+	}
+
+	private void createCoordinates() {
+
+		this.coordinates = new CoordinatesBuilder().height(Credentials.textHeight)
+				.coordinatesNumbersPair(Credentials.CoordinatesTextPanel).objectsPerRow(1)
+				.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).list(this).create();
+
 	}
 
 	private void createTexts() {
@@ -40,19 +55,12 @@ public class Text {
 
 	private void showText() {
 
-		double currentCoordinatesY = this.coordinatesY;
-
 		for (TextGame textGame : this.textGameShowing) {
 
 			textGame.toFront();
 
 			textGame.setVisible(true);
-			textGame.relocate(this.coordinatesX, currentCoordinatesY);
-
-			currentCoordinatesY += Credentials.textHeight;
-
-			if (textGame.getTextEnum().string().contains("\n"))
-				currentCoordinatesY += Credentials.textHeight;
+			textGame.relocate(this.coordinates.getCoordinate(this.textGameShowing.indexOf(textGame)));
 
 		}
 
@@ -65,11 +73,6 @@ public class Text {
 
 		this.textGameShowing.clear();
 
-	}
-
-	public void setCoordinates(double coordinatesX, double coordinatesY) {
-		this.coordinatesX = coordinatesX;
-		this.coordinatesY = coordinatesY;
 	}
 
 	public TextEnum getTextEnumOptionShowing(int textOptionListOrder) {
@@ -92,6 +95,11 @@ public class Text {
 
 		return null;
 
+	}
+
+	@Override
+	public int getSize() {
+		return this.textGameShowing.size();
 	}
 
 }

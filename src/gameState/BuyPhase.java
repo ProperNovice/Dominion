@@ -29,7 +29,7 @@ public class BuyPhase extends GameState {
 	}
 
 	@Override
-	public void executeTextOptionPressed(TextEnum textEnum) {
+	public void executeTextOption(TextEnum textEnum) {
 
 		if (textEnum == TextEnum.PLAY_HAND_TREASURES)
 			playHandTreasures();
@@ -151,12 +151,12 @@ public class BuyPhase extends GameState {
 			if (!pile.getArrayList().contains(cardPressed))
 				continue;
 
-			if (pile.getPileAmountOfCardsEnum() == PileAmountOfCardsEnum.FINITE) {
+			pile.getArrayList().remove(cardPressed);
 
-				pile.getArrayList().remove(cardPressed);
+			if (pile.getPileAmountOfCardsEnum() == PileAmountOfCardsEnum.FINITE)
 				pile.updateNumberImageView();
 
-			} else {
+			else {
 
 				CardNameEnum cardNameEnum = cardPressed.getCardNameEnum();
 				pile.getArrayList().addLast(CardManagerSingleton.INSTANCE.getNewCard(cardNameEnum));

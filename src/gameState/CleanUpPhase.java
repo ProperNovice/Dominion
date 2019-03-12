@@ -14,25 +14,17 @@ public class CleanUpPhase extends GameState {
 		super.controller.actionBuyTreasureIndicators().removeAllCoinsSetVisibleFalse();
 
 		super.controller.text().showText(TextEnum.CLEAN_UP_PHASE);
-		super.controller.text().showText(TextEnum.CONTINUE);
+		super.controller.text().showText(TextEnum.CLEAN_UP);
 
 	}
 
 	@Override
-	protected void executeTextOptionPressed(TextEnum textEnum) {
+	protected void executeTextOption(TextEnum textEnum) {
 
-		if (textEnum == TextEnum.CONTINUE) {
+		executeCleanUp();
 
-			executeCleanUp();
-			super.controller.text().showText(TextEnum.CLEAN_UP_PHASE);
-			super.controller.text().showText(TextEnum.END_TURN);
-
-		} else if (textEnum == TextEnum.END_TURN) {
-
-			super.controller.flow().addGameStateResolvingFirst(GameStateEnum.END_TURN);
-			super.controller.flow().proceedToNextGameStatePhase();
-
-		}
+		super.controller.flow().addGameStateResolvingFirst(GameStateEnum.END_TURN);
+		super.controller.flow().proceedToNextGameStatePhase();
 
 	}
 

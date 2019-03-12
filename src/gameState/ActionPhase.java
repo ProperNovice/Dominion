@@ -16,7 +16,7 @@ public class ActionPhase extends GameState {
 	}
 
 	@Override
-	public void executeTextOptionPressed(TextEnum textEnum) {
+	public void executeTextOption(TextEnum textEnum) {
 		proceedToBuyPhase();
 	}
 
