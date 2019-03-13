@@ -65,7 +65,7 @@ public abstract class ArrayListImageViewAbles<T> implements ListSizeAble {
 	}
 
 	public void relocateList(NumbersPair numbersPair) {
-		this.coordinates.relocateListAndClearCoordinates(numbersPair);
+		this.coordinates.relocateList(numbersPair);
 	}
 
 	private enum ImageViewAction {

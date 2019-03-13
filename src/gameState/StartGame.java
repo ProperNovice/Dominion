@@ -17,10 +17,10 @@ public class StartGame extends GameState {
 	public void handleGameStateChange() {
 
 //		presentCards();
-//		setDeck();
-//		setDiscardPile();
-//		setHand();
-//		setActionBuy(0, 3, 1);
+		setDeck();
+		setDiscardPile();
+		setHand();
+		setActionBuy(1, 3, 1);
 
 		flow();
 
@@ -31,7 +31,7 @@ public class StartGame extends GameState {
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_KINGDOM);
 
-		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_TURN);
+//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_TURN);
 //		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_PHASE);
 
 		super.controller.flow().proceedToNextGameStatePhase();
@@ -50,7 +50,7 @@ public class StartGame extends GameState {
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CELLAR));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
 //		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
@@ -101,11 +101,10 @@ public class StartGame extends GameState {
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
-		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
-		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SILVER));
-		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
-		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
-		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.WITCH));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CHAPEL));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.REMODEL));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CELLAR));
+		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.WORKSHOP));
 
 		super.controller.players().getCurrentPlayer().getHand().testSetHandAndRelocate(hand);
 

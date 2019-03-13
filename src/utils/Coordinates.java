@@ -120,7 +120,7 @@ public class Coordinates {
 
 	}
 
-	public void relocateListAndClearCoordinates(NumbersPair numbersPair) {
+	public void relocateList(NumbersPair numbersPair) {
 		relocateList(numbersPair.x, numbersPair.y);
 	}
 

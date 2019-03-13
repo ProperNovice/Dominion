@@ -5,7 +5,7 @@ import utils.NumbersPair;
 public class Credentials {
 
 	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard, DimensionsGapBetweenCards,
-			DimensionsActionBuyIndicators;
+			DimensionsActionBuyIndicators, DimensionsSelect;
 	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman, CoordinatesKingdom,
 			CoordinatesDiscardPileHuman, CoordinatesHandHuman, CoordinatesCardIndicator, CoordinatesActionBuyIndicators,
 			CoordinatesPlayArea;
@@ -63,8 +63,12 @@ public class Credentials {
 		y = gapBetweenBorders + 2 * (DimensionsCard.y + DimensionsGapBetweenCards.y) + DimensionsCard.y / 2;
 		CoordinatesPlayArea = new NumbersPair(x, y);
 
-		CoordinatesTextPanel = new NumbersPair(DimensionsFrame.x / 2 - 100,
-				DimensionsFrame.y - gapBetweenBorders - 3 * DimensionsCard.y / 2 - DimensionsGapBetweenCards.y);
+		x = DimensionsFrame.x / 2 - 100;
+		y = DimensionsFrame.y - gapBetweenBorders - 3 * DimensionsCard.y / 2 - DimensionsGapBetweenCards.y;
+		CoordinatesTextPanel = new NumbersPair(x, y);
+
+		x = DimensionsCard.x / 2;
+		DimensionsSelect = new NumbersPair(x, x);
 
 	}
 

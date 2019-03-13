@@ -43,7 +43,7 @@ public class BuyPhase extends GameState {
 	}
 
 	@Override
-	protected void executeCardPressedHand(Card cardPressed) {
+	protected void executeCardPressedHandPrimary(Card cardPressed) {
 
 		if (!cardPressed.isCardType(CardTypeEnum.TREASURE))
 			return;

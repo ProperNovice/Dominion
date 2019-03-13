@@ -12,6 +12,11 @@ public enum TextEnum {
 	END_TURN("End turn", TextTypeEnum.OPTION),
 	NEW_TURN("New turn", TextTypeEnum.OPTION),
 	PLAY_HAND_TREASURES("Play hand treasures", TextTypeEnum.OPTION),
+	CHOOSE_CARDS_TO_DISCARD("Choose cards to discard", TextTypeEnum.INDICATOR),
+	CHOOSE_CARDS_TO_TRASH("Choose cards to trash", TextTypeEnum.INDICATOR),
+	CHOOSE_A_CARD_COSTING_UP_TO_FOUR("Choose a card costing up to four", TextTypeEnum.INDICATOR),
+	CHOOSE_A_CARD_TO_TRASH("Choose a card to trash", TextTypeEnum.INDICATOR),
+	CHOOSE_A_CARD_COSTING_UP_TO_TWO_MORE("Choose a card costing up to two more", TextTypeEnum.INDICATOR),
 	
 
 	;

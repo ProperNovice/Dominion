@@ -65,10 +65,10 @@ public abstract class GameState {
 
 	}
 
-	public final void executeCardPressed(Card cardPressed) {
+	public final void executeCardPressedPrimary(Card cardPressed) {
 
 		if (this.controller.players().getCurrentPlayer().getHand().containsCard(cardPressed))
-			executeCardPressedHand(cardPressed);
+			executeCardPressedHandPrimary(cardPressed);
 		else if (this.controller.supply().containsCard(cardPressed))
 			executeCardPressedSupply(cardPressed);
 		else if (this.controller.kingdom().containsCard(cardPressed))
@@ -76,7 +76,18 @@ public abstract class GameState {
 
 	}
 
-	protected void executeCardPressedHand(Card cardPressed) {
+	public final void executeCardPressedSecondary(Card cardPressed) {
+
+		if (this.controller.players().getCurrentPlayer().getHand().containsCard(cardPressed))
+			executeCardPressedHandSecondary(cardPressed);
+
+	}
+
+	protected void executeCardPressedHandPrimary(Card cardPressed) {
+
+	}
+
+	protected void executeCardPressedHandSecondary(Card cardPressed) {
 
 	}
 

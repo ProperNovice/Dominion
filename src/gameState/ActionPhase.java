@@ -28,7 +28,7 @@ public class ActionPhase extends GameState {
 	}
 
 	@Override
-	protected void executeCardPressedHand(Card cardPressed) {
+	protected void executeCardPressedHandPrimary(Card cardPressed) {
 
 		if (!cardPressed.isCardType(CardTypeEnum.ACTION))
 			return;

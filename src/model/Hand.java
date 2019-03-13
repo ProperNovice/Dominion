@@ -8,8 +8,10 @@ import utils.ArrayList;
 import utils.Coordinates;
 import utils.ListSizeAble;
 import utils.Lock;
+import utils.Logger;
 import utils.NumbersPair;
 import utils.ObjectPoolSingleton;
+import utils.ShutDown;
 
 public abstract class Hand implements ListSizeAble {
 
@@ -49,12 +51,11 @@ public abstract class Hand implements ListSizeAble {
 		if (pile == null) {
 
 			pile = (Pile) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.PILE);
-
 			this.list.addLast(pile);
 
 		}
 
-		pile.getArrayList().addFirst(card);
+		pile.getArrayList().addFirst(this.cardToadd);
 
 	}
 
@@ -130,33 +131,29 @@ public abstract class Hand implements ListSizeAble {
 
 	private void animatePiles(PileRearrangeType pileRearrangeType) {
 
-		if (this.cardToadd != null) {
+		for (Pile pile : this.list) {
 
-			for (Pile pile : this.list) {
+			NumbersPair numbersPair = this.coordinates.getCoordinate(this.list.indexOf(pile));
 
-				NumbersPair numbersPair = this.coordinates.getCoordinate(this.list.indexOf(pile));
+			if (pile.getArrayList().contains(this.cardToadd)) {
 
-				if (pile.getArrayList().contains(this.cardToadd)) {
+				double x = numbersPair.x;
+				double y = numbersPair.y - Credentials.DimensionsCard.y - Credentials.DimensionsGapBetweenCards.y;
 
-					double x = numbersPair.x;
-					double y = numbersPair.y - Credentials.DimensionsCard.y - Credentials.DimensionsGapBetweenCards.y;
-
-					this.cardToadd.getImageView().relocate(x, y);
-
-				}
-
-				pile.relocateList(numbersPair);
-
-				if (pileRearrangeType == PileRearrangeType.ANIMATE)
-					pile.animateSynchronous();
-				else if (pileRearrangeType == PileRearrangeType.RELOCATE)
-					pile.relocateImageViews();
+				this.cardToadd.getImageView().relocate(x, y);
 
 			}
 
-			this.cardToadd = null;
+			pile.relocateList(numbersPair);
+
+			if (pileRearrangeType == PileRearrangeType.ANIMATE)
+				pile.animateSynchronous();
+			else if (pileRearrangeType == PileRearrangeType.RELOCATE)
+				pile.relocateImageViews();
 
 		}
+
+		this.cardToadd = null;
 
 		if (pileRearrangeType == PileRearrangeType.ANIMATE)
 			Lock.lock();
@@ -221,6 +218,84 @@ public abstract class Hand implements ListSizeAble {
 				return true;
 
 		return false;
+
+	}
+
+	public boolean canBeSelected(Card card) {
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().contains(card))
+				return pile.canBeSelected();
+
+		ShutDown.execute("canBeSelected " + this.getClass());
+		return false;
+
+	}
+
+	public boolean canBeDiselected(Card card) {
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().contains(card))
+				if (pile.isSelected())
+					return true;
+
+		return false;
+
+	}
+
+	public void selectPile(Card card) {
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().contains(card))
+				pile.selectOne();
+
+	}
+
+	public void diselectPile(Card card) {
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().contains(card))
+				pile.diselectOne();
+
+	}
+
+	public ArrayList<Card> removeSelectedCardsDiselectPiles() {
+
+		ArrayList<Card> cards = new ArrayList<Card>();
+
+		for (Pile pile : this.list) {
+
+			if (!pile.isSelected())
+				continue;
+
+			int cardsAmount = pile.getSelectedAmount();
+			pile.diselectAll();
+
+			for (int counter = 1; counter <= cardsAmount; counter++)
+				cards.addLast(pile.getArrayList().removeLast());
+
+			pile.updateNumberImageView();
+
+		}
+
+		handlePiles(PileRearrangeType.RELOCATE);
+
+		return cards;
+
+	}
+
+	public void print() {
+
+		Logger.log("printing hand");
+
+		for (Pile pile : this.list) {
+
+			Logger.log("index " + this.list.indexOf(pile) + " - size " + pile.getArrayList().size() + " - "
+					+ pile.getArrayList().getFirst().getCardNameEnum());
+
+		}
+
+		Logger.newLine();
 
 	}
 

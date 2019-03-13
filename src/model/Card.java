@@ -83,8 +83,18 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 		printCard();
 
-		Executor.runLater(
-				() -> Instances.getControllerInstance().gameState().getCurrentGameState().executeCardPressed(this));
+		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
+				.executeCardPressedPrimary(this));
+
+	}
+
+	@Override
+	public void handleMouseButtonPressedSecondary() {
+		
+		printCard();
+
+		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
+				.executeCardPressedSecondary(this));
 
 	}
 
