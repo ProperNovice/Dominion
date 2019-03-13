@@ -11,6 +11,9 @@ public class PlayerHuman extends Player {
 	@Override
 	protected void setCoordinates() {
 
+		super.deck = new DeckHuman();
+		super.hand = new HandHuman();
+
 		super.deck.relocateList(Credentials.CoordinatesDeckHuman);
 		super.discardPile.relocateList(Credentials.CoordinatesDiscardPileHuman);
 

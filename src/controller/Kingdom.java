@@ -12,7 +12,7 @@ public class Kingdom extends SupplyKingdom {
 	@Override
 	protected void createCoordinates() {
 
-		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsCard)
+		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsCardHuman)
 				.coordinatesNumbersPair(Credentials.CoordinatesKingdom)
 				.gapNumbersPair(Credentials.DimensionsGapBetweenCards).objectsPerRow(5).create();
 

@@ -138,7 +138,7 @@ public abstract class Hand implements ListSizeAble {
 			if (pile.getArrayList().contains(this.cardToadd)) {
 
 				double x = numbersPair.x;
-				double y = numbersPair.y - Credentials.DimensionsCard.y - Credentials.DimensionsGapBetweenCards.y;
+				double y = numbersPair.y - Credentials.DimensionsCardHuman.y - Credentials.DimensionsGapBetweenCards.y;
 
 				this.cardToadd.getImageView().relocate(x, y);
 

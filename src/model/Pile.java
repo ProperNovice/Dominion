@@ -30,12 +30,20 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 	@Override
 	public void relocateList(NumbersPair numbersPair) {
 
+		NumbersPair numbersPairDimensions = null;
+		double width = super.arrayList.getFirst().getImageView().getWidth();
+
+		if (width == Credentials.DimensionsCardHuman.x)
+			numbersPairDimensions = Credentials.DimensionsCardHuman;
+		else if (width == Credentials.DimensionsCardAI.x)
+			numbersPairDimensions = Credentials.DimensionsCardAI;
+
 		super.relocateList(numbersPair);
-		this.numberImageView.getImageView()
-				.relocate(numbersPair.x + Credentials.DimensionsCard.x - Credentials.numberImageView, numbersPair.y);
+		this.numberImageView.getImageView().relocate(
+				numbersPair.x + numbersPairDimensions.x - Credentials.numberImageView, numbersPair.y);
 
 		double x = numbersPair.x;
-		double y = numbersPair.y + Credentials.DimensionsCard.y - Credentials.DimensionsSelect.y;
+		double y = numbersPair.y + Credentials.DimensionsCardHuman.y - Credentials.DimensionsSelect.y;
 
 		this.listSelect.relocateList(x, y);
 

@@ -4,11 +4,11 @@ import utils.NumbersPair;
 
 public class Credentials {
 
-	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCard, DimensionsGapBetweenCards,
-			DimensionsActionBuyIndicators, DimensionsSelect;
-	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman, CoordinatesKingdom,
-			CoordinatesDiscardPileHuman, CoordinatesHandHuman, CoordinatesCardIndicator, CoordinatesActionBuyIndicators,
-			CoordinatesPlayArea;
+	public static NumbersPair DimensionsFrame, DimensionsInsets, DimensionsCardHuman, DimensionsCardAI,
+			DimensionsGapBetweenCards, DimensionsActionBuyIndicators, DimensionsSelect;
+	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman, CoordinatesDeckAI,
+			CoordinatesKingdom, CoordinatesDiscardPileHuman, CoordinatesDiscardPileAI, CoordinatesHandHuman,
+			CoordinatesHandAI, CoordinatesCardIndicator, CoordinatesActionBuyIndicators, CoordinatesPlayArea;
 	public static double gapBetweenBorders, textHeight, numberImageView, cardIndicatorWidth;
 
 	public static void calculateCredentials() {
@@ -24,30 +24,31 @@ public class Credentials {
 		DimensionsGapBetweenCards = new NumbersPair(4, 6);
 
 		CoordinatesSupply = new NumbersPair(gapBetweenBorders, gapBetweenBorders);
-		DimensionsCard = new NumbersPair(105, 166);
-		DimensionsActionBuyIndicators = new NumbersPair(DimensionsCard.x / 3, DimensionsCard.x / 3);
-		numberImageView = DimensionsCard.x * 0.35;
+		DimensionsCardHuman = new NumbersPair(105, 166);
+
+		DimensionsActionBuyIndicators = new NumbersPair(DimensionsCardHuman.x / 3, DimensionsCardHuman.x / 3);
+		numberImageView = DimensionsCardHuman.x * 0.35;
 
 		int totalCardsWidth = 13;
 		DimensionsFrame = new NumbersPair(
-				totalCardsWidth * DimensionsCard.x + (totalCardsWidth - 1) * DimensionsGapBetweenCards.x
+				totalCardsWidth * DimensionsCardHuman.x + (totalCardsWidth - 1) * DimensionsGapBetweenCards.x
 						+ 2 * gapBetweenBorders,
-				5 * DimensionsCard.y + 4 * DimensionsGapBetweenCards.y + 2 * gapBetweenBorders);
+				5 * DimensionsCardHuman.y + 4 * DimensionsGapBetweenCards.y + 2 * gapBetweenBorders);
 
-		x = CoordinatesSupply.x + 2 * (DimensionsCard.x + DimensionsGapBetweenCards.x)
+		x = CoordinatesSupply.x + 2 * (DimensionsCardHuman.x + DimensionsGapBetweenCards.x)
 				+ 2 * DimensionsGapBetweenCards.x;
-		y = CoordinatesSupply.y + 3 * (DimensionsCard.y + DimensionsGapBetweenCards.y);
+		y = CoordinatesSupply.y + 3 * (DimensionsCardHuman.y + DimensionsGapBetweenCards.y);
 		CoordinatesDiscardPileHuman = new NumbersPair(x, y);
 
-		x = CoordinatesDiscardPileHuman.x + DimensionsCard.x + DimensionsGapBetweenCards.x;
+		x = CoordinatesDiscardPileHuman.x + DimensionsCardHuman.x + DimensionsGapBetweenCards.x;
 		y = CoordinatesDiscardPileHuman.y;
 		CoordinatesDeckHuman = new NumbersPair(x, y);
 
 		x = DimensionsFrame.x / 2;
-		y = DimensionsFrame.y - gapBetweenBorders - DimensionsCard.y / 2;
+		y = DimensionsFrame.y - gapBetweenBorders - DimensionsCardHuman.y / 2;
 		CoordinatesHandHuman = new NumbersPair(x, y);
 
-		x = DimensionsFrame.x / 2 - (5 * DimensionsCard.x + 4 * DimensionsGapBetweenCards.x) / 2;
+		x = DimensionsFrame.x / 2 - (5 * DimensionsCardHuman.x + 4 * DimensionsGapBetweenCards.x) / 2;
 		y = gapBetweenBorders;
 		CoordinatesKingdom = new NumbersPair(x, y);
 
@@ -55,20 +56,35 @@ public class Credentials {
 		y = gapBetweenBorders;
 		CoordinatesCardIndicator = new NumbersPair(x, y);
 
-		x = CoordinatesDeckHuman.x + DimensionsCard.x + DimensionsGapBetweenCards.x;
+		x = CoordinatesDeckHuman.x + DimensionsCardHuman.x + DimensionsGapBetweenCards.x;
 		y = CoordinatesDeckHuman.y;
 		CoordinatesActionBuyIndicators = new NumbersPair(x, y);
 
 		x = DimensionsFrame.x / 2;
-		y = gapBetweenBorders + 2 * (DimensionsCard.y + DimensionsGapBetweenCards.y) + DimensionsCard.y / 2;
+		y = gapBetweenBorders + 2 * (DimensionsCardHuman.y + DimensionsGapBetweenCards.y) + DimensionsCardHuman.y / 2;
 		CoordinatesPlayArea = new NumbersPair(x, y);
 
 		x = DimensionsFrame.x / 2 - 100;
-		y = DimensionsFrame.y - gapBetweenBorders - 3 * DimensionsCard.y / 2 - DimensionsGapBetweenCards.y;
+		y = DimensionsFrame.y - gapBetweenBorders - 3 * DimensionsCardHuman.y / 2 - DimensionsGapBetweenCards.y;
 		CoordinatesTextPanel = new NumbersPair(x, y);
 
-		x = DimensionsCard.x / 2;
+		x = DimensionsCardHuman.x / 2;
 		DimensionsSelect = new NumbersPair(x, x);
+
+		x = 0.75;
+		DimensionsCardAI = new NumbersPair(DimensionsCardHuman.x * x, DimensionsCardHuman.y * x);
+
+		x = DimensionsFrame.x - gapBetweenBorders - DimensionsCardAI.x;
+		y = gapBetweenBorders + 2 * (DimensionsCardHuman.y + DimensionsGapBetweenCards.y);
+		CoordinatesDiscardPileAI = new NumbersPair(x, y);
+
+		x = CoordinatesDiscardPileAI.x - DimensionsCardAI.x - DimensionsGapBetweenCards.x;
+		y = CoordinatesDiscardPileAI.y;
+		CoordinatesDeckAI = new NumbersPair(x, y);
+
+		x = CoordinatesDiscardPileAI.x;
+		y = CoordinatesDiscardPileAI.y + DimensionsCardAI.y + DimensionsGapBetweenCards.y;
+		CoordinatesHandAI = new NumbersPair(x, y);
 
 	}
 

@@ -4,8 +4,8 @@ import utils.NumbersPair;
 
 public abstract class Player {
 
-	protected Deck deck = new Deck();
-	protected Hand hand = new HandHuman();
+	protected Deck deck = null;
+	protected Hand hand = null;
 	protected DiscardPile discardPile = new DiscardPile();
 	protected PlayArea playArea = new PlayArea();
 	protected NumbersPair handCoordinates = null;

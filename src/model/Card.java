@@ -43,7 +43,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 		this.back = new Image("cards/back.jpg");
 
 		ImageView imageView = new ImageView(this.front, this);
-		imageView.setWidth(Credentials.DimensionsCard.x);
+		imageView.setWidth(Credentials.DimensionsCardHuman.x);
 
 		map.put(this, imageView);
 

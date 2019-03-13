@@ -2,13 +2,14 @@ package controller;
 
 import enums.PlayerEnum;
 import model.Player;
+import model.PlayerAI;
 import model.PlayerHuman;
 import utils.HashMap;
 
 public class Players {
 
 	private HashMap<PlayerEnum, Player> players = new HashMap<>();
-	private PlayerEnum currentPlayerEnum = PlayerEnum.HUMAN;
+	private PlayerEnum currentPlayerEnum = PlayerEnum.AI;
 
 	public Players() {
 		createHashMap();
@@ -17,7 +18,7 @@ public class Players {
 	private void createHashMap() {
 
 		this.players.put(PlayerEnum.HUMAN, new PlayerHuman());
-//		this.players.put(PlayerEnum.AI, new PlayerAI());
+		this.players.put(PlayerEnum.AI, new PlayerAI());
 
 	}
 
@@ -25,20 +26,32 @@ public class Players {
 		return this.players.get(this.currentPlayerEnum);
 	}
 
+	public PlayerEnum getCurrentPlayerEnum() {
+		return this.currentPlayerEnum;
+	}
+
 	public Player getOpponent() {
+
+		PlayerEnum playerEnum = null;
 
 		switch (this.currentPlayerEnum) {
 
 		case HUMAN:
-			return this.players.get(PlayerEnum.AI);
+			playerEnum = PlayerEnum.AI;
+			break;
 
 		case AI:
-			return this.players.get(PlayerEnum.HUMAN);
+			playerEnum = PlayerEnum.HUMAN;
+			break;
 
 		}
 
-		return null;
+		return this.players.get(playerEnum);
 
+	}
+
+	public void setCurrentPlayerEnum(PlayerEnum playerEnum) {
+		this.currentPlayerEnum = playerEnum;
 	}
 
 }

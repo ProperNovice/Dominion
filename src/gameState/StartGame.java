@@ -4,6 +4,7 @@ import controller.CardManagerSingleton;
 import controller.Credentials;
 import enums.CardNameEnum;
 import enums.GameStateEnum;
+import enums.PlayerEnum;
 import model.Card;
 import model.DiscardPile;
 import utils.ArrayList;
@@ -13,8 +14,13 @@ import utils.NumbersPair;
 
 public class StartGame extends GameState {
 
+	private PlayerEnum currentPlayerEnum = null;
+
 	@Override
 	public void handleGameStateChange() {
+
+//		setCurrentPlayerEnum(PlayerEnum.HUMAN);
+		setCurrentPlayerEnum(PlayerEnum.AI);
 
 //		presentCards();
 		setDeck();
@@ -65,6 +71,12 @@ public class StartGame extends GameState {
 
 		super.controller.players().getCurrentPlayer().getDeck().relocateImageViews();
 
+		if (this.currentPlayerEnum == PlayerEnum.HUMAN)
+			return;
+
+		for (Card card : deck)
+			card.getImageView().setWidth(Credentials.DimensionsCardAI.x);
+
 	}
 
 	public void setDiscardPile() {
@@ -89,6 +101,12 @@ public class StartGame extends GameState {
 		discardPile.relocateImageViews();
 		discardPile.toBack();
 
+		if (this.currentPlayerEnum == PlayerEnum.HUMAN)
+			return;
+
+		for (Card card : discardPile.getArrayList())
+			card.getImageView().setWidth(Credentials.DimensionsCardAI.x);
+
 	}
 
 	public void setHand() {
@@ -107,6 +125,12 @@ public class StartGame extends GameState {
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.WORKSHOP));
 
 		super.controller.players().getCurrentPlayer().getHand().testSetHandAndRelocate(hand);
+
+		if (this.currentPlayerEnum == PlayerEnum.HUMAN)
+			return;
+
+		for (Card card : hand)
+			card.getImageView().setWidth(Credentials.DimensionsCardAI.x);
 
 	}
 
@@ -137,10 +161,17 @@ public class StartGame extends GameState {
 			NumbersPair numbersPair = new NumbersPair(Credentials.gapBetweenBorders, Credentials.gapBetweenBorders);
 
 			super.coordinates = new CoordinatesBuilder().coordinatesNumbersPair(numbersPair)
-					.dimensionsNumbersPair(Credentials.DimensionsCard)
+					.dimensionsNumbersPair(Credentials.DimensionsCardHuman)
 					.gapNumbersPair(Credentials.DimensionsGapBetweenCards).objectsPerRow(14).create();
 
 		}
+
+	}
+
+	public void setCurrentPlayerEnum(PlayerEnum playerEnum) {
+
+		this.currentPlayerEnum = playerEnum;
+		super.controller.players().setCurrentPlayerEnum(this.currentPlayerEnum);
 
 	}
 

@@ -15,9 +15,9 @@ public class PlayArea extends ArrayListImageViewAbles<Card> implements ListSizeA
 	@Override
 	protected void createCoordinates() {
 
-		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsCard)
+		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsCardHuman)
 				.coordinatesNumbersPair(Credentials.CoordinatesPlayArea).rearrangeTypeEnum(RearrangeTypeEnum.PIVOT)
-				.gapX(-0.6 * Credentials.DimensionsCard.x).list(this).create();
+				.gapX(-0.6 * Credentials.DimensionsCardHuman.x).list(this).create();
 
 	}
 
