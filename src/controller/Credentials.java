@@ -71,7 +71,8 @@ public class Credentials {
 		x = DimensionsCardHuman.x / 2;
 		DimensionsSelect = new NumbersPair(x, x);
 
-		x = 0.75;
+//		x = 0.75;
+		x = 1;
 		DimensionsCardAI = new NumbersPair(DimensionsCardHuman.x * x, DimensionsCardHuman.y * x);
 
 		x = DimensionsFrame.x - gapBetweenBorders - DimensionsCardAI.x;

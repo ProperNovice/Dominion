@@ -1,9 +1,9 @@
 /controller/
 /enums/
 /gameState/
+/gameStateAI/
+/gameStateCardAbilities/
 /gui/
 /images/
 /model/
 /utils/
-/gameStateCardAbilities/
-/gameStateAI/

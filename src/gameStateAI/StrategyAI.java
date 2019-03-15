@@ -4,6 +4,11 @@ import gameState.GameState;
 
 public abstract class StrategyAI extends GameState {
 
+	@Override
+	public void handleGameStateChange() {
+
+	}
+
 	protected final int getTotalMoney() {
 		return 0;
 	}

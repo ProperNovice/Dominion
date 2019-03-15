@@ -23,10 +23,10 @@ public class StartGame extends GameState {
 		setCurrentPlayerEnum(PlayerEnum.AI);
 
 //		presentCards();
-		setDeck();
-		setDiscardPile();
-		setHand();
-		setActionBuy(1, 3, 1);
+//		setDeck();
+//		setDiscardPile();
+//		setHand();
+//		setActionBuy(1, 3, 1);
 
 		flow();
 
@@ -37,7 +37,7 @@ public class StartGame extends GameState {
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_KINGDOM);
 
-//		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_TURN);
+		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_TURN);
 //		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_PHASE);
 
 		super.controller.flow().proceedToNextGameStatePhase();
