@@ -28,74 +28,7 @@ public class StartGame extends GameState {
 //		setHand();
 //		setActionBuy(1, 3, 1);
 
-//		flow();
-
-		play(8);
-		System.out.println();
-		play(120);
-
-	}
-
-	private enum Position {
-		FIRST, LAST
-	}
-
-	private void play(int length) {
-
-		ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
-
-		list.addLast(new ArrayList<Integer>());
-
-		for (int counter = 1; counter <= length; counter++)
-			list.getFirst().addLast(counter);
-
-		Position position = Position.LAST;
-
-		do {
-
-			ArrayList<Integer> listTemp = new ArrayList<Integer>();
-
-			for (Integer integer : list.getLast().clone()) {
-
-				switch (position) {
-
-				case FIRST:
-					listTemp.addFirst(integer);
-					position = Position.LAST;
-					break;
-
-				case LAST:
-					listTemp.addLast(integer);
-					position = Position.FIRST;
-					break;
-
-				}
-
-			}
-
-			position = Position.LAST;
-			list.addLast(listTemp);
-
-		} while (!equal(list.getFirst(), list.getLast()));
-
-		for (ArrayList<Integer> printList : list) {
-
-			for (Integer integer : printList)
-				System.out.print(integer + " ");
-
-			System.out.println();
-
-		}
-
-	}
-
-	private boolean equal(ArrayList<Integer> first, ArrayList<Integer> second) {
-
-		for (int counter = 0; counter < first.size(); counter++)
-			if (first.get(counter) != second.get(counter))
-				return false;
-
-		return true;
+		flow();
 
 	}
 
