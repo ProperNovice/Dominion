@@ -12,7 +12,7 @@ public class HandAI extends Hand {
 		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsCardAI)
 				.coordinatesNumbersPair(Credentials.CoordinatesHandAI)
 				.gapNumbersPair(Credentials.DimensionsGapBetweenCards).directionEnumHorizontal(DirectionEnum.LEFT)
-				.objectsPerRow(3).list(this).create();
+				.objectsPerRow(4).list(this).create();
 
 	}
 
