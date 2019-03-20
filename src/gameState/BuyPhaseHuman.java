@@ -6,7 +6,6 @@ import enums.CardTypeEnum;
 import enums.PileAmountOfCardsEnum;
 import enums.TextEnum;
 import model.Card;
-import model.Hand.PileRearrangeType;
 import model.Pile;
 import model.SupplyKingdom;
 import utils.ArrayList;
@@ -32,7 +31,8 @@ public class BuyPhaseHuman extends BuyPhaseAbstract {
 	public void executeTextOption(TextEnum textEnum) {
 
 		if (textEnum == TextEnum.PLAY_HAND_TREASURES)
-			playHandTreasures();
+			super.playHandTreasures();
+
 		else if (textEnum == TextEnum.PROCEED_TO_NEXT_PHASE) {
 
 			super.controller.actionBuyTreasureIndicators().removeAllBuys();
@@ -62,40 +62,6 @@ public class BuyPhaseHuman extends BuyPhaseAbstract {
 
 	}
 
-	private void playHandTreasures() {
-
-		ArrayList<Pile> handPiles = super.controller.players().getCurrentPlayer().getHand().getPiles();
-		ArrayList<Card> treasures = new ArrayList<Card>();
-
-		int coinsPlayed = 0;
-
-		for (Pile pile : handPiles)
-			if (pile.getArrayList().getFirst().isCardType(CardTypeEnum.TREASURE)) {
-
-				for (Card card : pile.getArrayList().clone()) {
-
-					coinsPlayed += card.getTreasure();
-					pile.getArrayList().remove(card);
-					treasures.addLast(card);
-
-				}
-
-			}
-
-		super.controller.players().getCurrentPlayer().getHand().handlePiles(PileRearrangeType.RELOCATE);
-
-		super.controller.players().getCurrentPlayer().getPlayArea().getArrayList().addAll(treasures);
-		super.controller.players().getCurrentPlayer().getPlayArea().relocateImageViews();
-		super.controller.players().getCurrentPlayer().getPlayArea().toBack();
-
-		super.controller.actionBuyTreasureIndicators().addCoins(coinsPlayed);
-
-		Logger.logNewLine("coins played -> " + coinsPlayed);
-
-		handleGameStateChange();
-
-	}
-
 	@Override
 	protected void executeCardPressedSupply(Card cardPressed) {
 		handleSupplyKingdomCardPressed(cardPressed, super.controller.supply());
@@ -115,7 +81,6 @@ public class BuyPhaseHuman extends BuyPhaseAbstract {
 		addCardToPlayArea(cardPressed);
 		handleBuyTreasureIndicator(cardPressed);
 
-		super.controller.flow().print();
 		super.controller.flow().proceedToNextGameStatePhase();
 
 	}
