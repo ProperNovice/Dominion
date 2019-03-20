@@ -32,7 +32,7 @@ public abstract class GameState {
 
 	}
 
-	public void executeKeyPressed(KeyCode keyCode) {
+	public final void executeKeyPressed(KeyCode keyCode) {
 
 		int textOptionToHandle = -1;
 

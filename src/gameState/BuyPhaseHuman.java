@@ -12,7 +12,7 @@ import model.SupplyKingdom;
 import utils.ArrayList;
 import utils.Logger;
 
-public class BuyPhase extends GameState {
+public class BuyPhaseHuman extends BuyPhaseAbstract {
 
 	@Override
 	public void handleGameStateChange() {

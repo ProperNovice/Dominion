@@ -9,7 +9,7 @@ public class PlayerHuman extends Player {
 	}
 
 	@Override
-	protected void setCoordinates() {
+	protected void setCredentials() {
 
 		super.deck = new DeckHuman();
 		super.hand = new HandHuman();

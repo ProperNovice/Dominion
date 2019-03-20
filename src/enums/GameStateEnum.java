@@ -2,6 +2,7 @@ package enums;
 
 import gameState.*;
 import gameStateCardAbilities.*;
+import gameStateStrategyAI.*;
 
 public enum GameStateEnum {
 
@@ -12,8 +13,10 @@ public enum GameStateEnum {
 	DRAW_STARTING_HAND(new DrawStartingHand()),
 	NEW_TURN(new NewTurn()),
 	NEW_PHASE(new NewPhase()),
-	ACTION_PHASE(new ActionPhase()),
-	BUY_PHASE(new BuyPhase()),
+	ACTION_PHASE_HUMAN(new ActionPhaseHuman()),
+	ACTION_PHASE_AI(new ActionPhaseAI()),
+	BUY_PHASE_HUMAN(new BuyPhaseHuman()),
+	BUY_PHASE_AI(new BigMoney()),
 	CLEAN_UP_PHASE(new CleanUpPhase()),
 	
 	PLUS_ONE_CARD(new PlusOneCard()),

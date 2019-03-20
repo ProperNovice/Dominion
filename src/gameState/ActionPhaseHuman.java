@@ -1,11 +1,10 @@
 package gameState;
 
 import enums.CardTypeEnum;
-import enums.PhaseEnum;
 import enums.TextEnum;
 import model.Card;
 
-public class ActionPhase extends GameState {
+public class ActionPhaseHuman extends ActionPhaseAbstract {
 
 	@Override
 	public void handleGameStateChange() {
@@ -33,17 +32,7 @@ public class ActionPhase extends GameState {
 		if (!cardPressed.isCardType(CardTypeEnum.ACTION))
 			return;
 
-		super.controller.text().concealText();
-
-		super.controller.actionBuyTreasureIndicators().removeOneAction();
-
-		super.controller.players().getCurrentPlayer().getPlayArea().getArrayList().addLast(cardPressed);
-		super.controller.players().getCurrentPlayer().getPlayArea().relocateImageViews();
-		super.controller.players().getCurrentPlayer().getPlayArea().toBack();
-
-		super.controller.players().getCurrentPlayer().getHand().removeCardAndAnimatePiles(cardPressed);
-
-		super.controller.flow().addGameStateResolvingFirst(cardPressed.getCardAbilityEnum(PhaseEnum.ACTION));
+		super.resolveActionCard(cardPressed);
 		super.controller.flow().proceedToNextGameStatePhase();
 
 	}

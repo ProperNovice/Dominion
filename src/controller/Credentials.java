@@ -8,7 +8,8 @@ public class Credentials {
 			DimensionsGapBetweenCards, DimensionsActionBuyIndicators, DimensionsSelect;
 	public static NumbersPair CoordinatesTextPanel, CoordinatesSupply, CoordinatesDeckHuman, CoordinatesDeckAI,
 			CoordinatesKingdom, CoordinatesDiscardPileHuman, CoordinatesDiscardPileAI, CoordinatesHandHuman,
-			CoordinatesHandAI, CoordinatesCardIndicator, CoordinatesActionBuyIndicators, CoordinatesPlayArea;
+			CoordinatesHandAI, CoordinatesCardIndicator, CoordinatesActionBuyIndicatorsHuman,
+			CoordinatesActionBuyIndicatorsAI, CoordinatesPlayArea;
 	public static double gapBetweenBorders, textHeight, numberImageView, cardIndicatorWidth;
 
 	public static void calculateCredentials() {
@@ -58,7 +59,7 @@ public class Credentials {
 
 		x = CoordinatesDeckHuman.x + DimensionsCardHuman.x + DimensionsGapBetweenCards.x;
 		y = CoordinatesDeckHuman.y;
-		CoordinatesActionBuyIndicators = new NumbersPair(x, y);
+		CoordinatesActionBuyIndicatorsHuman = new NumbersPair(x, y);
 
 		x = DimensionsFrame.x / 2;
 		y = gapBetweenBorders + 2 * (DimensionsCardHuman.y + DimensionsGapBetweenCards.y) + DimensionsCardHuman.y / 2;
@@ -86,6 +87,10 @@ public class Credentials {
 		x = CoordinatesDiscardPileAI.x;
 		y = CoordinatesDiscardPileAI.y + DimensionsCardAI.y + DimensionsGapBetweenCards.y;
 		CoordinatesHandAI = new NumbersPair(x, y);
+
+		x = CoordinatesDeckAI.x - DimensionsActionBuyIndicators.x - DimensionsGapBetweenCards.x;
+		y = CoordinatesDeckAI.y;
+		CoordinatesActionBuyIndicatorsAI = new NumbersPair(x, y);
 
 	}
 

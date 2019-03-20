@@ -9,7 +9,7 @@ public class PlayerAI extends Player {
 	}
 
 	@Override
-	protected void setCoordinates() {
+	protected void setCredentials() {
 
 		super.deck = new DeckAI();
 		super.hand = new HandAI();

@@ -1,13 +1,16 @@
 package controller;
 
 import enums.ObjectPoolEnum;
+import enums.PlayerEnum;
 import model.IndicatorAction;
 import model.IndicatorActionBuyTreasure;
 import model.IndicatorBuy;
 import model.IndicatorTreasure;
 import utils.ArrayList;
 import utils.ArrayListImageViewAbles;
+import utils.Coordinates;
 import utils.CoordinatesBuilder;
+import utils.DirectionEnum;
 import utils.ObjectPoolSingleton;
 
 public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<IndicatorActionBuyTreasure> {
@@ -16,8 +19,17 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 	private ArrayList<IndicatorBuy> listBuy = new ArrayList<>();
 	private ArrayList<IndicatorTreasure> listTreasure = new ArrayList<>();
 	private int actions = 0, buys = 0, treasure = 0;
+	private Coordinates coordinatesHuman = null, coordinatesAI = null;
 
 	public ActionBuyTreasureIndicators() {
+
+		this.coordinatesHuman = new CoordinatesBuilder()
+				.dimensionsNumbersPair(Credentials.DimensionsActionBuyIndicators)
+				.coordinatesNumbersPair(Credentials.CoordinatesActionBuyIndicatorsHuman).objectsPerRow(3).create();
+
+		this.coordinatesAI = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsActionBuyIndicators)
+				.coordinatesNumbersPair(Credentials.CoordinatesActionBuyIndicatorsAI)
+				.directionEnumHorizontal(DirectionEnum.LEFT).objectsPerRow(3).create();
 
 	}
 
@@ -33,10 +45,7 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 
 	@Override
 	protected void createCoordinates() {
-
-		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(Credentials.DimensionsActionBuyIndicators)
-				.coordinatesNumbersPair(Credentials.CoordinatesActionBuyIndicators).objectsPerRow(3).create();
-
+		super.coordinates = new CoordinatesBuilder().create();
 	}
 
 	private void showActionBuyTreasure() {
@@ -192,6 +201,15 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 			ObjectPoolSingleton.INSTANCE.releaseObject(ObjectPoolEnum.INDICATOR_TREASURE, indicatorTreasure);
 
 		}
+
+	}
+
+	public void setCoordinatesPlayer(PlayerEnum playerEnum) {
+
+		if (playerEnum == PlayerEnum.HUMAN)
+			super.coordinates = this.coordinatesHuman;
+		else if (playerEnum == PlayerEnum.AI)
+			super.coordinates = this.coordinatesAI;
 
 	}
 

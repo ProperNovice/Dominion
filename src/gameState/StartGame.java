@@ -20,10 +20,10 @@ public class StartGame extends GameState {
 	public void handleGameStateChange() {
 
 //		setCurrentPlayerEnum(PlayerEnum.HUMAN);
-//		setCurrentPlayerEnum(PlayerEnum.AI);
+		setCurrentPlayerEnum(PlayerEnum.AI);
 
 //		presentCards();
-//		setDeck();
+		setDeck();
 //		setDiscardPile();
 //		setHand();
 //		setActionBuy(1, 3, 1);
@@ -53,18 +53,17 @@ public class StartGame extends GameState {
 
 		deck.clear();
 
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MARKET));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CELLAR));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
-//		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
-//		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SILVER));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CURSE));
-//		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.ESTATE));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
 
 		for (Card card : deck)
 			card.flipFaceDown();
@@ -139,9 +138,7 @@ public class StartGame extends GameState {
 	}
 
 	public void presentCards() {
-
 		new Cards();
-
 	}
 
 	private class Cards extends ArrayListImageViewAbles<Card> {
@@ -172,6 +169,7 @@ public class StartGame extends GameState {
 
 		this.currentPlayerEnum = playerEnum;
 		super.controller.players().setCurrentPlayerEnum(this.currentPlayerEnum);
+		super.controller.actionBuyTreasureIndicators().setCoordinatesPlayer(this.currentPlayerEnum);
 
 	}
 

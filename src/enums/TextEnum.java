@@ -5,6 +5,7 @@ public enum TextEnum {
 	CONTINUE("Continue", TextTypeEnum.OPTION),
 	RESTART("Restart", TextTypeEnum.OPTION),
 	ACTION_PHASE("Action phase", TextTypeEnum.INDICATOR),
+	RESOLVE_ACTION("Resolve action", TextTypeEnum.OPTION),
 	BUY_PHASE("Buy phase", TextTypeEnum.INDICATOR),
 	CLEAN_UP_PHASE("Clean-up phase", TextTypeEnum.INDICATOR),
 	CLEAN_UP("Clean-up", TextTypeEnum.OPTION),

@@ -12,14 +12,14 @@ public abstract class Player {
 
 	public Player() {
 
-		setCoordinates();
+		setCredentials();
 
 		this.deck.relocateImageViews();
 		this.discardPile.relocateImageViews();
 
 	}
 
-	protected abstract void setCoordinates();
+	protected abstract void setCredentials();
 
 	public Deck getDeck() {
 		return this.deck;

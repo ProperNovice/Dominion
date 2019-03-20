@@ -2,27 +2,42 @@ package gameState;
 
 import enums.CardTypeEnum;
 import enums.GameStateEnum;
+import enums.PlayerEnum;
 import model.Card;
 import model.Pile;
 
 public class NewPhase extends GameState {
 
+	private GameStateEnum gameStateEnum = null;
+	private PlayerEnum currentPlayerEnum = null;
+
 	@Override
 	public void handleGameStateChange() {
 
 		super.controller.text().concealText();
-		GameStateEnum gameStateEnum = null;
+		this.gameStateEnum = null;
+		this.currentPlayerEnum = super.controller.players().getCurrentPlayerEnum();
 
-		if (actionPhase())
-			gameStateEnum = GameStateEnum.ACTION_PHASE;
+		if (actionPhase()) {
 
-		else if (buyPhase()) {
+			if (this.currentPlayerEnum == PlayerEnum.HUMAN)
+				this.gameStateEnum = GameStateEnum.ACTION_PHASE_HUMAN;
+			else if (this.currentPlayerEnum == PlayerEnum.AI)
+				this.gameStateEnum = GameStateEnum.ACTION_PHASE_AI;
+
+		} else if (buyPhase()) {
+
 			super.controller.actionBuyTreasureIndicators().removeAllActions();
-			gameStateEnum = GameStateEnum.BUY_PHASE;
-		} else
-			gameStateEnum = GameStateEnum.CLEAN_UP_PHASE;
 
-		super.controller.flow().addGameStateResolvingFirst(gameStateEnum);
+			if (this.currentPlayerEnum == PlayerEnum.HUMAN)
+				this.gameStateEnum = GameStateEnum.BUY_PHASE_HUMAN;
+			else if (this.currentPlayerEnum == PlayerEnum.AI)
+				this.gameStateEnum = GameStateEnum.BUY_PHASE_AI;
+
+		} else
+			this.gameStateEnum = GameStateEnum.CLEAN_UP_PHASE;
+
+		super.controller.flow().addGameStateResolvingFirst(this.gameStateEnum);
 		super.controller.flow().proceedToNextGameStatePhase();
 
 	}
@@ -46,12 +61,7 @@ public class NewPhase extends GameState {
 	}
 
 	private boolean buyPhase() {
-
-		if (super.controller.actionBuyTreasureIndicators().getRemainingBuys() == 0)
-			return false;
-		else
-			return true;
-
+		return super.controller.actionBuyTreasureIndicators().getRemainingBuys() != 0;
 	}
 
 }
