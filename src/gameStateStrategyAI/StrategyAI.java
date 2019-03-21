@@ -4,14 +4,18 @@ import enums.CardNameEnum;
 import enums.TextEnum;
 import gameState.BuyPhaseAbstract;
 import model.Card;
+import model.Pile;
 import utils.HashMap;
 import utils.Logger;
 
 public abstract class StrategyAI extends BuyPhaseAbstract {
 
 	protected HashMap<CardNameEnum, Integer> cardBuyCost = new HashMap<>();
+	private int treasureAvailable = 0;
 
 	public StrategyAI() {
+
+		this.treasureAvailable = 0;
 
 		this.cardBuyCost.put(CardNameEnum.PROVINCE, 8);
 		this.cardBuyCost.put(CardNameEnum.DUCHY, 5);
@@ -45,74 +49,81 @@ public abstract class StrategyAI extends BuyPhaseAbstract {
 
 	private void executeBuyCard() {
 
-		getTotalTreasure();
+		Logger.logNewLine("/*");
+		Logger.logNewLine("executing buy card");
+
+		this.treasureAvailable = super.controller.actionBuyTreasureIndicators().getTreasure();
 
 		CardNameEnum cardNameEnumToBuy = null;
 
-		if (canResolveFirst())
-			cardNameEnumToBuy = getFirstCard();
-		else if (canResolveSecond())
-			cardNameEnumToBuy = getSecondCard();
-		else if (canResolveThird())
-			cardNameEnumToBuy = getThirdCard();
-		else if (canResolveFourth())
-			cardNameEnumToBuy = getFourthCard();
-		else if (canResolveFifth())
-			cardNameEnumToBuy = getFifthCard();
-		else if (canResolveSixth())
-			cardNameEnumToBuy = getSixthCard();
+		if (canBuyCard1() && canBuyCardLog(getCard1()))
+			cardNameEnumToBuy = getCard1();
+		else if (canBuyCard2() && canBuyCardLog(getCard2()))
+			cardNameEnumToBuy = getCard2();
+		else if (canBuyCard3() && canBuyCardLog(getCard3()))
+			cardNameEnumToBuy = getCard3();
+		else if (canBuyCard4() && canBuyCardLog(getCard4()))
+			cardNameEnumToBuy = getCard4();
+		else if (canBuyCard5() && canBuyCardLog(getCard5()))
+			cardNameEnumToBuy = getCard5();
+		else if (canBuyCard6() && canBuyCardLog(getCard6()))
+			cardNameEnumToBuy = getCard6();
+
+		Logger.logNewLine(cardNameEnumToBuy);
+
+		Logger.logNewLine("*/");
 
 	}
 
-	protected boolean canResolveFirst() {
+	protected boolean canBuyCard1() {
 		return false;
 	}
 
-	protected CardNameEnum getFirstCard() {
+	protected CardNameEnum getCard1() {
 		return null;
 	}
 
-	protected boolean canResolveSecond() {
+	protected boolean canBuyCard2() {
 		return false;
 	}
 
-	protected CardNameEnum getSecondCard() {
+	protected CardNameEnum getCard2() {
 		return null;
 	}
 
-	protected boolean canResolveThird() {
+	protected boolean canBuyCard3() {
 		return false;
 	}
 
-	protected CardNameEnum getThirdCard() {
+	protected CardNameEnum getCard3() {
 		return null;
 	}
 
-	protected boolean canResolveFourth() {
+	protected boolean canBuyCard4() {
 		return false;
 	}
 
-	protected CardNameEnum getFourthCard() {
+	protected CardNameEnum getCard4() {
 		return null;
 	}
 
-	protected boolean canResolveFifth() {
+	protected boolean canBuyCard5() {
 		return false;
 	}
 
-	protected CardNameEnum getFifthCard() {
+	protected CardNameEnum getCard5() {
 		return null;
 	}
 
-	protected boolean canResolveSixth() {
+	protected boolean canBuyCard6() {
 		return false;
 	}
 
-	protected CardNameEnum getSixthCard() {
+	protected CardNameEnum getCard6() {
 		return null;
 	}
 
-	protected int getTotalTreasure() {
+	protected final boolean totalTreasureGreaterToLog(int treasure) {
 
 		int totalTreasure = 0;
 
@@ -125,9 +136,55 @@ public abstract class StrategyAI extends BuyPhaseAbstract {
 		for (Card card : super.controller.players().getCurrentPlayer().getPlayArea().getArrayList())
 			totalTreasure += card.getTreasure();
 
-		Logger.logNewLine("total money -> " + totalTreasure);
+		Logger.log("total treasure greater to -> " + treasure);
+		Logger.log("total treasure -> " + totalTreasure);
 
-		return totalTreasure;
+		boolean pass = totalTreasure > treasure;
+
+		Logger.logNewLine(pass);
+		return pass;
+
+	}
+
+	protected final boolean canBuyCardLog(CardNameEnum cardNameEnum) {
+
+		Logger.log("trying to buy " + cardNameEnum);
+
+		int buyCost = this.cardBuyCost.get(cardNameEnum);
+		int treasureAvailable = super.controller.actionBuyTreasureIndicators().getTreasure();
+		boolean canBuyCard = false;
+
+		Logger.log("buy cost -> " + buyCost);
+		Logger.log("treasure -> " + treasureAvailable);
+
+		if (treasureAvailable >= buyCost)
+			canBuyCard = true;
+
+		Logger.log(canBuyCard);
+
+		if (!canBuyCard)
+			Logger.newLine();
+
+		return canBuyCard;
+
+	}
+
+	protected final boolean stateGainsToEndGameLessOrEqualToLog(int state) {
+
+		int stateGainsToEndGame = -1;
+		boolean pass = false;
+
+		for (Pile pile : super.controller.supply().getPiles())
+			if (pile.getArrayList().getFirst().getCardNameEnum() == CardNameEnum.PROVINCE)
+				stateGainsToEndGame = pile.getArrayList().size();
+
+		if (stateGainsToEndGame <= state)
+			pass = true;
+
+		Logger.log("state gains to end game -> " + stateGainsToEndGame);
+		Logger.logNewLine(pass);
+
+		return pass;
 
 	}
 
