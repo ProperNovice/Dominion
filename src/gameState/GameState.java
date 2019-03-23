@@ -101,11 +101,9 @@ public abstract class GameState {
 
 	public void executeCardEntered(Card card, CardNameEnum cardNameEnum) {
 
-		if (this.controller.players().getCurrentPlayer().getDeck().getArrayList().contains(card))
+		if (this.controller.players().getCurrentPlayer().getDeck().getArrayList().contains(card)
+				|| this.controller.players().getOpponentPlayer().getDeck().getArrayList().contains(card))
 			return;
-
-//		else if (this.controller.players().getOpponent().getDeck().getArrayList().contains(card))
-//			return;
 
 		CardIndicatorSingleton.INSTANCE.indicatorSetVisible(cardNameEnum, true);
 

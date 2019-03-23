@@ -33,7 +33,7 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 
 	}
 
-	public void showNewRoundIndicators() {
+	public void setUpAndShowNewRoundIndicators() {
 
 		this.actions = 1;
 		this.buys = 1;
@@ -74,7 +74,7 @@ public class ActionBuyTreasureIndicators extends ArrayListImageViewAbles<Indicat
 
 		int treasureTemp = 0;
 
-		while (treasureTemp <= this.treasure) {
+		while (treasureTemp < this.treasure) {
 
 			this.listTreasure.addLast(
 					(IndicatorTreasure) ObjectPoolSingleton.INSTANCE.pullObject(ObjectPoolEnum.INDICATOR_TREASURE));

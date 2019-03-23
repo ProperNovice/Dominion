@@ -43,7 +43,7 @@ public class DiscardAnyNumberOfCardsThenDrawThatMany extends GameState {
 		super.controller.players().getCurrentPlayer().getDiscardPile().toBack();
 
 		for (int counter = 1; counter <= cardsSelected.size(); counter++)
-			super.controller.flow().addGameStateResolvingFirst(GameStateEnum.PLUS_ONE_CARD);
+			super.controller.flow().addGameStateResolvingFirst(GameStateEnum.PLUS_ONE_CARD_CURRENT_PLAYER);
 
 		super.controller.flow().proceedToNextGameStatePhase();
 

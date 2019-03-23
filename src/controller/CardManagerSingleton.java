@@ -67,9 +67,9 @@ public enum CardManagerSingleton {
 		case SMITHY:
 			card = new Card(cardNameEnum, 4);
 			card.addCardTypeEnum(CardTypeEnum.ACTION);
-			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD);
-			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD);
-			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD);
+			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD_CURRENT_PLAYER);
+			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD_CURRENT_PLAYER);
+			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD_CURRENT_PLAYER);
 			break;
 
 		case CHAPEL:
@@ -88,7 +88,7 @@ public enum CardManagerSingleton {
 		case VILLAGE:
 			card = new Card(cardNameEnum, 3);
 			card.addCardTypeEnum(CardTypeEnum.ACTION);
-			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD);
+			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD_CURRENT_PLAYER);
 			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_ACTION);
 			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_ACTION);
 			break;
@@ -124,7 +124,7 @@ public enum CardManagerSingleton {
 		case MARKET:
 			card = new Card(cardNameEnum, 5);
 			card.addCardTypeEnum(CardTypeEnum.ACTION);
-			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD);
+			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD_CURRENT_PLAYER);
 			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_ACTION);
 			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_BUY);
 			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_COIN);
@@ -133,8 +133,8 @@ public enum CardManagerSingleton {
 		case WITCH:
 			card = new Card(cardNameEnum, 5);
 			card.addCardTypeEnum(CardTypeEnum.ACTION);
-			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD);
-			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD);
+			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD_CURRENT_PLAYER);
+			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.PLUS_ONE_CARD_CURRENT_PLAYER);
 			card.addCardAbility(PhaseEnum.ACTION, GameStateEnum.EACH_OTHER_PLAYER_GAINS_A_CURSE);
 			break;
 

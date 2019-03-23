@@ -5,17 +5,15 @@ import enums.TextEnum;
 import gameState.BuyPhaseAbstract;
 import model.Card;
 import model.Pile;
+import model.SupplyKingdom;
 import utils.HashMap;
 import utils.Logger;
 
 public abstract class StrategyAI extends BuyPhaseAbstract {
 
 	protected HashMap<CardNameEnum, Integer> cardBuyCost = new HashMap<>();
-	private int treasureAvailable = 0;
 
 	public StrategyAI() {
-
-		this.treasureAvailable = 0;
 
 		this.cardBuyCost.put(CardNameEnum.PROVINCE, 8);
 		this.cardBuyCost.put(CardNameEnum.DUCHY, 5);
@@ -52,8 +50,6 @@ public abstract class StrategyAI extends BuyPhaseAbstract {
 		Logger.logNewLine("/*");
 		Logger.logNewLine("executing buy card");
 
-		this.treasureAvailable = super.controller.actionBuyTreasureIndicators().getTreasure();
-
 		CardNameEnum cardNameEnumToBuy = null;
 
 		if (canBuyCard1() && canBuyCardLog(getCard1()))
@@ -69,9 +65,18 @@ public abstract class StrategyAI extends BuyPhaseAbstract {
 		else if (canBuyCard6() && canBuyCardLog(getCard6()))
 			cardNameEnumToBuy = getCard6();
 
-		Logger.logNewLine(cardNameEnumToBuy);
+		Logger.newLine();
+		Logger.logNewLine("buying -> " + cardNameEnumToBuy);
 
 		Logger.logNewLine("*/");
+
+		if (cardNameEnumToBuy != null)
+			buyCard(cardNameEnumToBuy);
+
+		else {
+			super.controller.actionBuyTreasureIndicators().removeAllBuys();
+			super.controller.flow().proceedToNextGameStatePhase();
+		}
 
 	}
 
@@ -185,6 +190,21 @@ public abstract class StrategyAI extends BuyPhaseAbstract {
 		Logger.logNewLine(pass);
 
 		return pass;
+
+	}
+
+	private void buyCard(CardNameEnum cardNameEnum) {
+
+		SupplyKingdom supplyKingdom = null;
+
+		if (super.controller.supply().containsCardNameEnum(cardNameEnum))
+			supplyKingdom = super.controller.supply();
+		else if (super.controller.kingdom().containsCardNameEnum(cardNameEnum))
+			supplyKingdom = super.controller.kingdom();
+
+		Card card = supplyKingdom.getCard(cardNameEnum);
+
+		super.buySupplyKingdomCardPressed(card, supplyKingdom);
 
 	}
 

@@ -299,4 +299,15 @@ public abstract class Hand implements ListSizeAble {
 
 	}
 
+	public int getHandSize() {
+
+		int handSize = 0;
+
+		for (Pile pile : this.list)
+			handSize += pile.getArrayList().size();
+
+		return handSize;
+
+	}
+
 }

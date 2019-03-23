@@ -11,7 +11,7 @@ public class BigMoney extends StrategyAI {
 		int totalTreasure = 18;
 
 		Logger.log("Province if my.getTotalMoney() > " + totalTreasure);
-		return (!super.totalTreasureGreaterToLog(totalTreasure));
+		return (super.totalTreasureGreaterToLog(totalTreasure));
 
 	}
 

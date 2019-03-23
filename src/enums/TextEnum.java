@@ -11,7 +11,7 @@ public enum TextEnum {
 	CLEAN_UP("Clean-up", TextTypeEnum.OPTION),
 	PROCEED_TO_NEXT_PHASE("Proceed to next phase", TextTypeEnum.OPTION),
 	END_TURN("End turn", TextTypeEnum.OPTION),
-	NEW_TURN("New turn", TextTypeEnum.OPTION),
+	DRAW_STARTING_HANDS("Draw starting hands", TextTypeEnum.OPTION),
 	PLAY_HAND_TREASURES("Play hand treasures", TextTypeEnum.OPTION),
 	BUY_CARD("Buy card", TextTypeEnum.OPTION),
 	CHOOSE_CARDS_TO_DISCARD("Choose cards to discard", TextTypeEnum.INDICATOR),

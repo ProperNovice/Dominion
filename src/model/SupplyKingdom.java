@@ -1,5 +1,6 @@
 package model;
 
+import enums.CardNameEnum;
 import utils.ArrayList;
 import utils.Coordinates;
 
@@ -36,6 +37,28 @@ public abstract class SupplyKingdom {
 				return true;
 
 		return false;
+
+	}
+
+	public boolean containsCardNameEnum(CardNameEnum cardNameEnum) {
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().getFirst().getCardNameEnum() == cardNameEnum)
+				return true;
+
+		return false;
+
+	}
+
+	public Card getCard(CardNameEnum cardNameEnum) {
+
+		Card card = null;
+
+		for (Pile pile : this.list)
+			if (pile.getArrayList().getFirst().getCardNameEnum() == cardNameEnum)
+				card = pile.getArrayList().getFirst();
+
+		return card;
 
 	}
 

@@ -10,6 +10,7 @@ public class Players {
 
 	private HashMap<PlayerEnum, Player> players = new HashMap<>();
 	private PlayerEnum currentPlayerEnum = PlayerEnum.AI;
+	private PlayerEnum firstPlayer = null;
 
 	public Players() {
 		createHashMap();
@@ -30,7 +31,7 @@ public class Players {
 		return this.currentPlayerEnum;
 	}
 
-	public Player getOpponent() {
+	public Player getOpponentPlayer() {
 
 		PlayerEnum playerEnum = null;
 
@@ -50,8 +51,35 @@ public class Players {
 
 	}
 
+	public void changePlayer() {
+
+		switch (this.currentPlayerEnum) {
+
+		case HUMAN:
+			this.currentPlayerEnum = PlayerEnum.AI;
+			break;
+
+		case AI:
+			this.currentPlayerEnum = PlayerEnum.HUMAN;
+			break;
+
+		}
+
+	}
+
 	public void setCurrentPlayerEnum(PlayerEnum playerEnum) {
 		this.currentPlayerEnum = playerEnum;
+	}
+
+	public void setFirstPlayer(PlayerEnum playerEnum) {
+
+		this.firstPlayer = playerEnum;
+		setCurrentPlayerEnum(playerEnum);
+
+	}
+
+	public PlayerEnum getFirstPlayer() {
+		return this.firstPlayer;
 	}
 
 }

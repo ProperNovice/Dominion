@@ -39,8 +39,8 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 			numbersPairDimensions = Credentials.DimensionsCardAI;
 
 		super.relocateList(numbersPair);
-		this.numberImageView.getImageView().relocate(
-				numbersPair.x + numbersPairDimensions.x - Credentials.numberImageView, numbersPair.y);
+		this.numberImageView.getImageView()
+				.relocate(numbersPair.x + numbersPairDimensions.x - Credentials.numberImageView, numbersPair.y);
 
 		double x = numbersPair.x;
 		double y = numbersPair.y + Credentials.DimensionsCardHuman.y - Credentials.DimensionsSelect.y;
@@ -73,6 +73,11 @@ public class Pile extends ArrayListImageViewAbles<Card> {
 
 	public PileAmountOfCardsEnum getPileAmountOfCardsEnum() {
 		return this.amountOfCardsEnum;
+	}
+
+	public void setPileAmountOfCardsInfinite() {
+		this.amountOfCardsEnum = PileAmountOfCardsEnum.INFINITE;
+		updateNumberImageView();
 	}
 
 	public boolean canBeSelected() {

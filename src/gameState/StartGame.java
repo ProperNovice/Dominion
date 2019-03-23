@@ -19,14 +19,14 @@ public class StartGame extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-//		setCurrentPlayerEnum(PlayerEnum.HUMAN);
-		setCurrentPlayerEnum(PlayerEnum.AI);
+//		setFirstPlayerEnum(PlayerEnum.HUMAN);
+		setFirstPlayerEnum(PlayerEnum.AI);
 
 //		presentCards();
-		setDeck();
+//		setDeck();
 //		setDiscardPile();
 //		setHand();
-//		setActionBuy(1, 3, 1);
+//		setActionBuy(2, 7, 81);
 
 		flow();
 
@@ -37,7 +37,7 @@ public class StartGame extends GameState {
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_SUPPLY);
 		super.controller.flow().addGameStateResolvingLast(GameStateEnum.CREATE_KINGDOM);
 
-		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_TURN);
+		super.controller.flow().addGameStateResolvingLast(GameStateEnum.DRAW_STARTING_HAND_BOTH_PLAYERS);
 //		super.controller.flow().addGameStateResolvingLast(GameStateEnum.NEW_PHASE);
 
 		super.controller.flow().proceedToNextGameStatePhase();
@@ -53,15 +53,12 @@ public class StartGame extends GameState {
 
 		deck.clear();
 
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
-//		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
-//		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.MILITIA));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.WITCH));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
+		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.VILLAGE));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.ESTATE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.ESTATE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.ESTATE));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
-		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		deck.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
@@ -120,7 +117,6 @@ public class StartGame extends GameState {
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.GOLD));
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
-		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.COPPER));
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.SMITHY));
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.CHAPEL));
@@ -129,6 +125,7 @@ public class StartGame extends GameState {
 		hand.addLast(CardManagerSingleton.INSTANCE.getNewCard(CardNameEnum.WORKSHOP));
 
 		super.controller.players().getCurrentPlayer().getHand().testSetHandAndRelocate(hand);
+//		super.controller.players().getOpponentPlayer().getHand().testSetHandAndRelocate(hand);
 
 		if (this.currentPlayerEnum == PlayerEnum.HUMAN)
 			return;
@@ -170,9 +167,12 @@ public class StartGame extends GameState {
 
 	}
 
-	public void setCurrentPlayerEnum(PlayerEnum playerEnum) {
+	public void setFirstPlayerEnum(PlayerEnum playerEnum) {
 
 		this.currentPlayerEnum = playerEnum;
+
+//		this.currentPlayerEnum = new ArrayList<>(PlayerEnum.values()).getRandom();
+
 		super.controller.players().setCurrentPlayerEnum(this.currentPlayerEnum);
 		super.controller.actionBuyTreasureIndicators().setCoordinatesPlayer(this.currentPlayerEnum);
 
