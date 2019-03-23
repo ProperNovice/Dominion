@@ -67,9 +67,10 @@ public class CleanUpPhase extends GameStateAbstract {
 	private boolean gameEnded() {
 
 		for (Pile pile : super.controller.supply().getPiles())
-			if (pile.getArrayList().getFirst().getCardNameEnum() == CardNameEnum.PROVINCE)
-				if (pile.getPileAmountOfCardsEnum() == PileAmountOfCardsEnum.FINITE)
-					return false;
+			if (!pile.getArrayList().isEmpty())
+				if (pile.getArrayList().getFirst().getCardNameEnum() == CardNameEnum.PROVINCE)
+					if (pile.getPileAmountOfCardsEnum() == PileAmountOfCardsEnum.FINITE)
+						return false;
 
 		if (super.controller.players().getCurrentPlayerEnum() == super.controller.players().getFirstPlayer())
 			return false;
