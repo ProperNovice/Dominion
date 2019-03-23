@@ -162,7 +162,7 @@ public abstract class StrategyAI extends BuyPhaseAbstract {
 		Logger.log("buy cost -> " + buyCost);
 		Logger.log("treasure -> " + treasureAvailable);
 
-		if (treasureAvailable >= buyCost)
+		if (treasureAvailable >= buyCost && super.controller.supply().containsCardNameEnum(cardNameEnum))
 			canBuyCard = true;
 
 		Logger.log(canBuyCard);

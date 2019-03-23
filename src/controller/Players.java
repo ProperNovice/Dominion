@@ -82,4 +82,8 @@ public class Players {
 		return this.firstPlayer;
 	}
 
+	public Player getPlayer(PlayerEnum playerEnum) {
+		return this.players.get(playerEnum);
+	}
+
 }

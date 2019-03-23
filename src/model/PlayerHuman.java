@@ -1,6 +1,7 @@
 package model;
 
 import controller.Credentials;
+import enums.PlayerEnum;
 
 public class PlayerHuman extends Player {
 
@@ -16,6 +17,7 @@ public class PlayerHuman extends Player {
 
 		super.deck.relocateList(Credentials.CoordinatesDeckHuman);
 		super.discardPile.relocateList(Credentials.CoordinatesDiscardPileHuman);
+		super.victoryPointsIndicator = new VictoryPointsIndicator(PlayerEnum.HUMAN, Credentials.CoordinatesScoreHuman);
 
 	}
 

@@ -19,6 +19,8 @@ public enum GameStateEnum {
 	BUY_PHASE_AI(new BigMoney()),
 	CLEAN_UP_PHASE(new CleanUpPhase()),
 	SET_UP_AND_SHOW_NEW_ROUND_INDICATORS(new SetUpAndShowNewRoundIndicators()),
+	END_GAME(new EndGame()),
+	SET_VICTORY_POINTS_INDICATORS(new SetVictoryPointsIndicators()),
 	
 	PLUS_ONE_CARD_CURRENT_PLAYER(new PlusOneCardCurrentPlayer()),
 	PLUS_ONE_CARD_OPPONENT_PLAYER(new PlusOneCardOpponentPlayer()),

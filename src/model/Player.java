@@ -9,6 +9,7 @@ public abstract class Player {
 	protected DiscardPile discardPile = new DiscardPile();
 	protected PlayArea playArea = new PlayArea();
 	protected NumbersPair handCoordinates = null;
+	protected VictoryPointsIndicator victoryPointsIndicator = null;
 
 	public Player() {
 
@@ -35,6 +36,10 @@ public abstract class Player {
 
 	public PlayArea getPlayArea() {
 		return this.playArea;
+	}
+
+	public VictoryPointsIndicator getVictoryPoints() {
+		return this.victoryPointsIndicator;
 	}
 
 }

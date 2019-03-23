@@ -17,7 +17,7 @@ public class Flow {
 	public void proceedToNextGameStatePhase() {
 
 		if (this.gameStateResolving.isEmpty())
-			this.gameStateResolving.addLast(GameStateEnum.NEW_PHASE);
+			addGameStateResolvingFirst(GameStateEnum.NEW_PHASE);
 
 		GameStateEnum gameStateEnum = this.gameStateResolving.removeFirst();
 
@@ -26,7 +26,10 @@ public class Flow {
 	}
 
 	public void addGameStateResolvingFirst(GameStateEnum gameStateEnum) {
+
 		this.gameStateResolving.addFirst(gameStateEnum);
+		this.gameStateResolving.addFirst(GameStateEnum.SET_VICTORY_POINTS_INDICATORS);
+
 	}
 
 	public void addGameStateResolvingFirst(ArrayList<GameStateEnum> gameStateEnumList) {

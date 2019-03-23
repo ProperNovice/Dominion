@@ -19,6 +19,9 @@ public enum TextEnum {
 	CHOOSE_A_CARD_COSTING_UP_TO_FOUR("Choose a card costing up to four", TextTypeEnum.INDICATOR),
 	CHOOSE_A_CARD_TO_TRASH("Choose a card to trash", TextTypeEnum.INDICATOR),
 	CHOOSE_A_CARD_COSTING_UP_TO_TWO_MORE("Choose a card costing up to two more", TextTypeEnum.INDICATOR),
+	YOU_WON("You won", TextTypeEnum.INDICATOR),
+	YOU_LOST("You lost", TextTypeEnum.INDICATOR),
+	DRAW("Draw", TextTypeEnum.INDICATOR),
 	
 
 	;

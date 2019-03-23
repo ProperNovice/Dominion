@@ -25,10 +25,18 @@ public class CleanUpPhase extends GameState {
 	protected void executeTextOption(TextEnum textEnum) {
 
 		executeCleanUp();
-		changeCurrentPlayer();
 
-		super.controller.flow().addGameStateResolvingFirst(GameStateEnum.SET_UP_AND_SHOW_NEW_ROUND_INDICATORS);
-		super.controller.flow().addGameStateResolvingFirst(GameStateEnum.DRAW_STARTING_HAND_OPPONENT_PLAYER);
+		if (gameEnded())
+			super.controller.flow().addGameStateResolvingFirst(GameStateEnum.END_GAME);
+
+		else {
+
+			changeCurrentPlayer();
+			super.controller.flow().addGameStateResolvingFirst(GameStateEnum.SET_UP_AND_SHOW_NEW_ROUND_INDICATORS);
+			super.controller.flow().addGameStateResolvingFirst(GameStateEnum.DRAW_STARTING_HAND_OPPONENT_PLAYER);
+
+		}
+
 		super.controller.flow().proceedToNextGameStatePhase();
 
 	}
@@ -63,7 +71,7 @@ public class CleanUpPhase extends GameState {
 				if (pile.getPileAmountOfCardsEnum() == PileAmountOfCardsEnum.FINITE)
 					return false;
 
-		if (super.controller.players().getCurrentPlayerEnum() != super.controller.players().getFirstPlayer())
+		if (super.controller.players().getCurrentPlayerEnum() == super.controller.players().getFirstPlayer())
 			return false;
 
 		return true;

@@ -54,9 +54,17 @@ public abstract class SupplyKingdom {
 
 		Card card = null;
 
-		for (Pile pile : this.list)
-			if (pile.getArrayList().getFirst().getCardNameEnum() == cardNameEnum)
-				card = pile.getArrayList().getFirst();
+		for (Pile pile : this.list) {
+
+			if (pile.getArrayList().isEmpty())
+				continue;
+
+			if (pile.getArrayList().getFirst().getCardNameEnum() != cardNameEnum)
+				continue;
+
+			card = pile.getArrayList().getFirst();
+
+		}
 
 		return card;
 
