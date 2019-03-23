@@ -42,9 +42,15 @@ public abstract class SupplyKingdom {
 
 	public boolean containsCardNameEnum(CardNameEnum cardNameEnum) {
 
-		for (Pile pile : this.list)
+		for (Pile pile : this.list) {
+
+			if (pile.getArrayList().isEmpty())
+				continue;
+
 			if (pile.getArrayList().getFirst().getCardNameEnum() == cardNameEnum)
 				return true;
+
+		}
 
 		return false;
 
