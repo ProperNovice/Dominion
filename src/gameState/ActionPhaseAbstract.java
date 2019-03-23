@@ -3,7 +3,7 @@ package gameState;
 import enums.PhaseEnum;
 import model.Card;
 
-public abstract class ActionPhaseAbstract extends GameState {
+public abstract class ActionPhaseAbstract extends GameStateAbstract {
 
 	protected void resolveActionCard(Card cardToResolve) {
 

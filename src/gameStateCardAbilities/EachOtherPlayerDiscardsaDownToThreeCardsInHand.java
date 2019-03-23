@@ -1,13 +1,13 @@
 package gameStateCardAbilities;
 
 import enums.CardNameEnum;
-import gameState.GameState;
+import gameState.GameStateAbstract;
 import model.Card;
 import model.Pile;
 import utils.ArrayList;
 import utils.Logger;
 
-public class EachOtherPlayerDiscardsaDownToThreeCardsInHand extends GameState {
+public class EachOtherPlayerDiscardsaDownToThreeCardsInHand extends GameStateAbstract {
 
 	private ArrayList<CardNameEnum> discardOrder = new ArrayList<CardNameEnum>();
 

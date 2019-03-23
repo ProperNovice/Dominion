@@ -1,12 +1,12 @@
 package controller;
 
 import enums.GameStateEnum;
-import gameState.GameState;
+import gameState.GameStateAbstract;
 import utils.Logger;
 
 public class GameStateManager {
 
-	private GameState currentGameState = null;
+	private GameStateAbstract currentGameState = null;
 
 	public GameStateManager() {
 
@@ -23,7 +23,7 @@ public class GameStateManager {
 
 	}
 
-	public GameState getCurrentGameState() {
+	public GameStateAbstract getCurrentGameState() {
 		return this.currentGameState;
 	}
 

@@ -17,7 +17,7 @@ public class PlayerHuman extends Player {
 
 		super.deck.relocateList(Credentials.CoordinatesDeckHuman);
 		super.discardPile.relocateList(Credentials.CoordinatesDiscardPileHuman);
-		super.victoryPointsIndicator = new VictoryPointsIndicator(PlayerEnum.HUMAN, Credentials.CoordinatesScoreHuman);
+		super.victoryPointsIndicator = new VictoryPointsIndicator(PlayerEnum.HUMAN);
 
 	}
 

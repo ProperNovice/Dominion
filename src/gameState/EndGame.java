@@ -3,7 +3,7 @@ package gameState;
 import enums.PlayerEnum;
 import enums.TextEnum;
 
-public class EndGame extends GameState {
+public class EndGame extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {
@@ -22,6 +22,7 @@ public class EndGame extends GameState {
 			textEnum = TextEnum.DRAW;
 
 		super.controller.text().showText(textEnum);
+		super.controller.text().showText(TextEnum.RESTART);
 
 	}
 

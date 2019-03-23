@@ -4,12 +4,12 @@ import controller.CardManagerSingleton;
 import enums.CardNameEnum;
 import enums.PileAmountOfCardsEnum;
 import enums.TextEnum;
-import gameState.GameState;
+import gameState.GameStateAbstract;
 import model.Card;
 import model.Pile;
 import model.SupplyKingdom;
 
-public class TrashCardFromYourHandGainCardCostingUpToTwoMoreThanIt extends GameState {
+public class TrashCardFromYourHandGainCardCostingUpToTwoMoreThanIt extends GameStateAbstract {
 
 	private TextEnum textEnumShowing = null;
 	private int cardMaximumBuyCost = 0;

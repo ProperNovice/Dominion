@@ -12,7 +12,7 @@ import utils.ArrayListImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.NumbersPair;
 
-public class StartGame extends GameState {
+public class StartGame extends GameStateAbstract {
 
 	private PlayerEnum currentPlayerEnum = null;
 
@@ -70,7 +70,7 @@ public class StartGame extends GameState {
 		for (Card card : deck)
 			card.flipFaceDown();
 
-		super.controller.players().getCurrentPlayer().getDeck().relocateImageViews();
+		super.controller.players().getPlayer(PlayerEnum.HUMAN).getDeck().relocateImageViews();
 
 		if (this.currentPlayerEnum == PlayerEnum.HUMAN)
 			return;
@@ -169,11 +169,16 @@ public class StartGame extends GameState {
 
 	public void setFirstPlayerEnum(PlayerEnum playerEnum) {
 
-		this.currentPlayerEnum = playerEnum;
+//		this.currentPlayerEnum = playerEnum;
 
-//		this.currentPlayerEnum = new ArrayList<>(PlayerEnum.values()).getRandom();
+		this.currentPlayerEnum = new ArrayList<>(PlayerEnum.values()).getRandom();
 
 		super.controller.players().setCurrentPlayerEnum(this.currentPlayerEnum);
+		super.controller.players().setFirstPlayer(this.currentPlayerEnum);
+
+		super.controller.players().getCurrentPlayer().getVictoryPoints().relocate(Credentials.CoordinatesScoreFirst);
+		super.controller.players().getOpponentPlayer().getVictoryPoints().relocate(Credentials.CoordinatesScoreSecond);
+
 		super.controller.actionBuyTreasureIndicators().setCoordinatesPlayer(this.currentPlayerEnum);
 
 	}

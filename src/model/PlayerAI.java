@@ -17,7 +17,7 @@ public class PlayerAI extends Player {
 
 		super.deck.relocateList(Credentials.CoordinatesDeckAI);
 		super.discardPile.relocateList(Credentials.CoordinatesDiscardPileAI);
-		super.victoryPointsIndicator = new VictoryPointsIndicator(PlayerEnum.AI, Credentials.CoordinatesScoreAI);
+		super.victoryPointsIndicator = new VictoryPointsIndicator(PlayerEnum.AI);
 
 	}
 

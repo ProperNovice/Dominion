@@ -1,6 +1,6 @@
 package gameState;
 
-public class SetUpAndShowNewRoundIndicators extends GameState {
+public class SetUpAndShowNewRoundIndicators extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {

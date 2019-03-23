@@ -6,7 +6,7 @@ import enums.PlayerEnum;
 import model.Card;
 import model.Pile;
 
-public class NewPhase extends GameState {
+public class NewPhase extends GameStateAbstract {
 
 	private GameStateEnum gameStateEnum = null;
 	private PlayerEnum currentPlayerEnum = null;

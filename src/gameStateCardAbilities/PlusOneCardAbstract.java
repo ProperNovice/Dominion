@@ -1,12 +1,12 @@
 package gameStateCardAbilities;
 
-import gameState.GameState;
+import gameState.GameStateAbstract;
 import model.Card;
 import model.Player;
 import utils.ArrayList;
 import utils.Lock;
 
-public abstract class PlusOneCardAbstract extends GameState {
+public abstract class PlusOneCardAbstract extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {

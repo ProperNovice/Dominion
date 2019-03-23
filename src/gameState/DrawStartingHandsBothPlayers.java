@@ -3,7 +3,7 @@ package gameState;
 import enums.GameStateEnum;
 import enums.TextEnum;
 
-public class DrawStartingHandsBothPlayers extends GameState {
+public class DrawStartingHandsBothPlayers extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {

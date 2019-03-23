@@ -1,11 +1,11 @@
 package gameStateCardAbilities;
 
 import enums.TextEnum;
-import gameState.GameState;
+import gameState.GameStateAbstract;
 import model.Card;
 import model.Pile;
 
-public class GainCardCostingUpToFour extends GameState {
+public class GainCardCostingUpToFour extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {

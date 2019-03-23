@@ -1,11 +1,11 @@
 package gameStateCardAbilities;
 
 import enums.TextEnum;
-import gameState.GameState;
+import gameState.GameStateAbstract;
 import model.Card;
 import utils.ArrayList;
 
-public class TrashUpToFourCardsFromYourHand extends GameState {
+public class TrashUpToFourCardsFromYourHand extends GameStateAbstract {
 
 	private int cardsSelected = 0;
 

@@ -179,9 +179,17 @@ public abstract class StrategyAI extends BuyPhaseAbstract {
 		int stateGainsToEndGame = -1;
 		boolean pass = false;
 
-		for (Pile pile : super.controller.supply().getPiles())
-			if (pile.getArrayList().getFirst().getCardNameEnum() == CardNameEnum.PROVINCE)
-				stateGainsToEndGame = pile.getArrayList().size();
+		for (Pile pile : super.controller.supply().getPiles()) {
+
+			if (pile.getArrayList().isEmpty())
+				continue;
+
+			if (pile.getArrayList().getFirst().getCardNameEnum() != CardNameEnum.PROVINCE)
+				continue;
+
+			stateGainsToEndGame = pile.getArrayList().size();
+
+		}
 
 		if (stateGainsToEndGame <= state)
 			pass = true;

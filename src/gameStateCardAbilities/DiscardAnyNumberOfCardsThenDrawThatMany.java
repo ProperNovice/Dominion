@@ -2,11 +2,11 @@ package gameStateCardAbilities;
 
 import enums.GameStateEnum;
 import enums.TextEnum;
-import gameState.GameState;
+import gameState.GameStateAbstract;
 import model.Card;
 import utils.ArrayList;
 
-public class DiscardAnyNumberOfCardsThenDrawThatMany extends GameState {
+public class DiscardAnyNumberOfCardsThenDrawThatMany extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {

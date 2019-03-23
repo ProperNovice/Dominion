@@ -22,7 +22,6 @@ public enum TextEnum {
 	YOU_WON("You won", TextTypeEnum.INDICATOR),
 	YOU_LOST("You lost", TextTypeEnum.INDICATOR),
 	DRAW("Draw", TextTypeEnum.INDICATOR),
-	
 
 	;
 

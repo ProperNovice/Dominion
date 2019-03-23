@@ -1,11 +1,11 @@
 package gameStateCardAbilities;
 
 import enums.CardNameEnum;
-import gameState.GameState;
+import gameState.GameStateAbstract;
 import model.Card;
 import model.Pile;
 
-public class EachOtherPlayerGainsCurse extends GameState {
+public class EachOtherPlayerGainsCurse extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {

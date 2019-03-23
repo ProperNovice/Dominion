@@ -8,7 +8,7 @@ import model.Card;
 import model.Pile;
 import utils.ArrayList;
 
-public class CreateKingdom extends GameState {
+public class CreateKingdom extends GameStateAbstract {
 
 	private ArrayList<Pile> piles = new ArrayList<>();
 

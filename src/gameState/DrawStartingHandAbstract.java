@@ -2,7 +2,7 @@ package gameState;
 
 import enums.GameStateEnum;
 
-public abstract class DrawStartingHandAbstract extends GameState {
+public abstract class DrawStartingHandAbstract extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {

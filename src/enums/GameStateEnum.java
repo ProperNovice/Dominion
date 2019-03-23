@@ -33,18 +33,17 @@ public enum GameStateEnum {
 	TRASH_A_CARD_FROM_YOUR_HAND_GAIN_A_CARD_COSTING_UP_TO_TWO_MORE_THAN_IT(new TrashCardFromYourHandGainCardCostingUpToTwoMoreThanIt()),
 	EACH_OTHER_PLAYER_DISCARDS_DOWN_TO_THREE_CARDS_IN_HAND(new EachOtherPlayerDiscardsaDownToThreeCardsInHand()),
 	EACH_OTHER_PLAYER_GAINS_A_CURSE(new EachOtherPlayerGainsCurse()),
-	
-	WORTH_ONE_VICTORY_POINT_PER_TEN_CARDS_YOU_HAVE_ROUND_DOWN(new WorthOneVictoryPointPerTenCardsYouHaveRoundDown()),
+	WORTH_ONE_VICTORY_POINT_PER_TEN_CARDS_YOU_HAVE_ROUND_DOWN(null),
 	
 	;
 
-	private GameState gameState = null;
+	private GameStateAbstract gameState = null;
 
-	private GameStateEnum(GameState gameState) {
+	private GameStateEnum(GameStateAbstract gameState) {
 		this.gameState = gameState;
 	}
 
-	public GameState getGameState() {
+	public GameStateAbstract getGameState() {
 		return this.gameState;
 	}
 

@@ -11,7 +11,7 @@ import model.SupplyKingdom;
 import utils.ArrayList;
 import utils.Logger;
 
-public abstract class BuyPhaseAbstract extends GameState {
+public abstract class BuyPhaseAbstract extends GameStateAbstract {
 
 	protected void playHandTreasures() {
 

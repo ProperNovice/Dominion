@@ -9,7 +9,7 @@ import model.DiscardPile;
 import model.Hand.PileRearrangeType;
 import model.Pile;
 
-public class CleanUpPhase extends GameState {
+public class CleanUpPhase extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {

@@ -90,7 +90,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 	@Override
 	public void handleMouseButtonPressedSecondary() {
-		
+
 		printCard();
 
 		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
@@ -161,6 +161,10 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 	public int getBuyCost() {
 		return this.buyCost;
+	}
+
+	public boolean hasPhaseEnum(PhaseEnum phaseEnum) {
+		return this.cardAbilities.containsKey(phaseEnum);
 	}
 
 	public ArrayList<GameStateEnum> getCardAbilityEnum(PhaseEnum phaseEnum) {

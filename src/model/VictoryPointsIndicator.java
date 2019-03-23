@@ -11,7 +11,7 @@ public class VictoryPointsIndicator {
 	private int victoryPoints = -1;
 	private TextIndicator textIndicator = null;
 
-	public VictoryPointsIndicator(PlayerEnum playerEnum, NumbersPair numbersPair) {
+	public VictoryPointsIndicator(PlayerEnum playerEnum) {
 
 		this.textPlayer = playerEnum.string();
 		this.textPlayer += " : ";
@@ -19,8 +19,11 @@ public class VictoryPointsIndicator {
 		this.textIndicator = new TextIndicator();
 		this.textIndicator.setHeight(Credentials.textHeight);
 		setVictoryPointsText(3);
-		this.textIndicator.relocate(numbersPair);
 
+	}
+
+	public void relocate(NumbersPair numbersPair) {
+		this.textIndicator.relocate(numbersPair);
 	}
 
 	public void setVictoryPointsText(int victoryPoints) {

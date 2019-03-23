@@ -9,7 +9,7 @@ import model.Card;
 import utils.Instances;
 import utils.Logger;
 
-public abstract class GameState {
+public abstract class GameStateAbstract {
 
 	protected Controller controller = Instances.getControllerInstance();
 

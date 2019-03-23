@@ -1,8 +1,8 @@
 package gameStateCardAbilities;
 
-import gameState.GameState;
+import gameState.GameStateAbstract;
 
-public class PlusOneAction extends GameState {
+public class PlusOneAction extends GameStateAbstract {
 
 	@Override
 	public void handleGameStateChange() {

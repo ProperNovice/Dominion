@@ -6,7 +6,7 @@ import enums.PileAmountOfCardsEnum;
 import model.Pile;
 import utils.ArrayList;
 
-public class CreateSupply extends GameState {
+public class CreateSupply extends GameStateAbstract {
 
 	private ArrayList<Pile> piles = new ArrayList<>();
 
