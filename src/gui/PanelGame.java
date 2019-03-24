@@ -1,9 +1,9 @@
 package gui;
 
+import controller.Controller;
 import utils.Instances;
 import utils.Parent;
 import utils.PlatformFX;
-import controller.Controller;
 
 public class PanelGame extends Parent {
 
