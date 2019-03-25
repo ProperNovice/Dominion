@@ -2,12 +2,11 @@ package controller;
 
 import enums.GameStateEnum;
 import utils.ArrayList;
-import utils.Instances;
 import utils.Logger;
 
 public class Flow {
 
-	private Controller controller = Instances.getControllerInstance();
+	private Controller controller = Controller.INSTANCE;
 	private ArrayList<GameStateEnum> gameStateResolving = new ArrayList<>();
 
 	public Flow() {

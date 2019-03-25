@@ -13,7 +13,7 @@ public class PanelGame extends Parent {
 
 		this.panel = panel;
 		Instances.setPanelGameInstance(this);
-		new Controller();
+		Controller.INSTANCE.createInstances();
 
 	}
 

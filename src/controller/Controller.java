@@ -1,8 +1,8 @@
 package controller;
 
-import utils.Instances;
+public enum Controller {
 
-public class Controller {
+	INSTANCE;
 
 	private GameStateManager gameState = null;
 	private Text text = null;
@@ -14,13 +14,7 @@ public class Controller {
 	private Kingdom kingdom = null;
 	private ActionBuyTreasureIndicators actionBuyTreasuresIndicators = null;
 
-	public Controller() {
-		createInstances();
-	}
-
-	private void createInstances() {
-
-		Instances.setControllerInstance(this);
+	public void createInstances() {
 
 		this.gameState = new GameStateManager();
 		this.text = new Text();

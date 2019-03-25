@@ -1,5 +1,6 @@
 package utils;
 
+import controller.Controller;
 import controller.Credentials;
 import enums.TextEnum;
 import utils.EventHandler.EventHandlerAble;
@@ -43,7 +44,7 @@ public class TextGame implements EventHandlerAble {
 
 	@Override
 	public void handleMouseButtonPressedPrimary() {
-		Instances.getControllerInstance().gameState().getCurrentGameState().handleTextOptionPressed(this.textEnum);
+		Controller.INSTANCE.gameState().getCurrentGameState().handleTextOptionPressed(this.textEnum);
 	}
 
 	public void relocate(double x, double y) {

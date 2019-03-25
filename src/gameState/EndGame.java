@@ -26,4 +26,9 @@ public class EndGame extends GameStateAbstract {
 
 	}
 
+	@Override
+	protected void executeTextOption(TextEnum textEnum) {
+
+	}
+
 }

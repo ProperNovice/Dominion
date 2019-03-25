@@ -1,11 +1,11 @@
 package gui;
 
+import controller.Controller;
 import enums.GameStateEnum;
 import javafx.scene.image.ImageView;
 import utils.EventHandler;
 import utils.EventHandler.EventHandlerAble;
 import utils.Executor;
-import utils.Instances;
 import utils.Parent;
 import utils.ShutDown;
 
@@ -41,7 +41,7 @@ public class Panel extends Parent implements EventHandlerAble {
 
 	public void startGame() {
 
-		Executor.runLater(() -> Instances.getControllerInstance().gameState().setGameState(GameStateEnum.START_GAME));
+		Executor.runLater(() -> Controller.INSTANCE.gameState().setGameState(GameStateEnum.START_GAME));
 
 	}
 

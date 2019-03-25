@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Controller;
 import controller.Credentials;
 import controller.ObjectsPool;
 import javafx.application.Application;
@@ -12,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import utils.Animation;
 import utils.Executor;
-import utils.Instances;
 import utils.Logger;
 import utils.ShutDown;
 
@@ -49,7 +49,7 @@ public class Dominion extends Application {
 					if (Animation.INSTANCE.isAnimating())
 						return;
 
-					Instances.getControllerInstance().gameState().getCurrentGameState().executeKeyPressed(keyCode);
+					Controller.INSTANCE.gameState().getCurrentGameState().executeKeyPressed(keyCode);
 
 				});
 

@@ -6,12 +6,11 @@ import enums.CardNameEnum;
 import enums.TextEnum;
 import javafx.scene.input.KeyCode;
 import model.Card;
-import utils.Instances;
 import utils.Logger;
 
 public abstract class GameStateAbstract {
 
-	protected Controller controller = Instances.getControllerInstance();
+	protected Controller controller = Controller.INSTANCE;
 
 	public abstract void handleGameStateChange();
 

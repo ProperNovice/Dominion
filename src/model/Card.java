@@ -1,5 +1,6 @@
 package model;
 
+import controller.Controller;
 import controller.Credentials;
 import enums.CardNameEnum;
 import enums.CardTypeEnum;
@@ -12,7 +13,6 @@ import utils.HashMap;
 import utils.Image;
 import utils.ImageView;
 import utils.ImageViewAble;
-import utils.Instances;
 import utils.Logger;
 
 public class Card implements EventHandlerAble, ImageViewAble {
@@ -83,8 +83,7 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 		printCard();
 
-		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
-				.executeCardPressedPrimary(this));
+		Executor.runLater(() -> Controller.INSTANCE.gameState().getCurrentGameState().executeCardPressedPrimary(this));
 
 	}
 
@@ -93,21 +92,21 @@ public class Card implements EventHandlerAble, ImageViewAble {
 
 		printCard();
 
-		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
-				.executeCardPressedSecondary(this));
+		Executor.runLater(
+				() -> Controller.INSTANCE.gameState().getCurrentGameState().executeCardPressedSecondary(this));
 
 	}
 
 	@Override
 	public void handleMouseEntered() {
-		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
-				.executeCardEntered(this, this.cardNameEnum));
+		Executor.runLater(() -> Controller.INSTANCE.gameState().getCurrentGameState().executeCardEntered(this,
+				this.cardNameEnum));
 	}
 
 	@Override
 	public void handleMouseExited() {
-		Executor.runLater(() -> Instances.getControllerInstance().gameState().getCurrentGameState()
-				.executeCardExited(this.cardNameEnum));
+		Executor.runLater(
+				() -> Controller.INSTANCE.gameState().getCurrentGameState().executeCardExited(this.cardNameEnum));
 	}
 
 	private void printCard() {
